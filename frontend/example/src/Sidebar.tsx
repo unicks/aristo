@@ -1,6 +1,7 @@
 import React from "react";
 import type { IHighlight } from "./react-pdf-highlighter";
 import type { ReactNode } from "react";
+import logoImg from "./assets/logo.png";
 
 interface Props {
   highlights: Array<IHighlight>;
@@ -21,12 +22,37 @@ export function Sidebar({
 }: Props) {
   return (
     <div className="sidebar" style={{ width: "25vw" }}>
-      <div className="description" style={{ padding: "1rem" }}>
-        <h2 style={{ marginBottom: "1rem" }}>
+      <div className="description" style={{ 
+        padding: "1.5rem", 
+        textAlign: "center",
+        borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+      }}>
+        <img 
+          src={logoImg} 
+          alt="Aristo Logo" 
+          style={{
+            width: "60px",
+            height: "60px",
+            marginBottom: "1rem",
+            borderRadius: "12px",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+          }}
+        />
+        <h2 style={{ 
+          marginBottom: "0.5rem",
+          color: "#2c3e50",
+          fontSize: "1.8rem",
+          fontWeight: "600",
+        }}>
           Aristo
         </h2>
 
-        <p style={{ fontSize: "0.7rem" }}>
+        <p style={{ 
+          fontSize: "0.85rem",
+          color: "#6c757d",
+          margin: "0",
+          lineHeight: "1.4",
+        }}>
           Your AI-powered assignment grader.
         </p>
       </div>
@@ -67,8 +93,23 @@ export function Sidebar({
       </ul>
       {highlights.length > 0 ? (
         <div style={{ padding: "1rem" }}>
-          <button type="button" onClick={resetHighlights}>
-            Reset highlights
+          <button 
+            type="button" 
+            onClick={resetHighlights}
+            style={{
+              width: "100%",
+              padding: "0.6rem",
+              backgroundColor: "#dc3545",
+              color: "white",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "0.85rem",
+              fontWeight: "500",
+              transition: "all 0.15s ease",
+            }}
+          >
+            🗑️ Reset highlights
           </button>
         </div>
       ) : null}
