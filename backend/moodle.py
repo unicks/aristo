@@ -39,17 +39,27 @@ def download_all_submissions(assignid):
     data = call_moodle_api('mod_assign_get_submissions', {'assignmentids[0]': assignid})
     submissions = data['assignments'][0]['submissions']
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
+
     for submission in submissions:
         for plugin in submission.get('plugins', []):
             if plugin['type'] == 'file':
                 for filearea in plugin['fileareas']:
                     for file in filearea['files']:
-                        fileurl = file['fileurl'] + f"&token={MOODLE_TOKEN}"
+                        fileurl = file['fileurl']
+                        # Use correct token via header or URL param
+                        download_url = f"{fileurl}?token={MOODLE_TOKEN}"
+
                         filename = os.path.join(DOWNLOAD_DIR, f"user_{submission['userid']}_{file['filename']}")
                         print(f"Downloading {filename}...")
-                        r = requests.get(fileurl)
-                        with open(filename, 'wb') as f:
-                            f.write(r.content)
+
+                        response = requests.get(download_url, stream=True)
+                        if response.status_code == 200:
+                            with open(filename, 'wb') as f:
+                                for chunk in response.iter_content(chunk_size=8192):
+                                    f.write(chunk)
+                        else:
+                            print(f"Failed to download {filename} – status {response.status_code}")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Moodle CLI Tool")
