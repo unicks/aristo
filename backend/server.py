@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from utils import *
 import json
 import os
-import google.generativeai as genai
+import google.genai as genai
 import PyPDF2  
 
 app = Flask(__name__)
