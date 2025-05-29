@@ -11,8 +11,11 @@ import PyPDF2
 import numpy as np
 from typing import Dict, List
 import base64 # Added for Base64 encoding
+from moodle import call_moodle_api
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -137,7 +140,6 @@ def choose_varied_files():
 def index():
     return "LaTeX grading backend is running."
 
-
 @app.route('/grade', methods=['POST'])
 def grade_latex_file(): 
     if 'file' not in request.files:
@@ -226,6 +228,35 @@ def summary_from_feedback():
 
         return jsonify(summary)
 
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/courses', methods=['GET'])
+def get_courses():
+    try:
+        # You may want to get userid from query params or session
+        userid = request.args.get('userid', default=2, type=int)
+        courses = call_moodle_api('core_enrol_get_users_courses', {'userid': userid})
+        course_list = [
+            {"id": course['id'], "fullname": course['fullname']}
+            for course in courses
+        ]
+        return jsonify({"courses": course_list})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/assignments', methods=['GET'])
+def get_assignments():
+    try:
+        courseid = request.args.get('courseid', type=int)
+        if not courseid:
+            return jsonify({"error": "Missing courseid parameter"}), 400
+        data = call_moodle_api('mod_assign_get_assignments', {'courseids[0]': courseid})
+        assignments = []
+        for course in data.get('courses', []):
+            for assign in course.get('assignments', []):
+                assignments.append({"id": assign['id'], "name": assign['name']})
+        return jsonify({"assignments": assignments})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
