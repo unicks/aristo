@@ -1,6 +1,6 @@
-const areaHighlight = "_areaHighlight_1tybg_1";
-const part = "_part_1tybg_15";
-const scrolledTo = "_scrolledTo_1tybg_29";
+const areaHighlight = "_areaHighlight_1ppoh_1";
+const part = "_part_1ppoh_8";
+const scrolledTo = "_scrolledTo_1ppoh_15";
 const styles = {
   areaHighlight,
   part,

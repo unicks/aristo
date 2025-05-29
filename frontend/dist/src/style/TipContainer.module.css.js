@@ -1,4 +1,4 @@
-const tipContainer = "_tipContainer_b2yn0_1";
+const tipContainer = "_tipContainer_f56kr_1";
 const styles = {
   tipContainer
 };
