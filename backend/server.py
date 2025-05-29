@@ -19,9 +19,11 @@ CORS(app)
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
 client = genai.Client(api_key=GEMINI_API_KEY)
 
+
 @app.route('/choose', methods=['POST'])
 def choose_varied_files():
     """Endpoint to download submissions, find the N most different files, and return their content."""
+    if request.method == "OPTIONS": return "", 200
     try:
         assignment_id_from_request = request.json.get('exercise_id')
         amount = int(request.json.get('amount', 2)) # Default to 2 if not provided

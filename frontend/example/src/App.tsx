@@ -105,6 +105,35 @@ export function App() {
     }
   };
 
+  const handleBase64Upload = (base64Files: Array<{ content_base64: string; filename: string }>) => {
+  const newPdfs = base64Files.map(({ content_base64, filename }) => {
+    // Decode base64 to binary
+    const byteCharacters = atob(content_base64);
+    const byteArrays = new Uint8Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteArrays[i] = byteCharacters.charCodeAt(i);
+    }
+
+    // Create Blob and File
+    const pdfBlob = new Blob([byteArrays], { type: "application/pdf" });
+    const fileUrl = URL.createObjectURL(pdfBlob);
+    blobUrlsRef.current.add(fileUrl); // Track blob URL for cleanup
+
+    return {
+      url: fileUrl,
+      name: filename,
+      highlights: []
+    };
+  });
+
+  const currentLength = uploadedPdfs.length;
+  setUploadedPdfs(prev => [...prev, ...newPdfs]);
+
+  if (currentLength === 0 && newPdfs.length > 0) {
+    setCurrentPdfIndex(0);
+  }
+};
+
   const navigateToPdf = (direction: 'prev' | 'next') => {
     const oldIndex = currentPdfIndex;
     let newIndex = oldIndex;
@@ -377,6 +406,7 @@ export function App() {
               </label>
             </div>
             </div>
+            <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
               <button
                 disabled={!selectedCourseId || assignments.length === 0}
                 style={{
@@ -399,22 +429,79 @@ export function App() {
                   }
                   try {
                     // Example API call - replace URL and method as needed
-                    const res = await fetch(`http://localhost:5000/choose/${assignmentId}`, {
+                    const res = await fetch("http://localhost:5000/choose", {
                       method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ assignmentId }),
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        amount: 2,
+                        exercise_id: assignmentId,
+                      }),
                     });
                     if (!res.ok) throw new Error("API call failed");
                     const data = await res.json();
-                    console.log(data)
-                    alert(`API call successful: ${JSON.stringify(data)}`);
+                    const files = data.files;
+                    handleBase64Upload(files);
                   } catch (err) {
                     alert("API call failed: " + err);
                   }
                 }}
-              >
-                Call Assignment API
+              >Check Files
               </button>
+              <button
+                  style={{
+                  padding: "0.6rem 1.2rem",
+                  borderRadius: "6px",
+                  border: "none",
+                  background: "#1976d2",
+                  color: "#fff",
+                  fontWeight: 600,
+                  fontSize: "1rem",
+                  cursor: !selectedCourseId || assignments.length === 0 ? "not-allowed" : "pointer",
+                  marginTop: "1rem"
+                }}>
+                Grade All
+              </button>
+            </div>
+              {/* PDF navigation buttons */}
+              <div style={{ display: "flex", gap: "1rem", marginTop: "2rem", justifyContent: "center" }}>
+                <button
+                  onClick={() => navigateToPdf('prev')}
+                  disabled={currentPdfIndex <= 0}
+                  style={{
+                    padding: "0.5rem 1rem",
+                    borderRadius: "4px",
+                    border: "1px solid #ccc",
+                    background: currentPdfIndex <= 0 ? "#eee" : "#fff",
+                    color: "#333",
+                    cursor: currentPdfIndex <= 0 ? "not-allowed" : "pointer",
+                    fontWeight: 600
+                  }}
+                >
+                  Previous
+                </button>
+                <span style={{ alignSelf: "center", fontWeight: 500 }}>
+                  {uploadedPdfs.length > 0
+                    ? `PDF ${currentPdfIndex + 1} of ${uploadedPdfs.length}`
+                    : "No PDFs"}
+                </span>
+                <button
+                  onClick={() => navigateToPdf('next')}
+                  disabled={currentPdfIndex >= uploadedPdfs.length - 1}
+                  style={{
+                    padding: "0.5rem 1rem",
+                    borderRadius: "4px",
+                    border: "1px solid #ccc",
+                    background: currentPdfIndex >= uploadedPdfs.length - 1 ? "#eee" : "#fff",
+                    color: "#333",
+                    cursor: currentPdfIndex >= uploadedPdfs.length - 1 ? "not-allowed" : "pointer",
+                    fontWeight: 600
+                  }}
+                >
+                  Next
+                </button>
+              </div>
         </div>
       </Sidebar>
       <div
