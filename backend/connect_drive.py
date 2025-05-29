@@ -1,25 +1,20 @@
-import os
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
-import io
-from PyPDF2 import PdfReader
+from drive_utils import *
 
-# Authenticate and create the PyDrive client
-gauth = GoogleAuth()
-gauth.LocalWebserverAuth()  # Opens browser for authentication
-drive = GoogleDrive(gauth)
+def main():
+    drive = authenticate_drive()
 
-# List all shared files (files shared with you)
-file_list = drive.ListFile({'q': "'me' in owners or sharedWithMe = true and mimeType = 'application/pdf' and trashed=false"}).GetList()
+    print("🔍 Folders shared with you:\n")
+    folders = list_shared_folders(drive)
+    for folder in folders:
+        print(f"📁 {folder['title']} | ID: {folder['id']}")
 
-print("PDF files shared with you:")
-for file in file_list:
-    print(f"Title: {file['title']}, ID: {file['id']}")
-    # Download the file content into memory
-    file_content = file.GetContentString(encoding='ISO-8859-1')
-    pdf_stream = io.BytesIO(file_content.encode('ISO-8859-1'))
-    reader = PdfReader(pdf_stream)
-    print("First page text:")
-    if reader.pages:
-        print(reader.pages[0].extract_text())
-    print("-" * 40)
+    # Choose a folder by ID
+    FOLDER_ID = '0B4NFaiXelmmkelRNeFpRMHlVX2M'
+    files = list_files_in_folder(drive, FOLDER_ID)
+
+    for f in files:
+        if f['mimeType'] == 'application/pdf':
+            download_file(f, 'downloaded.pdf')
+            break
+if __name__ == "__main__":
+    main()

@@ -28,8 +28,13 @@ def grade_latex_file():
     if 'context' in request.files:
         try:
             context_file = request.files['context']
-            context_data = json.load(context_file)
-            context_str = json.dumps(context_data, ensure_ascii=False, indent=2)
+            if context_file.filename.endswith('.json'):
+                context_data = json.load(context_file)
+                context_str = json.dumps(context_data, ensure_ascii=False, indent=2)
+            elif context_file.filename.endswith('.txt'):
+                context_str = context_file.read().decode('utf-8')
+            else:
+                return jsonify({"error": "Only .json or .txt context files are allowed"}), 400
         except Exception as e:
             return jsonify({"error": f"Context file error: {str(e)}"}), 400
 
