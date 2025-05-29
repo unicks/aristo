@@ -1,16 +1,30 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
-  base: "/react-pdf-highlighter/",
+  plugins: [react(), dts()],
   build: {
-    outDir: "dist",
-  },
-  plugins: [react()],
-  server: {
-    port: 3003,
-  },
-  define: {
-    APP_VERSION: JSON.stringify(process.env.npm_package_version),
+    minify: false,
+    lib: {
+      entry: "./src/index.ts",
+      formats: ["es"],
+      fileName: (format, entryName) => `${entryName}.js`,
+    },
+    rollupOptions: {
+      output: {
+        preserveModules: true,
+      },
+      external: [
+        "react",
+        "react/jsx-runtime",
+        "react-dom",
+        "react-dom/client",
+        "react-rnd",
+        "pdfjs-dist",
+        "pdfjs-dist/web",
+        "debounce",
+      ],
+    },
   },
 });
