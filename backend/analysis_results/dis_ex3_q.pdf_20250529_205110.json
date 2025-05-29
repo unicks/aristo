@@ -1,0 +1,118 @@
+{
+  "filename": "dis_ex3_q.pdf",
+  "questions": [
+    {
+      "question_text": "question1",
+      "topics": [
+        "Set Theory",
+        "Functions"
+      ],
+      "subjects": [
+        "Image and Preimage of a Set",
+        "Subset Relations"
+      ],
+      "difficulty": 2,
+      "prerequisites": [
+        "Functions",
+        "Sets",
+        "Subsets"
+      ]
+    },
+    {
+      "question_text": "question2",
+      "topics": [
+        "Set Theory",
+        "Functions"
+      ],
+      "subjects": [
+        "Image and Preimage of a Set",
+        "Function Composition",
+        "Subset Relations"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "Functions",
+        "Sets",
+        "Subsets",
+        "Function Composition"
+      ]
+    },
+    {
+      "question_text": "question3",
+      "topics": [
+        "Set Theory",
+        "Functions"
+      ],
+      "subjects": [
+        "Function Composition",
+        "Function Equality"
+      ],
+      "difficulty": 2,
+      "prerequisites": [
+        "Functions",
+        "Sets",
+        "Function Composition"
+      ]
+    },
+    {
+      "question_text": "question4",
+      "topics": [
+        "Set Theory",
+        "Functions"
+      ],
+      "subjects": [
+        "Image and Preimage of a Set",
+        "Subset Relations"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "Functions",
+        "Sets",
+        "Subsets",
+        "Image of a Set",
+        "Preimage of a Set"
+      ]
+    },
+    {
+      "question_text": "question5",
+      "topics": [
+        "Set Theory",
+        "Relations"
+      ],
+      "subjects": [
+        "Binary Relations",
+        "Reflexivity",
+        "Symmetry",
+        "Transitivity",
+        "Divisibility",
+        "Cartesian Product"
+      ],
+      "difficulty": 2,
+      "prerequisites": [
+        "Sets",
+        "Relations",
+        "Cartesian Product"
+      ]
+    },
+    {
+      "question_text": "question6",
+      "topics": [
+        "Set Theory",
+        "Relations"
+      ],
+      "subjects": [
+        "Binary Relations on Cartesian Product",
+        "Reflexivity",
+        "Symmetry",
+        "Transitivity"
+      ],
+      "difficulty": 4,
+      "prerequisites": [
+        "Sets",
+        "Relations",
+        "Cartesian Product",
+        "Ordered Pairs"
+      ]
+    }
+  ]
+}

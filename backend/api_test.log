@@ -1,0 +1,6 @@
+2025-05-29 16:59:50,095 - INFO - Starting API tests...
+2025-05-29 16:59:52,119 - ERROR - Status check failed: Expecting value: line 1 column 1 (char 0)
+2025-05-29 16:59:52,119 - ERROR - Status check failed, skipping further tests
+2025-05-29 17:03:19,675 - INFO - Starting API tests...
+2025-05-29 17:03:22,289 - ERROR - Status check failed: dump() missing 1 required positional argument: 'fp'
+2025-05-29 17:03:22,289 - ERROR - Status check failed, skipping further tests

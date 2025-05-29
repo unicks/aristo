@@ -1,0 +1,86 @@
+{
+  "filename": "infi_ex3_q.pdf",
+  "questions": [
+    {
+      "question_text": "question1",
+      "topics": [
+        "Exponents",
+        "Radicals",
+        "Proofs"
+      ],
+      "subjects": [
+        "Algebra"
+      ],
+      "difficulty": 2,
+      "prerequisites": [
+        "Properties of exponents",
+        "Definition of nth root"
+      ]
+    },
+    {
+      "question_text": "question2",
+      "topics": [
+        "Exponents",
+        "Proofs"
+      ],
+      "subjects": [
+        "Algebra"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "Properties of exponents",
+        "Mathematical induction"
+      ]
+    },
+    {
+      "question_text": "question3",
+      "topics": [
+        "Absolute Value Equations",
+        "Radicals"
+      ],
+      "subjects": [
+        "Algebra"
+      ],
+      "difficulty": 4,
+      "prerequisites": [
+        "Solving equations with absolute values",
+        "Solving radical equations",
+        "Interval notation"
+      ]
+    },
+    {
+      "question_text": "question4",
+      "topics": [
+        "Real Numbers",
+        "Inequalities"
+      ],
+      "subjects": [
+        "Analysis"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "Properties of inequalities",
+        "Distance on the real number line"
+      ]
+    },
+    {
+      "question_text": "question5",
+      "topics": [
+        "Inequalities",
+        "Arithmetic Mean",
+        "Geometric Mean",
+        "AM-GM Inequality"
+      ],
+      "subjects": [
+        "Analysis"
+      ],
+      "difficulty": 5,
+      "prerequisites": [
+        "Properties of inequalities",
+        "Arithmetic mean",
+        "Geometric mean",
+        "Proof by induction (optional)"
+      ]
+    }
+  ]
+}

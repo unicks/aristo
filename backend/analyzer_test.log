@@ -1,0 +1,245 @@
+2025-05-29 15:21:45,501 - INFO - Starting individual file tests...
+2025-05-29 15:21:45,501 - INFO - Testing single file: tex_questions\dis_ex3_q.pdf
+2025-05-29 15:21:49,598 - ERROR - Error processing tex_questions\dis_ex3_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000196EEB68C50>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:21:49,599 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 15:21:49,599 - INFO - Testing single file: tex_questions\dis_ex5_q.pdf
+2025-05-29 15:21:53,686 - ERROR - Error processing tex_questions\dis_ex5_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000196EEB6B250>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:21:53,688 - INFO - Results saved to: analysis_results\single_dis_ex5_q.pdf.json
+2025-05-29 15:21:53,690 - INFO - Testing single file: tex_questions\dis_ex7_q.pdf
+2025-05-29 15:21:57,802 - ERROR - Error processing tex_questions\dis_ex7_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000196EC4989D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:21:57,804 - INFO - Results saved to: analysis_results\single_dis_ex7_q.pdf.json
+2025-05-29 15:21:57,805 - INFO - Testing single file: tex_questions\dis_ex8_q.pdf
+2025-05-29 15:27:36,761 - INFO - Starting individual file tests...
+2025-05-29 15:27:36,761 - INFO - Testing single file: tex_questions\dis_ex3_q.pdf
+2025-05-29 15:27:40,841 - ERROR - Error processing tex_questions\dis_ex3_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B941B560>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:27:40,841 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 15:27:40,841 - INFO - Testing single file: tex_questions\dis_ex5_q.pdf
+2025-05-29 15:27:44,874 - ERROR - Error processing tex_questions\dis_ex5_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957CDD0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:27:44,874 - INFO - Results saved to: analysis_results\single_dis_ex5_q.pdf.json
+2025-05-29 15:27:44,874 - INFO - Testing single file: tex_questions\dis_ex7_q.pdf
+2025-05-29 15:27:48,936 - ERROR - Error processing tex_questions\dis_ex7_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957D940>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:27:48,936 - INFO - Results saved to: analysis_results\single_dis_ex7_q.pdf.json
+2025-05-29 15:27:48,936 - INFO - Testing single file: tex_questions\dis_ex8_q.pdf
+2025-05-29 15:27:52,994 - ERROR - Error processing tex_questions\dis_ex8_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957E480>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:27:53,000 - INFO - Results saved to: analysis_results\single_dis_ex8_q.pdf.json
+2025-05-29 15:27:53,001 - INFO - Testing single file: tex_questions\infi_ex3_q.pdf
+2025-05-29 15:27:57,101 - ERROR - Error processing tex_questions\infi_ex3_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B9547B90>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:27:57,103 - INFO - Results saved to: analysis_results\single_infi_ex3_q.pdf.json
+2025-05-29 15:27:57,103 - INFO - Testing single file: tex_questions\infi_ex4_q.pdf
+2025-05-29 15:28:01,172 - ERROR - Error processing tex_questions\infi_ex4_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957E000>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:28:01,172 - INFO - Results saved to: analysis_results\single_infi_ex4_q.pdf.json
+2025-05-29 15:28:01,172 - INFO - Testing single file: tex_questions\infi_ex5_q.pdf
+2025-05-29 15:28:05,256 - ERROR - Error processing tex_questions\infi_ex5_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957D9A0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:28:05,256 - INFO - Results saved to: analysis_results\single_infi_ex5_q.pdf.json
+2025-05-29 15:28:05,256 - INFO - Testing single file: tex_questions\infi_ex6_q.pdf
+2025-05-29 15:28:09,327 - ERROR - Error processing tex_questions\infi_ex6_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957CD10>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:28:09,327 - INFO - Results saved to: analysis_results\single_infi_ex6_q.pdf.json
+2025-05-29 15:28:09,327 - INFO - Testing single file: tex_questions\infi_ex7_q.pdf
+2025-05-29 15:28:13,406 - ERROR - Error processing tex_questions\infi_ex7_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957F320>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:28:13,406 - INFO - Results saved to: analysis_results\single_infi_ex7_q.pdf.json
+2025-05-29 15:28:13,406 - INFO - Testing single file: tex_questions\infi_ex8_q.pdf
+2025-05-29 15:28:17,463 - ERROR - Error processing tex_questions\infi_ex8_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B94B3620>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:28:17,463 - INFO - Results saved to: analysis_results\single_infi_ex8_q.pdf.json
+2025-05-29 15:28:17,463 - INFO - Testing single file: tex_questions\infi_ex9_q.pdf
+2025-05-29 15:28:21,559 - ERROR - Error processing tex_questions\infi_ex9_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957C650>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:28:21,566 - INFO - Results saved to: analysis_results\single_infi_ex9_q.pdf.json
+2025-05-29 15:28:21,568 - INFO - Testing single file: tex_questions\line_ex2_q.pdf
+2025-05-29 15:28:25,610 - ERROR - Error processing tex_questions\line_ex2_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957D550>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:28:25,613 - INFO - Results saved to: analysis_results\single_line_ex2_q.pdf.json
+2025-05-29 15:28:25,613 - INFO - Testing single file: tex_questions\line_ex4_q.pdf
+2025-05-29 15:28:29,668 - ERROR - Error processing tex_questions\line_ex4_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957DEB0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:28:29,668 - INFO - Results saved to: analysis_results\single_line_ex4_q.pdf.json
+2025-05-29 15:28:29,668 - INFO - Testing single file: tex_questions\line_ex6_q.pdf
+2025-05-29 15:28:33,707 - ERROR - Error processing tex_questions\line_ex6_q.pdf: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-single (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957EA20>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:28:33,707 - INFO - Results saved to: analysis_results\single_line_ex6_q.pdf.json
+2025-05-29 15:28:33,707 - INFO - Starting batch test...
+2025-05-29 15:28:33,707 - INFO - Testing batch of 14 files
+2025-05-29 15:28:37,796 - ERROR - Error processing batch: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /analyzer/analyze-batch (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E5B957EA20>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-29 15:28:37,806 - INFO - Results saved to: analysis_results\batch_results.json
+2025-05-29 15:28:37,808 - INFO - Testing completed!
+2025-05-29 15:30:37,581 - INFO - Starting individual file tests...
+2025-05-29 15:30:37,582 - INFO - Testing single file: tex_questions\dis_ex3_q.pdf
+2025-05-29 15:30:41,671 - ERROR - Error processing tex_questions\dis_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:30:41,675 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 15:30:41,684 - INFO - Testing single file: tex_questions\dis_ex5_q.pdf
+2025-05-29 15:30:44,943 - ERROR - Error processing tex_questions\dis_ex5_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:30:44,943 - INFO - Results saved to: analysis_results\single_dis_ex5_q.pdf.json
+2025-05-29 15:30:44,943 - INFO - Testing single file: tex_questions\dis_ex7_q.pdf
+2025-05-29 15:30:48,644 - ERROR - Error processing tex_questions\dis_ex7_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:30:48,644 - INFO - Results saved to: analysis_results\single_dis_ex7_q.pdf.json
+2025-05-29 15:30:48,644 - INFO - Testing single file: tex_questions\dis_ex8_q.pdf
+2025-05-29 15:30:52,205 - ERROR - Error processing tex_questions\dis_ex8_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:30:52,205 - INFO - Results saved to: analysis_results\single_dis_ex8_q.pdf.json
+2025-05-29 15:30:52,205 - INFO - Testing single file: tex_questions\infi_ex3_q.pdf
+2025-05-29 15:30:55,630 - ERROR - Error processing tex_questions\infi_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:30:55,630 - INFO - Results saved to: analysis_results\single_infi_ex3_q.pdf.json
+2025-05-29 15:30:55,630 - INFO - Testing single file: tex_questions\infi_ex4_q.pdf
+2025-05-29 15:30:59,207 - ERROR - Error processing tex_questions\infi_ex4_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:30:59,227 - INFO - Results saved to: analysis_results\single_infi_ex4_q.pdf.json
+2025-05-29 15:30:59,228 - INFO - Testing single file: tex_questions\infi_ex5_q.pdf
+2025-05-29 15:31:02,824 - ERROR - Error processing tex_questions\infi_ex5_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:31:02,824 - INFO - Results saved to: analysis_results\single_infi_ex5_q.pdf.json
+2025-05-29 15:31:02,824 - INFO - Testing single file: tex_questions\infi_ex6_q.pdf
+2025-05-29 15:31:06,590 - ERROR - Error processing tex_questions\infi_ex6_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:31:06,595 - INFO - Results saved to: analysis_results\single_infi_ex6_q.pdf.json
+2025-05-29 15:31:06,598 - INFO - Testing single file: tex_questions\infi_ex7_q.pdf
+2025-05-29 15:31:10,241 - ERROR - Error processing tex_questions\infi_ex7_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:31:10,252 - INFO - Results saved to: analysis_results\single_infi_ex7_q.pdf.json
+2025-05-29 15:31:10,253 - INFO - Testing single file: tex_questions\infi_ex8_q.pdf
+2025-05-29 15:31:13,703 - ERROR - Error processing tex_questions\infi_ex8_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:31:13,725 - INFO - Results saved to: analysis_results\single_infi_ex8_q.pdf.json
+2025-05-29 15:31:13,727 - INFO - Testing single file: tex_questions\infi_ex9_q.pdf
+2025-05-29 15:31:17,564 - ERROR - Error processing tex_questions\infi_ex9_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:31:17,564 - INFO - Results saved to: analysis_results\single_infi_ex9_q.pdf.json
+2025-05-29 15:31:17,564 - INFO - Testing single file: tex_questions\line_ex2_q.pdf
+2025-05-29 15:31:21,230 - ERROR - Error processing tex_questions\line_ex2_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:31:21,233 - INFO - Results saved to: analysis_results\single_line_ex2_q.pdf.json
+2025-05-29 15:31:21,233 - INFO - Testing single file: tex_questions\line_ex4_q.pdf
+2025-05-29 15:31:25,169 - ERROR - Error processing tex_questions\line_ex4_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:31:25,173 - INFO - Results saved to: analysis_results\single_line_ex4_q.pdf.json
+2025-05-29 15:31:25,175 - INFO - Testing single file: tex_questions\line_ex6_q.pdf
+2025-05-29 15:31:28,941 - ERROR - Error processing tex_questions\line_ex6_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:31:28,956 - INFO - Results saved to: analysis_results\single_line_ex6_q.pdf.json
+2025-05-29 15:31:28,963 - INFO - Starting batch test...
+2025-05-29 15:31:28,965 - INFO - Testing batch of 14 files
+2025-05-29 15:31:54,192 - INFO - Results saved to: analysis_results\batch_results.json
+2025-05-29 15:31:54,192 - INFO - Testing completed!
+2025-05-29 15:33:18,297 - INFO - Starting individual file tests...
+2025-05-29 15:33:18,297 - INFO - Testing single file: tex_questions\dis_ex3_q.pdf
+2025-05-29 15:33:22,176 - ERROR - Error processing tex_questions\dis_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:33:22,176 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 15:33:22,176 - INFO - Testing single file: tex_questions\dis_ex5_q.pdf
+2025-05-29 15:33:25,438 - ERROR - Error processing tex_questions\dis_ex5_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:33:25,438 - INFO - Results saved to: analysis_results\single_dis_ex5_q.pdf.json
+2025-05-29 15:33:25,438 - INFO - Testing single file: tex_questions\dis_ex7_q.pdf
+2025-05-29 15:33:29,285 - ERROR - Error processing tex_questions\dis_ex7_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:33:29,285 - INFO - Results saved to: analysis_results\single_dis_ex7_q.pdf.json
+2025-05-29 15:33:29,285 - INFO - Testing single file: tex_questions\dis_ex8_q.pdf
+2025-05-29 15:33:32,847 - ERROR - Error processing tex_questions\dis_ex8_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:33:32,851 - INFO - Results saved to: analysis_results\single_dis_ex8_q.pdf.json
+2025-05-29 15:33:32,852 - INFO - Testing single file: tex_questions\infi_ex3_q.pdf
+2025-05-29 15:33:36,596 - ERROR - Error processing tex_questions\infi_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:33:36,601 - INFO - Results saved to: analysis_results\single_infi_ex3_q.pdf.json
+2025-05-29 15:33:36,604 - INFO - Testing single file: tex_questions\infi_ex4_q.pdf
+2025-05-29 15:33:40,065 - ERROR - Error processing tex_questions\infi_ex4_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:33:40,066 - INFO - Results saved to: analysis_results\single_infi_ex4_q.pdf.json
+2025-05-29 15:33:40,066 - INFO - Testing single file: tex_questions\infi_ex5_q.pdf
+2025-05-29 15:33:43,748 - ERROR - Error processing tex_questions\infi_ex5_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:33:43,748 - INFO - Results saved to: analysis_results\single_infi_ex5_q.pdf.json
+2025-05-29 15:33:43,748 - INFO - Testing single file: tex_questions\infi_ex6_q.pdf
+2025-05-29 15:33:47,246 - ERROR - Error processing tex_questions\infi_ex6_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:33:47,246 - INFO - Results saved to: analysis_results\single_infi_ex6_q.pdf.json
+2025-05-29 15:33:47,246 - INFO - Testing single file: tex_questions\infi_ex7_q.pdf
+2025-05-29 15:33:50,844 - ERROR - Error processing tex_questions\infi_ex7_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:33:50,844 - INFO - Results saved to: analysis_results\single_infi_ex7_q.pdf.json
+2025-05-29 15:33:50,844 - INFO - Testing single file: tex_questions\infi_ex8_q.pdf
+2025-05-29 15:33:54,415 - ERROR - Error processing tex_questions\infi_ex8_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:33:54,418 - INFO - Results saved to: analysis_results\single_infi_ex8_q.pdf.json
+2025-05-29 15:33:54,418 - INFO - Testing single file: tex_questions\infi_ex9_q.pdf
+2025-05-29 15:33:59,108 - ERROR - Error processing tex_questions\infi_ex9_q.pdf: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+2025-05-29 15:33:59,108 - INFO - Results saved to: analysis_results\single_infi_ex9_q.pdf.json
+2025-05-29 15:33:59,108 - INFO - Testing single file: tex_questions\line_ex2_q.pdf
+2025-05-29 15:34:03,341 - ERROR - Error processing tex_questions\line_ex2_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:34:03,341 - INFO - Results saved to: analysis_results\single_line_ex2_q.pdf.json
+2025-05-29 15:34:03,341 - INFO - Testing single file: tex_questions\line_ex4_q.pdf
+2025-05-29 15:34:07,463 - ERROR - Error processing tex_questions\line_ex4_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:34:07,469 - INFO - Results saved to: analysis_results\single_line_ex4_q.pdf.json
+2025-05-29 15:34:07,474 - INFO - Testing single file: tex_questions\line_ex6_q.pdf
+2025-05-29 15:34:11,282 - ERROR - Error processing tex_questions\line_ex6_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:34:11,288 - INFO - Results saved to: analysis_results\single_line_ex6_q.pdf.json
+2025-05-29 15:34:11,289 - INFO - Starting batch test...
+2025-05-29 15:34:11,291 - INFO - Testing batch of 14 files
+2025-05-29 15:34:35,430 - INFO - Results saved to: analysis_results\batch_results.json
+2025-05-29 15:34:35,430 - INFO - Testing completed!
+2025-05-29 15:52:57,094 - INFO - Starting individual file tests...
+2025-05-29 15:52:57,095 - INFO - Testing single file: tex_questions\dis_ex3_q.pdf
+2025-05-29 15:53:02,658 - ERROR - Error processing tex_questions\dis_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:53:02,659 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 15:53:02,659 - INFO - Testing single file: tex_questions\dis_ex5_q.pdf
+2025-05-29 15:53:06,548 - ERROR - Error processing tex_questions\dis_ex5_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:53:06,551 - INFO - Results saved to: analysis_results\single_dis_ex5_q.pdf.json
+2025-05-29 15:53:06,551 - INFO - Testing single file: tex_questions\dis_ex7_q.pdf
+2025-05-29 15:53:11,237 - ERROR - Error processing tex_questions\dis_ex7_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:53:11,238 - INFO - Results saved to: analysis_results\single_dis_ex7_q.pdf.json
+2025-05-29 15:53:11,239 - INFO - Testing single file: tex_questions\dis_ex8_q.pdf
+2025-05-29 15:58:01,782 - INFO - Starting individual file tests...
+2025-05-29 15:58:01,782 - INFO - Testing single file: tex_questions\dis_ex3_q.pdf
+2025-05-29 15:58:05,645 - ERROR - Error processing tex_questions\dis_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:05,645 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 15:58:05,662 - INFO - Testing single file: tex_questions\dis_ex5_q.pdf
+2025-05-29 15:58:09,064 - ERROR - Error processing tex_questions\dis_ex5_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:09,064 - INFO - Results saved to: analysis_results\single_dis_ex5_q.pdf.json
+2025-05-29 15:58:09,080 - INFO - Testing single file: tex_questions\dis_ex7_q.pdf
+2025-05-29 15:58:13,064 - ERROR - Error processing tex_questions\dis_ex7_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:13,067 - INFO - Results saved to: analysis_results\single_dis_ex7_q.pdf.json
+2025-05-29 15:58:13,069 - INFO - Testing single file: tex_questions\dis_ex8_q.pdf
+2025-05-29 15:58:16,672 - ERROR - Error processing tex_questions\dis_ex8_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:16,691 - INFO - Results saved to: analysis_results\single_dis_ex8_q.pdf.json
+2025-05-29 15:58:16,692 - INFO - Testing single file: tex_questions\infi_ex3_q.pdf
+2025-05-29 15:58:20,323 - ERROR - Error processing tex_questions\infi_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:20,323 - INFO - Results saved to: analysis_results\single_infi_ex3_q.pdf.json
+2025-05-29 15:58:20,323 - INFO - Testing single file: tex_questions\infi_ex4_q.pdf
+2025-05-29 15:58:23,924 - ERROR - Error processing tex_questions\infi_ex4_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:23,924 - INFO - Results saved to: analysis_results\single_infi_ex4_q.pdf.json
+2025-05-29 15:58:23,924 - INFO - Testing single file: tex_questions\infi_ex5_q.pdf
+2025-05-29 15:58:27,636 - ERROR - Error processing tex_questions\infi_ex5_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:27,652 - INFO - Results saved to: analysis_results\single_infi_ex5_q.pdf.json
+2025-05-29 15:58:27,654 - INFO - Testing single file: tex_questions\infi_ex6_q.pdf
+2025-05-29 15:58:31,114 - ERROR - Error processing tex_questions\infi_ex6_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:31,117 - INFO - Results saved to: analysis_results\single_infi_ex6_q.pdf.json
+2025-05-29 15:58:31,117 - INFO - Testing single file: tex_questions\infi_ex7_q.pdf
+2025-05-29 15:58:34,900 - ERROR - Error processing tex_questions\infi_ex7_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:34,910 - INFO - Results saved to: analysis_results\single_infi_ex7_q.pdf.json
+2025-05-29 15:58:34,914 - INFO - Testing single file: tex_questions\infi_ex8_q.pdf
+2025-05-29 15:58:38,314 - ERROR - Error processing tex_questions\infi_ex8_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:38,314 - INFO - Results saved to: analysis_results\single_infi_ex8_q.pdf.json
+2025-05-29 15:58:38,314 - INFO - Testing single file: tex_questions\infi_ex9_q.pdf
+2025-05-29 15:58:41,996 - ERROR - Error processing tex_questions\infi_ex9_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:41,996 - INFO - Results saved to: analysis_results\single_infi_ex9_q.pdf.json
+2025-05-29 15:58:41,996 - INFO - Testing single file: tex_questions\line_ex2_q.pdf
+2025-05-29 15:58:45,846 - ERROR - Error processing tex_questions\line_ex2_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:45,846 - INFO - Results saved to: analysis_results\single_line_ex2_q.pdf.json
+2025-05-29 15:58:45,846 - INFO - Testing single file: tex_questions\line_ex4_q.pdf
+2025-05-29 15:58:49,985 - ERROR - Error processing tex_questions\line_ex4_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:49,985 - INFO - Results saved to: analysis_results\single_line_ex4_q.pdf.json
+2025-05-29 15:58:49,985 - INFO - Testing single file: tex_questions\line_ex6_q.pdf
+2025-05-29 15:58:53,861 - ERROR - Error processing tex_questions\line_ex6_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 15:58:53,861 - INFO - Results saved to: analysis_results\single_line_ex6_q.pdf.json
+2025-05-29 15:58:53,861 - INFO - Starting batch test...
+2025-05-29 15:58:53,861 - INFO - Testing batch of 14 files
+2025-05-29 15:59:20,105 - INFO - Results saved to: analysis_results\batch_results.json
+2025-05-29 15:59:20,109 - INFO - Testing completed!
+2025-05-29 16:02:50,162 - INFO - Starting individual file tests...
+2025-05-29 16:02:50,163 - INFO - Testing single file: tex_questions\dis_ex3_q.pdf
+2025-05-29 16:02:53,970 - ERROR - Error processing tex_questions\dis_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 16:02:53,972 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 16:02:53,973 - INFO - Testing single file: tex_questions\dis_ex5_q.pdf
+2025-05-29 16:03:15,106 - INFO - Starting individual file tests...
+2025-05-29 16:03:15,107 - INFO - Testing single file: tex_questions\dis_ex3_q.pdf
+2025-05-29 16:03:20,338 - ERROR - Error processing tex_questions\dis_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 16:03:20,340 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 16:03:20,341 - INFO - Testing single file: tex_questions\dis_ex5_q.pdf
+2025-05-29 16:03:24,169 - ERROR - Error processing tex_questions\dis_ex5_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 16:03:24,170 - INFO - Results saved to: analysis_results\single_dis_ex5_q.pdf.json
+2025-05-29 16:03:24,171 - INFO - Testing single file: tex_questions\dis_ex7_q.pdf
+2025-05-29 16:03:28,873 - ERROR - Error processing tex_questions\dis_ex7_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 16:03:28,874 - INFO - Results saved to: analysis_results\single_dis_ex7_q.pdf.json
+2025-05-29 16:03:28,875 - INFO - Testing single file: tex_questions\dis_ex8_q.pdf
+2025-05-29 16:03:33,636 - ERROR - Error processing tex_questions\dis_ex8_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 16:03:33,638 - INFO - Results saved to: analysis_results\single_dis_ex8_q.pdf.json
+2025-05-29 16:03:33,638 - INFO - Testing single file: tex_questions\infi_ex3_q.pdf
+2025-05-29 16:10:39,895 - INFO - Testing single file: tex_questions/dis_ex3_q.pdf
+2025-05-29 16:10:39,895 - INFO - Testing single file: tex_questions/dis_ex3_q.pdf
+2025-05-29 16:10:43,942 - ERROR - Error processing tex_questions/dis_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 16:10:43,957 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 16:10:43,957 - INFO - Testing completed!
+2025-05-29 16:16:33,216 - INFO - Testing single file: tex_questions/dis_ex3_q.pdf
+2025-05-29 16:16:33,217 - INFO - Testing single file: tex_questions/dis_ex3_q.pdf
+2025-05-29 16:16:37,242 - ERROR - Error processing tex_questions/dis_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 16:16:37,249 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 16:16:37,251 - INFO - Testing completed!
+2025-05-29 16:26:43,513 - INFO - Testing single file: tex_questions/dis_ex3_q.pdf
+2025-05-29 16:26:43,513 - INFO - Testing single file: tex_questions/dis_ex3_q.pdf
+2025-05-29 16:26:47,626 - ERROR - Error processing tex_questions/dis_ex3_q.pdf: 500 Server Error: INTERNAL SERVER ERROR for url: http://localhost:5000/analyzer/analyze-single
+2025-05-29 16:26:47,626 - INFO - Results saved to: analysis_results\single_dis_ex3_q.pdf.json
+2025-05-29 16:26:47,626 - INFO - Testing completed!

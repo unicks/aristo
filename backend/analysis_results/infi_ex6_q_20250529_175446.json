@@ -1,0 +1,93 @@
+{
+  "filename": "infi_ex6_q.pdf",
+  "results": [
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Algebra",
+          "Mathematical Induction",
+          "Calculus (Limits)",
+          "Sequence Properties"
+        ],
+        "subjects": [
+          "Recursive Sequences",
+          "Infinite Series",
+          "Limit of a Sequence",
+          "Convergence Tests"
+        ],
+        "topics": [
+          "Sequences and Series",
+          "Limits",
+          "Convergence and Divergence"
+        ]
+      },
+      "question": "6 ליגרת – 2024-2025 – ה”פשת ’ב רטסמס – 1 יפניא – 80131\nסרוקה םש תא תללוכה ףדה שארב הרורב תרתוכו ז.ת רפסמ ,(החפשמו יטרפ) םש ףוריצב ,רורב די בתכב ןורתפה תא ובתכ :תויחנה\n.22:00 העשב 13/05/2025-ל דע סרוקה רתאב תינורטקלא ושיגהו ,הלוע רדסב תולאשה רשאכ ,ןורתפה תא וקרס .ליגרתה רפסמו\n√\n. ∀n∈N a = 2+a -ו a =t ידי לע תרדגומה (a ) ∞ הרדסב ןנובתנ . −2⩽ t ∈R ןותנ .1\nn+1 n 1 n n=1\n( .הגיסנ ללכ ותוא םע תיביסרוקר הרדסב ונלפיט לוגרתב : בל ומיש )\n.ליעלמ המוסחו הלוע תינוטונומ הרדס הניה (a ) ∞ -ו יעבט n לכל רדגומ a זא −2⩽t⩽2 םאש וחיכוה (א)\nn n=1 n\n∞\n.ערלמ המוסחו תדרוי תינוטונומ הרדס הניה (a ) -ו יעבט n לכל רדגומ a זא 2<t םאש וחיכוה (ב)\nn n=1 n\n. −2⩽ t ∈R -ב יולת ונניא lim a -ש וארהו תסנכתמ (a ) ∞ הרדסהש וקיסה (ג)\nn→∞ n n n=1\n( )\n. ∀n∈N a = 1 a + x ידי לע תרדגומה הרדסה (a ) ∞ יהת . a -ו x םייבויח םיישממ םירפסמ םינותנ .2\nn+1 2 n a n n=1 1\nn\n∞\n.תיבויחו בטיה תרדגומ (a ) הרדסה יכ וחיכוה (א)\nn n=1\n∞\n. lim a לש םיירשפאה םיכרעה לכ תא ואצמ ,תסנכתמ (a ) הרדסהש החנהה תחת (ב)\nn→∞ n n n=1\n.יבויח ישממ רפסמ ידי לע ערלמ םוסח (a , ... , a , ...) בנזהש םיעצוממה ןויווש-יא תרזעב וחיכוה (ג)\n2 n+1\n∞\n.תינוטונומ (a ) הרדסהש וחיכוה (ד)\nn+1 n=1\n∞\n? lim a והמ .תסנכתמ (a ) הרדסה יכ וקיסה (ה)\nn→∞ n n n=1\n∞\n.הלובג תא ובשח ,ןכ םא .תסנכתמ איה םאה וקדב . (a ) הרדס הנותנ ףיעס לכב .3\nn n=1\n( ) ( )\na = 1+\n(−"
+    },
+    {
+      "analysis": {
+        "difficulty": 2,
+        "prerequisites": [
+          "Arithmetic Sequences",
+          "Understanding of summation notation"
+        ],
+        "subjects": [
+          "Arithmetic Sequences",
+          "Summation Notation"
+        ],
+        "topics": [
+          "Sequences and Series"
+        ]
+      },
+      "question": "1) 1)n (−"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Understanding of sequences",
+          "Concept of limits",
+          "Convergence and divergence of series",
+          "Various convergence tests (e.g., Comparison Test, Limit Comparison Test)"
+        ],
+        "subjects": [
+          "Infinite Series",
+          "Sequence Convergence",
+          "Limit of a Sequence",
+          "Comparison Test"
+        ],
+        "topics": [
+          "Sequences and Series",
+          "Limits",
+          "Convergence Tests"
+        ]
+      },
+      "question": "1) 1)nn\n(ב) .(10=1+9=3+7 :זמר) a =\n9n+10 3n+10\n(א)\nn n n 9n+1\n∞\n.םיפסונ םייקלח תולובג ןיא עודמ םג קמנל ורכז .תואבה (a ) תורדסה לש םייקלחה תולובגה לכ תצובק תא ואצמ .4\nn n=1\n{\nn יגוז n ∞\n. a = 2 ידי לע תרדגומה (a ) הרדסה (א)\nn 0 יגוז-יא n n n=1\n.a =\n(−"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Basic Algebra",
+          "Functions",
+          "Inequalities",
+          "Mathematical Induction",
+          "Limit Definition"
+        ],
+        "subjects": [
+          "Infinite Series",
+          "Sequence Convergence",
+          "Limit of a Sequence",
+          "Cauchy Sequences",
+          "Convergence of Series"
+        ],
+        "topics": [
+          "Sequences and Series",
+          "Limits",
+          "Convergence Tests"
+        ]
+      },
+      "question": "1) 1)n·n2+7n−8\nידי לע תרדגומה (a )\n∞\nהרדסה (ב)\nn 3n2+2n−5 n n=1\n( )\nקלחברשאכ,םיקלחףוסניאלשרושרשאיההרדסה,רמולכ) −1,0,1, −4,−3,...,4, −9,−8,...,9, ... הרדסה (ג)\n1 1 1 2 2 2 3 3 3\n.(−k2,−k2+1,...,k2−1,k2 םירפסמה 2k2+1 םיעיפומ k-ה\nk k k k\n. lim a =L-ש וארה .L-ל תפאושה הרדס-תת שי (a ) ∞ לש הרדס-תת לכלש ךכ L∈R יהיו ,הרדס (a ) ∞ יהת .5\nn→∞ n n n=1 n n=1\n.∀ε>0 ∃N ∈N ∀n∈N N <n ⇒ |a −a |<ε תמייקמה (a ) ∞ ∞-לתרדבתמהרדסלהמגודואצמ (א) .6\nn+1 n n n=1\n.2⩽n∈N לכ רובע |a n+1 −a n | < |a n −a n−1 | תמייקמה (a n ) ∞ n=1 ∞-ל תרדבתמ הרדסל המגוד ואצמ (ב)\n. 2⩽n∈N לכ רובע |a n+1 −a n |⩽q |a n −a n−1 | תמייקמה הרדס (a n )∞ n=1 יהתו ןותנ עובק 0<q <1 יהי (ג)\n.תסנכתמ ןכ לעו ישוק תרדס (a ) ∞ יכ וחיכוה (ii) .∀n∈N |a −a |⩽ qn−1|a −a | יכ וחיכוה (i)\nn n=1 n+1 n 2 1\n3n2+5n+1\n. lim =−∞ יכ הרדגהה יפל וחיכוה .7\nn→∞ −3n+4\n1"
+    }
+  ]
+}

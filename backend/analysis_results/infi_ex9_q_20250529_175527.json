@@ -1,0 +1,374 @@
+{
+  "filename": "infi_ex9_q.pdf",
+  "results": [
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Sequences",
+          "Series",
+          "Exponents",
+          "Proof by Induction"
+        ],
+        "subjects": [
+          "Algebra",
+          "Calculus"
+        ],
+        "topics": [
+          "Geometric Series",
+          "Sigma Notation",
+          "Mathematical Induction"
+        ]
+      },
+      "question": "9 ליגרת – 2024-2025 – ה”פשת ’ב רטסמס – 1 יפניא – 80131\nסרוקה םש תא תללוכה ףדה שארב הרורב תרתוכו ז.ת רפסמ ,(החפשמו יטרפ) םש ףוריצב ,רורב די בתכב ןורתפה תא ובתכ :תויחנה\n.22:00 העשב 4/06/2025-ל דע סרוקה רתאב תינורטקלא ושיגהו ,הלוע רדסב תולאשה רשאכ ,ןורתפה תא וקרס .ליגרתה רפסמו\n. 2⩽n∈N ןותנ .1\nb nX−1 1−qn\nיכ וחיכוהו q = הב וביצה . qi = :תיסדנה הרדס םוכסל החסונה תא םתחכוה 1 ליגרתב (א)\na 1−q\ni=0(cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [],
+        "subjects": [],
+        "topics": []
+      },
+      "question": "0) 0) (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Exponents",
+          "Distributive Property",
+          "Polynomial Multiplication",
+          "Principle of Mathematical Induction"
+        ],
+        "subjects": [
+          "Polynomial Factorization",
+          "Difference of Powers",
+          "Proof by Induction"
+        ],
+        "topics": [
+          "Algebra",
+          "Polynomials",
+          "Factoring",
+          "Mathematical Induction"
+        ]
+      },
+      "question": "1) 1)\n∀a,b∈R an−bn = (a−b) an−1 + an−2b + an−3b2 +...+ abn−2 + bn−1\n. (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Natural Numbers",
+          "Multiplication",
+          "Division"
+        ],
+        "subjects": [
+          "Divisibility Rules",
+          "Prime Factorization",
+          "Factors and Multiples"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "12) 1"
+    },
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Limits",
+          "Derivatives",
+          "Indeterminate Forms 0/0 and ∞/∞"
+        ],
+        "subjects": [
+          "Limits",
+          "L'Hopital's Rule",
+          "Indeterminate Forms"
+        ],
+        "topics": [
+          "Calculus"
+        ]
+      },
+      "question": "2) 2) (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Natural Numbers",
+          "Multiplication",
+          "Division"
+        ],
+        "subjects": [
+          "Divisibility Rules",
+          "Prime Factorization",
+          "Factors and Multiples"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "12) 1"
+    },
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Limits",
+          "Derivatives",
+          "Algebraic Manipulation",
+          "Indeterminate Form 0/0"
+        ],
+        "subjects": [
+          "Limit Evaluation",
+          "Indeterminate Forms",
+          "L'Hôpital's Rule"
+        ],
+        "topics": [
+          "Calculus",
+          "Limits"
+        ]
+      },
+      "question": "2) 2) √ nx− √ nx 0 (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Natural Numbers",
+          "Factors",
+          "Divisibility"
+        ],
+        "subjects": [
+          "Prime Numbers",
+          "Divisibility Rules"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "12) 1"
+    },
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Limits",
+          "Derivatives",
+          "Indeterminate Forms 0/0 or ∞/∞"
+        ],
+        "subjects": [
+          "Limits",
+          "L'Hôpital's Rule",
+          "Indeterminate Forms"
+        ],
+        "topics": [
+          "Calculus"
+        ]
+      },
+      "question": "2) 2) (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Natural Numbers",
+          "Factors"
+        ],
+        "subjects": [
+          "Divisibility",
+          "Prime Numbers"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "12) 1"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Understanding of inequality symbols",
+          "Basic arithmetic"
+        ],
+        "subjects": [
+          "Linear Inequalities"
+        ],
+        "topics": [
+          "Inequalities"
+        ]
+      },
+      "question": "2) 2)⩽ (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 2,
+        "prerequisites": [
+          "Understanding of absolute value",
+          "Simplifying radicals",
+          "Solving algebraic equations"
+        ],
+        "subjects": [
+          "Absolute Value",
+          "Radicals",
+          "Solving Equations"
+        ],
+        "topics": [
+          "Algebra"
+        ]
+      },
+      "question": "0) 0) | √ x− (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Functions",
+          "Inequalities",
+          "Limits",
+          "Domain and Range of a Function",
+          "Operations on Functions"
+        ],
+        "subjects": [
+          "Calculus",
+          "Pre-Calculus"
+        ],
+        "topics": [
+          "Piecewise Functions",
+          "Limits",
+          "Function Composition",
+          "Continuity",
+          "Domain and Range"
+        ]
+      },
+      "question": "1) 1) x n 0 − | 1 -ש חיכוהל ידכ b= √ nx 0 -ו a= √ nx הבצהב ורזעיה . 0<x 0 ,x∈R ויהי (ב)\nnx\n0\n√\n. 0<x ∈R לכ רובע x הדוקנב הפיצר f(x)= nx ידי לע תרדגומה f :[0,∞)→[0,∞) היצקנופהש וקיסה (ג)\n0 0\n? 0 הדוקנב ןימימ הפיצר f םאה (ד)\n(\n−x 0⩽x\n. f(x)= ידי לע תרדגומה היצקנופה f :R→R יהת .2\n1 x<0\n. x =0 -ב ןימימ הפיצר f -ש וחיכוה (א)\n0\n. f ◦f תבכרומה היצקנופה לש המאתהה ללכ תא תשרופמ הרוצב ובשח (ב)\nיזא , g(x ) הדוקנב ןימימ הפיצר h:R→R היצקנופו x הדוקנב ןימימ הפיצר g :R→R היצקנופ םאש וקיסה (ג)\n0 0\n. x הדוקנב ןימימ הפיצר אקווד ואל h◦g :R→R הבכרהה\n0\n. x -ב הפיצר f םא x ∈R הדוקנ לכ יבגל ועבק . f :R→R היצקנופ הנותנ ףיעס לכב .3\n0 0\n.(ךרוצה תדימב x תועצמאב ועיבה) םכרע תא ובשחו םימייק lim f(x) -ו lim f(x) םא וקדב ,אל םא\n0\nx→x+ x→8x−\n0 0\n( ><−2x+1 x⩽0\nD(x) x∈(0,"
+    },
+    {
+      "analysis": {
+        "difficulty": 2,
+        "prerequisites": [
+          "Functions",
+          "Inequalities"
+        ],
+        "subjects": [
+          "Algebra",
+          "Pre-Calculus"
+        ],
+        "topics": [
+          "Piecewise Functions",
+          "Domain and Range",
+          "Function Notation"
+        ]
+      },
+      "question": "1) 1)\n(הלכיריד תייצקנופ איה D רשאכ) f(x) = (ב) f(x) = x+1 0<x<4 (א)\nx2 x∈/ (0,"
+    },
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Solving Quadratic Equations",
+          "Factoring Quadratics",
+          "Interval Notation",
+          "Understanding Inequalities"
+        ],
+        "subjects": [
+          "Algebra",
+          "Solving Quadratic Inequalities"
+        ],
+        "topics": [
+          "Inequalities",
+          "Quadratic Equations"
+        ]
+      },
+      "question": "1) 1) >:\nx2+2 4⩽x\n(\n(cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [],
+        "subjects": [],
+        "topics": []
+      },
+      "question": "0) 0) (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Definition of a Limit",
+          "Limit Laws",
+          "Properties of Floor Function",
+          "Solving Inequalities",
+          "Polynomial Arithmetic",
+          "Rational Function Simplification"
+        ],
+        "subjects": [
+          "Limit Properties",
+          "Limit at Infinity",
+          "Limit at a Point",
+          "Piecewise Functions",
+          "Discontinuities",
+          "Rational Inequalities",
+          "Floor Function Properties"
+        ],
+        "topics": [
+          "Limits",
+          "Floor Function",
+          "Functions",
+          "Inequalities",
+          "Rational Functions",
+          "Polynomial Functions"
+        ]
+      },
+      "question": "1) 1) ⌊ x2⌋ x̸=0\nf(x)= x2−1 ·D(x) (ד) f(x)= x2 (ג)\n1 x=0\n. x ∈R הדוקנב תופיצר תויצקנופ יתש g :R→R -ו f :R→R ויהי .4\n0\n? x -ב f לש תופיצרה תחנה ילב הפקת וזה הנקסמה םאה . f(x )=0 -ש וחיכוה . q ∈Q לכל f(q)=0 -ש ןותנ (א)\n0 0\n. f(x )⩽g(x ) -ש וחיכוה . f(q)⩽g(q) םייקתמ q ∈Q לכלש ןותנ (ב)\n0 0\n? f(x )<g(x ) -ש עבונ םאה . f(q)<g(q) םייקתמ q ∈Q לכלש ןותנ (ג)\n0 0\n:םיאבה תולובגה תא בחרה ןבומב לובג לש הרדגההמ תורישי וחיכוה .5\nx3+x−1 2x+3 1 2x3\nlim = ∞ (ג) lim = (ב) lim = ∞ (א)\nx→∞ x2+2x+3 x→∞ 4x−10 2 x→1 (x−"
+    },
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Functions",
+          "Limits",
+          "Evaluating Limits",
+          "One-Sided Limits",
+          "Piecewise Functions"
+        ],
+        "subjects": [
+          "Limits",
+          "Continuity",
+          "Piecewise Functions"
+        ],
+        "topics": [
+          "Calculus"
+        ]
+      },
+      "question": "1) 1)2\n.f :(0,"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Understanding of functions",
+          "Concept of limits",
+          "Limit notation",
+          "One-sided limits",
+          "Inequalities",
+          "Absolute value",
+          "Epsilon-Delta definition of limit"
+        ],
+        "subjects": [
+          "Calculus"
+        ],
+        "topics": [
+          "Limits",
+          "One-Sided Limits",
+          "Epsilon-Delta Definition of Limit",
+          "Formal Definition of Limit",
+          "Infinite Limits"
+        ]
+      },
+      "question": "8) 8)→R יהת .6\n. lim f(x)=−∞ גשומה תא (ε−δ רמולכ) ישוק יפל ורידגה (א)\nx→5+\n. lim f(x)=−∞ גשומה תא (תורדס תועצמאב רמולכ) הנייה יפל ורידגה (ב)\nx→5+\n.תולוקש םתתנש תורדגהה יתשש וחיכוה (ג)\n1"
+    }
+  ]
+}

@@ -1,4 +1,27 @@
 from flask import Flask, request, jsonify
+from utils import *
+from latex_analyzer import analyzer_bp
+import json
+import os
+import google.generativeai as genai
+import logging
+import traceback
+import sys
+
+# Configure logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('server.log'),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+
+app = Flask(__name__)
+app.config['DEBUG'] = True
+app.register_blueprint(analyzer_bp, url_prefix='/analyzer')
+
 from utils import (
     extract_valid_json, save_table_to_latex, summarize_feedback, 
     extract_text_from_pdf, get_file_content, get_embedding, cosine_similarity
@@ -19,6 +42,7 @@ import time
 
 app = Flask(__name__)
 CORS(app)
+
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -141,6 +165,17 @@ def choose_varied_files():
         print(f"Unexpected error: {e}")
         return jsonify({"error": f"Unexpected error: {e}"}), 500
 
+
+@app.errorhandler(Exception)
+def handle_error(error):
+    error_msg = f"Unhandled error: {str(error)}"
+    stack_trace = traceback.format_exc()
+    logging.error(error_msg)
+    logging.error(stack_trace)
+    return jsonify({
+        "error": error_msg,
+        "stack_trace": stack_trace
+    }), 500
 
 @app.route('/', methods=['GET'])
 def index():

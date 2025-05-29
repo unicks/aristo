@@ -1,0 +1,182 @@
+{
+  "filename": "dis_ex7_q.pdf",
+  "results": [
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "arithmetic_progressions",
+          "sigma_notation",
+          "solving_inequalities",
+          "subscripts_and_indices"
+        ],
+        "subjects": [
+          "arithmetic_sequences",
+          "summation",
+          "linear_inequalities"
+        ],
+        "topics": [
+          "sequences_and_series",
+          "inequalities"
+        ]
+      },
+      "question": "7 תיב ליגרת ־ ה“פשת תיטרקסיד הקיטמתמ\n:םיאבה םיאנתה תא תומייקמ רשא a ,a ,a ,a ,a ,a ,a ,a ,a ,a ,a ,a תורדסה רפסמ תא ואצמ .1\n1 2 3 4 5 6 7 8 ∑9 10 11 12 ∑\n.1≤k ≤12 לכל k a ≥k/2 , 12 a =7 ,a2 =a (א\n∑i=1 i ∑i=1 i k k\n.1≤k ≤12 לכל k a ≥−1 , 12 a =2 ,a2 =1 (ב\n∑ ∑ i=1 i ∑i=1 i k\n. m a =0 ־ש ךכ 1≤m≤11 םייק ףסונבו 12 a =0 ,1≤k ≤12 לכל k a ≥0 ,a2 =1 (ג\ni=1 i i=1 i i=1 i k\nרשא (8,"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [],
+        "subjects": [],
+        "topics": []
+      },
+      "question": "8) 8) הדוקנל (0,"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Understanding Cartesian Coordinates",
+          "Evaluating Algebraic Expressions"
+        ],
+        "subjects": [
+          "Finding Points on a Line",
+          "Substitution"
+        ],
+        "topics": [
+          "Linear Equations",
+          "Coordinate Geometry",
+          "Lines in the Plane"
+        ]
+      },
+      "question": "0) 0) הדוקנהמ 16 ךרואב םילולסמה רפסמ והמ .2\n?y =x+3 רשיה לעמ םילוע םניאו (3,"
+    },
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Cartesian coordinate system",
+          "Slope of a line",
+          "Equation of a line in different forms (slope-intercept, point-slope)",
+          "Distance between two points",
+          "Conditions for perpendicular lines",
+          "Solving quadratic equations by factoring or quadratic formula"
+        ],
+        "subjects": [
+          "Equation of a line",
+          "Distance formula",
+          "Perpendicular lines",
+          "Solving quadratic equations"
+        ],
+        "topics": [
+          "Analytic Geometry",
+          "Lines",
+          "Quadratic Equations"
+        ]
+      },
+      "question": "6) 6) הדוקנה ךרד םירבוע (א\n?y =x רשיה לעמ םילוע םניא םגו ,(1,"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Natural Numbers",
+          "Factors",
+          "Multiples"
+        ],
+        "subjects": [
+          "Prime Numbers",
+          "Composite Numbers",
+          "Divisibility"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "1) 1),(2,"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Understanding of Cartesian coordinates",
+          "Representing points on a plane"
+        ],
+        "subjects": [
+          "Algebra",
+          "Pre-Algebra"
+        ],
+        "topics": [
+          "Coordinate Plane",
+          "Ordered Pairs"
+        ]
+      },
+      "question": "2) 2),(3,"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Understanding of squares",
+          "Area calculation of basic shapes"
+        ],
+        "subjects": [
+          "Squares",
+          "Area"
+        ],
+        "topics": [
+          "Geometry",
+          "Quadrilaterals"
+        ]
+      },
+      "question": "3) 3) תודוקנהמ תחא ףא ךרד םירבוע םניא ,(4,"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Definition of a Linear Transformation",
+          "Vector Space Properties",
+          "Subspaces",
+          "Span",
+          "Linear Independence",
+          "Basis",
+          "Dimension"
+        ],
+        "subjects": [
+          "Kernel of a Linear Transformation",
+          "Image of a Linear Transformation"
+        ],
+        "topics": [
+          "Vector Spaces",
+          "Linear Transformations"
+        ]
+      },
+      "question": "4) 4) הדוקנה ךרד םירבוע (ב\n?(a,b+"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Basic Set Theory",
+          "Factorials",
+          "Principles of Counting",
+          "Function Notation",
+          "Linear Equations in One Variable"
+        ],
+        "subjects": [
+          "Permutations and Combinations",
+          "Function Definition and Properties",
+          "Divisibility",
+          "Modular Arithmetic",
+          "Linear Equations"
+        ],
+        "topics": [
+          "Combinatorics",
+          "Functions",
+          "Number Theory"
+        ]
+      },
+      "question": "1) 1) ־ל (a,b) ־מ רמולכ ,הלעמ יפלכ וא ,(a+1,b) ־ל (a,b) ־מ רמולכ ,הנימי אוה לולסמב דעצ לכ\nרפסמ יכ עודי .תידרפס ,תיתפרצ ,תילגנא :תורזה תופשה שולשמ תחא תוחפל דמול דימלת לכ םידימלת 28 תב הצובקב .3\nתילגנא םג םידמול םידימלת 6 קוידב יכ עודי ףסונב .11 ־ תידרפס ידמול רפסמו ,14 ־ תיתפרצ ידמול רפסמ ,15 ־ תילגנא ידמול\nםידימלת המכ .תידרפס םגו תיתפרצ םג םידמול םידימלת 4 קוידבו ,תידרפס םגו תילגנא םג םידמול םידימלת 5 קוידב ,תיתפרצ םגו\nתופשה שולש תא םידמול\nf:A → B לע תויצקנופה רפסמ תא ואצמ .b ∈ B ,a ∈ A םירביאו ,|B| = 4 ,|A| = 6 ־ש ךכ B,A תוצובק תונותנ .4\n.f(a)=b םייקתמש ךכ\nםייק 1 ≤ i ≤ 3 לכלש ךכ f:A → B תויצקנופה רפסמ תא ואצמ .B = {1,2,3,4} הצובקו |A| = 5 ־ש ךכ A הצובק הנותנ .5\n.i≤f(a)≤i+1 םייקמ רשא a∈A\nרשא B ־ל A ־מ f תויצקנופה רפסמ תא ואצמ .B = {4,5,6,7,8,9,10} הצובקו |A| = 3 ־ש ךכ A הצובק הנותנ .6\nךכ m∈A םייק םגו ,3 ־ב קלחתמ f(l) ־ש ךכ l ∈A םייק ,2 ־ב קלחתמ f(k) ־ש ךכ k ∈A םייק :םיאבה םיאנתה תא תומייקמ\n.5 ־ב קלחתמ f(m) ־ש\nןבל דחא רודכו רוחש דחא רודכ ,םיבוהצ םירודכ 2 ,םילוחכ םירודכ 2 ,םימודא םירודכ 2 הרושב רדסל ןתינ םינפוא המכב .7\n.םיהז םיבשחנ עבצ ותואב םירודכ ?עבצ ותואב םיכומס םירודכ ינש ויהי אלש ךכ\nהז םינוש םיסרוקה לכ) הקיזיפב םיסרוק 3 ־ו בשחמה יעדמב םיסרוק 6 ,הקיטמתמב םיסרוק 6 םימייקתמ הטיסרבינואב .8\n?עוצקמ לכמ דחא סרוק תוחפל רחבנש ךכ ,םינושה תועוצקמה ןיבמ םיסרוק 6 רוחבל ןתינ םיכרד המכב .(הזמ\nםירודכ 4 רתויה לכל ויהי הנוילעה הרגמבש ךכ וז לעמ וז תורדוסמ תורגמ 5־ל םיהז םירודכ 8 סינכהל ןתינ םינפוא המכב .9\n?םירודכ 3 רתויה לכל ויהי תרחא הרגמ לכבו\nהאוושמה לש םיילילש־יאה םימלשה תונורתפה רפסמ והמ .10\n?1≤i≤6 לכל x ≤5 ־ש יאנתב x +x +x +x +x +x =15\ni 1 2 3 4 5 6\n1"
+    }
+  ]
+}

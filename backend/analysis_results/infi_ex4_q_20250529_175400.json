@@ -1,0 +1,137 @@
+{
+  "filename": "infi_ex4_q.pdf",
+  "results": [
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Understanding of sequences",
+          "Concept of limits",
+          "Epsilon-Delta definition of a limit",
+          "Properties of infinite series"
+        ],
+        "subjects": [
+          "Infinite Series",
+          "Convergence of Series",
+          "Limit of a Sequence"
+        ],
+        "topics": [
+          "Calculus",
+          "Sequences and Series",
+          "Limits",
+          "Epsilon-Delta Definition"
+        ]
+      },
+      "question": "4 ליגרת ־ 2024־2025 ה׳׳פשת ׳ב רטסמס 1 יפניא ־ 80131־1\nסרוקה םש תא תללוכה ףדה שארב הרורב תרתוכו ז.ת רפסמ ,(החפשמו יטרפ) םש ףוריצב ,רורב די בתכב ןורתפה תא ובתכ :תויחנה\n.23:00 העשב 29/04/2025־ל דע סרוקה רתאב תינורטקלא ושיגהו ,הלוע רדסב תולאשה רשאכ ,ןורתפה תא וקרס .ליגרתה רפסמו\n.(חיכוהל ךרוצ ןיא) הרדסה לובג תא ושחנ . (a )∞ תסנכתמ הרדס הנותנ םיאבה םיפיעסהמ דחא לכב .1\nn n=1\n. ε־מ ןטק םתשחינש לובגהמ a לש קחרמה n>N לכלש ךכ N ∈N ואצמ ,םינותנה ε יכרעמ דחא לכ רובע\nn\n\nn2 n=1,2,...,100\n5n2+n \n. ε="
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Understanding of decimal place value",
+          "Familiarity with scientific notation (optional)",
+          "Recognizing Greek letters"
+        ],
+        "subjects": [
+          "Pre-Algebra",
+          "Basic Algebra"
+        ],
+        "topics": [
+          "Scientific Notation",
+          "Decimal Representation",
+          "Greek Letters",
+          "Variable Assignment"
+        ]
+      },
+      "question": "0. 0.001 , a = (ב) . ε="
+    },
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Understanding of Real Numbers",
+          "Inequalities",
+          "Absolute Value",
+          "Concept of a Limit"
+        ],
+        "subjects": [
+          "Epsilon-Delta Definition of a Limit"
+        ],
+        "topics": [
+          "Limits",
+          "Real Analysis",
+          "Infinitesimals"
+        ]
+      },
+      "question": "0. 0.001 , ε="
+    },
+    {
+      "analysis": {
+        "difficulty": 5,
+        "prerequisites": [
+          "Understanding of sequences and series",
+          "Convergence tests (e.g., comparison test, limit comparison test, ratio test)",
+          "Definition of a subsequence",
+          "Cauchy criterion for convergence"
+        ],
+        "subjects": [
+          "Infinite Series",
+          "Sequence Convergence",
+          "Subsequence Convergence",
+          "Cauchy Criterion"
+        ],
+        "topics": [
+          "Sequences and Series",
+          "Convergence and Divergence",
+          "Subsequences"
+        ]
+      },
+      "question": "0. 0.1 , a = −n 100<n⩽2021 (א)\nn 6n2−2 n\n\n1 n>2021\n.ןותנ יעבט רפסמ m∈N יהיו הנותנ הרדס (a )∞ יהת .2\nn n=1\n.יעבט k לכל b =a ידי לע , (a )∞ לש בנז ־m תארקנה , (b )∞ השדח הרדס רידגנ\nk k+m n n=1 k k=1\n(b )∞ =(a , a , ... , a , ...) הרדסה יהוז רמולכ\nk k=1 m+1 m+2 m+k\n.לובגה ותואלו איה םג תסנכתמ הלש בנזה־m יכ וחיכוה .תסנכתמ (a )∞ הרדסה יכ ןותנ (א)\nn n=1\n.לובגה ותואלו איה םג תסנכתמ (a )∞ הרדסה יכ וחיכוה .תסנכתמ (a )∞ לש בנזה־m יכ ןותנ (ב)\nn n=1 n n=1\nושחנ ,תסנכתמ איה םא .תאז וחיכוה ,תרדבתמ איה םא .תרדבתמ וא תסנכתמ איה םא תואבה תורדסהמ תחא לכ רובע ועבק .3\n.דבלב לובגה תרדגה יפל םכלש שוחינה תא וחיכוהו ,הלובג תא\n√\n16n2+3 5+(−"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Understanding of sequence notation",
+          "Arithmetic operations on sequences",
+          "Concept of limits",
+          "Limit rules",
+          "Properties of polynomials and radicals"
+        ],
+        "subjects": [
+          "Arithmetic Sequences",
+          "Geometric Sequences",
+          "Limit of a Sequence",
+          "Asymptotic Analysis"
+        ],
+        "topics": [
+          "Sequences and Series",
+          "Limits"
+        ]
+      },
+      "question": "1) 1)nn 3n5+1\nc = (ג) b = (ב) a = (א)\nn n n 4n2+1 n 4n6+n\n5 n2+2 √\nf = +(−"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Real Numbers",
+          "Inequalities",
+          "Absolute Value",
+          "Concept of a Sequence",
+          "Concept of a Limit"
+        ],
+        "subjects": [
+          "Calculus"
+        ],
+        "topics": [
+          "Sequences",
+          "Limits",
+          "Convergence of Sequences",
+          "Formal Definition of a Limit"
+        ]
+      },
+      "question": "1) 1)n (ו) e = (ה) d = n2+1−n (ד)\nn n2 n 10n+7 n\n. L∈R ־ו (a )∞ הרדס תודוא תואבה תונעטה תא תידגנ המגוד תועצמאב וכירפה וא וחיכוה .4\nn n=1\n. 0 ־ל תסנכתמ b =|a −L| ידי לע תרדגומה (b )∞ הרדסה םא קרו םא lim a =L (א)\nn n n n=1 n→∞ n\n. lim |a | = |L| םא קרו םא lim a =L (ב)\nn n\nn→∞ n→∞\n. lim |a |=0 םא קרו םא lim a =0 (ג)\nn n\nn→∞ n→∞\n. L∈R רפסמו (a )∞ הרדס יבגל תונוש תונעט תועיפומ םיאבה םיפיעסב (א) .5\nn n=1\n.אל ןקלחו ,(האצרהב םתיארש לובגה תרדגהל ,רמולכ) lim a =L הנעטל תולוקש ןקלח\nn\nn→∞\nתרדגהש ךכ L רפסמלו (a )∞ הרדסל המגוד ונת ,תולוקש ןניאש תונעטה רובע .לובגה תרדגהל תולוקש ןהמ ולא והז\nn n=1\n.חיכוהל ךרוצ ןיא .ךפיהל וא ,אל ףיעסבש הנעטהו תמייקתמ לובגה\n.|a −L|< ε םייקתמ n>N ורובעש n∈N לכלש ךכ N ∈N םייק ε>0 לכל .i\nn 100\n. |a −L|<ε םייקתמ n>N ורובעש n∈N לכלש ךכ N ∈N םייק 0<ε<1 לכל .ii\nn\n|a −L|<ε םייקתמ n>N ורובעש n∈N לכלש ךכ N ∈N םייק ε>1 לכל .iii\nn\n.|a −L|< 1 םייקתמ n>N ורובעש n∈N לכלש ךכ N ∈N םייק k ∈N לכל .iv\nn k\n. |a −L|<ε םייקתמ n>N ורובעש n∈N לכלו ε>0 לכלש ךכ N ∈N םייק .v\nn\n|a −L|<ε זא n>S םייקתמו יגוז n םא ,n∈N לכלש ךכ S ∈N םייק ε>0 לכל .vi\nn\n|a −L|<ε זא ,n>T־ו יגוז־יא n־ש וא ,n>S־ו יגוז n םא ,n∈N לכלש ךכ S,T ∈N םימייק ε>0 לכל .vii\nn\n.םייגולה םינוויכה ינש תא הרצקב וקמנ ,לובגה תרדגהל הלוקשש הנעט לכ רובע (תושר) (ב)\n1"
+    }
+  ]
+}

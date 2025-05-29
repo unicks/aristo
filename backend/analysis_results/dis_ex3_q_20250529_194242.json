@@ -1,0 +1,31 @@
+{
+  "filename": "dis_ex3_q.pdf",
+  "question_text": "1. Let f: A → B be a function. Let D1 and D2 be subsets of B.  Is it always true that f−1(D1) ⊆ f−1(D2) if D1 ⊆ D2?\n(a) Yes, if D1 ⊆ D2\n(b) No, not if D1 ⊆ D2\n\n2. Let f: A → B and g: B → C be functions.  Is it always true that...?\n(a) If g is injective, then g◦f is injective.\n(b) If f is injective, then g◦f is injective.\n(c) If f is injective, then g◦f is injective if g is injective.\n\n3. Let A, B, and C be sets, and let f: A → B, g: A → B, h: B → C, and i: B → C be functions.\n(a) If h is injective, then h◦f = h◦g implies f = g.\n(b) If h is not injective, then h◦f = h◦g implies f = g.\n(c) If f is surjective, then h◦f = i◦f implies h = i.\n\n4. Let f: A → B be a function and D be a subset of B.\n(a) Prove that f(f−1(D)) ⊆ D.\n(b) Prove that f−1(f(D)) ⊇ D.\n(c) Complete the sentence: \"f is _____ if and only if f−1(f(D)) = D.\"\nJustify your answer.\n\n5. Determine which of the following relations on N are reflexive, symmetric, transitive, and/or antisymmetric.\n(a) R = {(x, y) ∈ N × N | 0 ≤ x − y ≤ 1}\n(b) R = {(x, y) ∈ N × N | y ≤ 2x ≤ 4y}\n(c) R = {(x, y) ∈ N × N | x^2 = y}\n(d) R = {(x, y) ∈ N × N | x − y is divisible by 3}\n(e) R = {(x, y) ∈ N × N | y^2 is divisible by 2x}\nFill in a 5x4 table with your answers.\n\n6. Determine which of the following relations on N × N are reflexive, symmetric, transitive, and/or antisymmetric.\n(a) R = {((x1, x2), (y1, y2)) ∈ (N × N) × (N × N) | x1 = y1 and x2 < y2}\n(b) R = {((x1, x2), (y1, y2)) ∈ (N × N) × (N × N) | x1 = y1 or x2 < y2}\n(c) R = {((x1, x2), (y1, y2)) ∈ (N × N) × (N × N) | x1 < y1 and x2 < y2}",
+  "analysis": {
+    "difficulty": 4,
+    "prerequisites": [
+      "Basic Set Theory",
+      "Definition of a Function",
+      "Definition of a Relation",
+      "Image and Preimage of a Function",
+      "Types of Relations",
+      "Proof Techniques"
+    ],
+    "subjects": [
+      "Injective Functions",
+      "Surjective Functions",
+      "Inverse Functions",
+      "Function Composition",
+      "Reflexive Relations",
+      "Symmetric Relations",
+      "Transitive Relations",
+      "Antisymmetric Relations"
+    ],
+    "topics": [
+      "Functions",
+      "Relations",
+      "Set Theory",
+      "Proofs"
+    ]
+  }
+}

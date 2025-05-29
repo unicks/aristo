@@ -1,0 +1,175 @@
+{
+  "filename": "dis_ex7_q.pdf",
+  "questions": [
+    {
+      "question_text": "question1",
+      "topics": [
+        "sequences",
+        "inequalities",
+        "summation"
+      ],
+      "subjects": [
+        "algebra"
+      ],
+      "difficulty": 4,
+      "prerequisites": [
+        "arithmetic",
+        "algebraic manipulation",
+        "sequences and series",
+        "solving inequalities"
+      ]
+    },
+    {
+      "question_text": "question10",
+      "topics": [
+        "inequalities",
+        "algebra"
+      ],
+      "subjects": [
+        "algebra"
+      ],
+      "difficulty": 2,
+      "prerequisites": [
+        "solving inequalities",
+        "algebraic manipulation"
+      ]
+    },
+    {
+      "question_text": "question2",
+      "topics": [
+        "coordinate geometry",
+        "lines",
+        "points"
+      ],
+      "subjects": [
+        "geometry"
+      ],
+      "difficulty": 2,
+      "prerequisites": [
+        "cartesian plane",
+        "equation of a line",
+        "distance between two points"
+      ]
+    },
+    {
+      "question_text": "question3",
+      "topics": [
+        "set theory",
+        "venn diagrams",
+        "combinatorics"
+      ],
+      "subjects": [
+        "discrete mathematics"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "sets",
+        "venn diagrams",
+        "inclusion-exclusion principle"
+      ]
+    },
+    {
+      "question_text": "question4",
+      "topics": [
+        "functions",
+        "sets",
+        "mappings"
+      ],
+      "subjects": [
+        "discrete mathematics"
+      ],
+      "difficulty": 2,
+      "prerequisites": [
+        "functions",
+        "domain and range",
+        "cardinality of sets"
+      ]
+    },
+    {
+      "question_text": "question5",
+      "topics": [
+        "functions",
+        "sets",
+        "mappings",
+        "inequalities"
+      ],
+      "subjects": [
+        "discrete mathematics"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "functions",
+        "domain and range",
+        "cardinality of sets",
+        "solving inequalities"
+      ]
+    },
+    {
+      "question_text": "question6",
+      "topics": [
+        "functions",
+        "sets",
+        "mappings",
+        "divisibility"
+      ],
+      "subjects": [
+        "discrete mathematics",
+        "number theory"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "functions",
+        "domain and range",
+        "cardinality of sets",
+        "divisibility rules"
+      ]
+    },
+    {
+      "question_text": "question7",
+      "topics": [
+        "probability",
+        "combinations"
+      ],
+      "subjects": [
+        "probability and statistics"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "combinations",
+        "probability concepts"
+      ]
+    },
+    {
+      "question_text": "question8",
+      "topics": [
+        "combinatorics",
+        "permutations"
+      ],
+      "subjects": [
+        "discrete mathematics"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "permutations",
+        "combinations"
+      ]
+    },
+    {
+      "question_text": "question9",
+      "topics": [
+        "number theory",
+        "divisibility",
+        "modular arithmetic"
+      ],
+      "subjects": [
+        "number theory"
+      ],
+      "difficulty": 4,
+      "prerequisites": [
+        "divisibility rules",
+        "modular arithmetic",
+        "congruences"
+      ]
+    }
+  ]
+}
