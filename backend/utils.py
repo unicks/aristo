@@ -4,7 +4,7 @@ import os
 
 TABLE_OUTPUT_PATH = "graded_table.tex"
 
-def escape_latex(text):
+def escape_latex(text: str):
     return (text.replace('\\', r'\\')
                 .replace('_', r'\_')
                 .replace('%', r'\%')
@@ -16,7 +16,7 @@ def escape_latex(text):
                 .replace('^', r'\^{}')
                 .replace('~', r'\~{}'))
 
-def extract_valid_json(text):
+def extract_valid_json(text: str):
     try:
         return json.loads(text)
     except json.JSONDecodeError:
