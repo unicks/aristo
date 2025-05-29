@@ -1,0 +1,20 @@
+{
+  "analysis": {
+    "difficulty": 3,
+    "prerequisites": [
+      "Factorials",
+      "Basic Probability Principles",
+      "Permutations and Combinations Formulas"
+    ],
+    "subjects": [
+      "Permutations",
+      "Combinations",
+      "Probability of Events"
+    ],
+    "topics": [
+      "Combinatorics",
+      "Probability"
+    ]
+  },
+  "filename": "dis_ex5_q.pdf"
+}

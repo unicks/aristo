@@ -1,0 +1,31 @@
+{
+  "analysis": {
+    "difficulty": 4,
+    "prerequisites": [
+      "Basic Algebra",
+      "Laws of Exponents",
+      "Working with Radicals",
+      "Solving Linear Equations",
+      "Solving Inequalities",
+      "Understanding of Absolute Value",
+      "Properties of Real Numbers"
+    ],
+    "subjects": [
+      "Properties of Exponents",
+      "Solving Equations with Radicals and Absolute Value",
+      "Distance on the Real Number Line",
+      "Proofs with Inequalities",
+      "AM-GM Inequality"
+    ],
+    "topics": [
+      "Algebra",
+      "Real Numbers",
+      "Exponents and Radicals",
+      "Absolute Value Equations",
+      "Inequalities",
+      "Geometric Mean",
+      "Arithmetic Mean"
+    ]
+  },
+  "filename": "infi_ex3_q.pdf"
+}

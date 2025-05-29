@@ -1,0 +1,39 @@
+{
+  "analysis": {
+    "difficulty": 4,
+    "prerequisites": [
+      "Vector Spaces",
+      "Linear Transformations",
+      "Matrix Operations",
+      "Polynomials",
+      "Complex Numbers",
+      "Group Theory (specifically Symmetric Groups)",
+      "Roots of Unity"
+    ],
+    "subjects": [
+      "Linear Transformation Properties",
+      "Cyclic Vectors",
+      "Annihilating Polynomials",
+      "Dimension of Subspaces",
+      "Invariant Subspace Decomposition",
+      "Matrix of a Linear Transformation",
+      "Roots of Unity",
+      "Permutation Matrices"
+    ],
+    "topics": [
+      "Linear Algebra",
+      "Abstract Algebra",
+      "Polynomial Rings",
+      "Linear Transformations",
+      "Eigenvalues and Eigenvectors",
+      "Vector Spaces",
+      "Cyclic Subspaces",
+      "Minimal Polynomials",
+      "Invariant Subspaces",
+      "Matrix Representations",
+      "Complex Roots of Unity",
+      "Group Theory"
+    ]
+  },
+  "filename": "line_ex4_q.pdf"
+}

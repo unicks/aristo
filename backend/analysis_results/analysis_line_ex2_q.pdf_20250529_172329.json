@@ -1,0 +1,31 @@
+{
+  "analysis": {
+    "difficulty": 4,
+    "prerequisites": [
+      "Algebra",
+      "Basic polynomial operations",
+      "Division algorithm",
+      "Concept of GCD",
+      "Prime factorization",
+      "Field extensions",
+      "Limits"
+    ],
+    "subjects": [
+      "Polynomial arithmetic",
+      "Euclidean division of polynomials",
+      "GCD of polynomials",
+      "Irreducibility criteria",
+      "Field extensions and polynomial rings",
+      "Limits of polynomials"
+    ],
+    "topics": [
+      "Polynomials",
+      "Polynomial Division",
+      "Greatest Common Divisor",
+      "Irreducible Polynomials",
+      "Field Extensions",
+      "Limits"
+    ]
+  },
+  "filename": "line_ex2_q.pdf"
+}

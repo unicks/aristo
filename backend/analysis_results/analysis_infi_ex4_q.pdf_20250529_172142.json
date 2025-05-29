@@ -1,0 +1,22 @@
+{
+  "analysis": {
+    "difficulty": 4,
+    "prerequisites": [
+      "Real Numbers",
+      "Functions",
+      "Inequalities",
+      "Logic"
+    ],
+    "subjects": [
+      "Calculus",
+      "Mathematical Analysis"
+    ],
+    "topics": [
+      "Sequences",
+      "Limits",
+      "Series",
+      "Convergence Tests"
+    ]
+  },
+  "filename": "infi_ex4_q.pdf"
+}

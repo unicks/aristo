@@ -7,6 +7,8 @@ from typing import Dict, Any, List
 import os
 from werkzeug.utils import secure_filename
 import tempfile
+import json
+import datetime
 
 # Configure logging
 logging.basicConfig(
@@ -22,6 +24,14 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 # Configure Gemini API
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
 genai.configure(api_key=GEMINI_API_KEY)
+
+# List available models
+try:
+    for m in genai.list_models():
+        if 'generateContent' in m.supported_generation_methods:
+            logger.info(f"Available model: {m.name}")
+except Exception as e:
+    logger.error(f"Error listing models: {str(e)}")
 
 def extract_text_from_pdf(pdf_file) -> str:
     """Extract text content from a PDF file."""
@@ -64,7 +74,7 @@ Content to analyze:
 """
 
     try:
-        model = genai.GenerativeModel('gemini-pro')
+        model = genai.GenerativeModel('models/gemini-1.5-pro-latest')
         response = model.generate_content(
             prompt + content,
             generation_config={
@@ -182,26 +192,44 @@ def analyze_batch():
         logger.error(traceback.format_exc())
         return jsonify({"error": "Internal server error", "details": str(e)}), 500
 
+@app.route('/', methods=['GET'])
+def index():
+    """Root endpoint to check if API is running."""
+    return jsonify({
+        "status": "active",
+        "message": "Math Analyzer API is running",
+        "endpoints": {
+            "/status": "Check API health",
+            "/analyze/single": "Analyze a single PDF file",
+            "/analyze/batch": "Analyze multiple PDF files"
+        }
+    })
+
 @app.route('/status', methods=['GET'])
 def status():
     """Check API health and dependencies."""
     try:
         # Test Gemini
-        model = genai.GenerativeModel('gemini-pro')
-        model.generate_content("Test")
+        model = genai.GenerativeModel('models/gemini-1.5-pro-latest')
+        response = model.generate_content("Test")
+        gemini_ok = bool(response and response.text)
         
         # Test PDF processing
         with tempfile.NamedTemporaryFile(suffix='.pdf') as tmp:
-            with pdfplumber.open(tmp.name) as pdf:
-                pass
+            try:
+                with pdfplumber.open(tmp.name) as pdf:
+                    pdf_ok = True
+            except:
+                pdf_ok = False
                 
         return jsonify({
-            "status": "healthy",
+            "status": "healthy" if (gemini_ok and pdf_ok) else "degraded",
             "services": {
                 "api": True,
-                "gemini": True,
-                "pdf_processing": True
-            }
+                "gemini": gemini_ok,
+                "pdf_processing": pdf_ok
+            },
+            "timestamp": datetime.datetime.now().isoformat()
         })
     except Exception as e:
         logger.error(f"Health check failed: {str(e)}")

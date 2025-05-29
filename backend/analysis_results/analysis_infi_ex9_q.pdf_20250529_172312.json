@@ -1,0 +1,26 @@
+{
+  "analysis": {
+    "difficulty": 4,
+    "prerequisites": [
+      "Algebra",
+      "Functions",
+      "Limits of Sequences",
+      "Properties of Real Numbers",
+      "Geometric Sequences"
+    ],
+    "subjects": [
+      "Calculus",
+      "Pre-Calculus",
+      "Mathematical Analysis"
+    ],
+    "topics": [
+      "Geometric Series",
+      "Limits",
+      "Continuity",
+      "Function Composition",
+      "Inequalities",
+      "Sequences"
+    ]
+  },
+  "filename": "infi_ex9_q.pdf"
+}

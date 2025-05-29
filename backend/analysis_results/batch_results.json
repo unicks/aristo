@@ -1,0 +1,62 @@
+{
+  "analyzed_files": 14,
+  "results": [
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "dis_ex3_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "dis_ex5_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "dis_ex7_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "dis_ex8_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "infi_ex3_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "infi_ex4_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "infi_ex5_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "infi_ex6_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "infi_ex7_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "infi_ex8_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "infi_ex9_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "line_ex2_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "line_ex4_q.pdf"
+    },
+    {
+      "error": "Error analyzing content: Expecting value: line 1 column 1 (char 0)",
+      "filename": "line_ex6_q.pdf"
+    }
+  ],
+  "total_files": 14
+}

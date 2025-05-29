@@ -1,0 +1,26 @@
+{
+  "analysis": {
+    "difficulty": 4,
+    "prerequisites": [
+      "Basic Arithmetic",
+      "Basic Set Operations",
+      "Principles of Counting",
+      "Modular Congruences"
+    ],
+    "subjects": [
+      "Pigeonhole Principle",
+      "Divisibility",
+      "Inequalities",
+      "Set Theory",
+      "Cartesian Product",
+      "Modular Arithmetic",
+      "Sequences"
+    ],
+    "topics": [
+      "Combinatorics",
+      "Number Theory",
+      "Algebra"
+    ]
+  },
+  "filename": "dis_ex8_q.pdf"
+}
