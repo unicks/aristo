@@ -3,13 +3,21 @@ from utils import (
     extract_valid_json, save_table_to_latex, summarize_feedback, 
     extract_text_from_pdf, get_file_content, get_embedding, cosine_similarity
 )
-from moodle import download_all_submissions, DOWNLOAD_DIR as MOODLE_DOWNLOAD_DIR # Import Moodle utils
 import json
 import os
 import google.genai as genai
 import PyPDF2
 import numpy as np
 from typing import Dict, List
+
+from flask import Flask, request, jsonify
+import requests
+import os
+
+# --- Configuration ---
+MOODLE_URL = "https://aristoplan.moodlecloud.com"
+MOODLE_TOKEN = "c254f0acadf572f82f74dc03ea7ca156"
+DOWNLOAD_DIR = "downloads"
 
 app = Flask(__name__)
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
@@ -106,7 +114,6 @@ def choose_varied_files():
 def index():
     return "LaTeX grading backend is running."
 
-
 @app.route('/grade', methods=['POST'])
 def grade_latex_file(): 
     if 'file' not in request.files:
@@ -197,6 +204,121 @@ def summary_from_feedback():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+    def choose_varied_from_files(file_paths):
+        """
+        Given a list of file paths, process them as in /choose endpoint and return the two most different files.
+        """
+        # Get embeddings for all files
+        file_embeddings = {}
+        for file_path in file_paths:
+            try:
+                content = get_file_content(file_path)
+                if not content:
+                    continue
+                embedding = get_embedding(client, content)
+                if embedding:
+                    file_embeddings[file_path] = embedding
+            except Exception:
+                continue
+
+        if len(file_embeddings) < 2:
+            raise ValueError("Less than two files were successfully processed for embeddings.")
+
+        # Calculate similarity scores
+        similarity_scores = {path: 0.0 for path in file_embeddings}
+        file_paths_with_embeddings = list(file_embeddings.keys())
+
+        for i in range(len(file_paths_with_embeddings)):
+            for j in range(i + 1, len(file_paths_with_embeddings)):
+                path1 = file_paths_with_embeddings[i]
+                path2 = file_paths_with_embeddings[j]
+                embedding1 = file_embeddings[path1]
+                embedding2 = file_embeddings[path2]
+                similarity = cosine_similarity(embedding1[0].values, embedding2[0].values)
+                similarity_scores[path1] += similarity
+                similarity_scores[path2] += similarity
+
+        sorted_files = sorted(similarity_scores.items(), key=lambda item: item[1])
+        if len(sorted_files) < 2:
+            raise ValueError("Could not determine the two most different files.")
+
+        return [file_path for file_path, _ in sorted_files[:2]]
+
+def call_moodle_api(function, params=None):
+    if params is None:
+        params = {}
+    params.update({
+        'wstoken': MOODLE_TOKEN,
+        'moodlewsrestformat': 'json',
+        'wsfunction': function
+    })
+    response = requests.post(f"{MOODLE_URL}/webservice/rest/server.php", data=params)
+    response.raise_for_status()
+    return response.json()
+
+@app.route('/courses/<int:userid>')
+def list_courses(userid):
+    try:
+        courses = call_moodle_api('core_enrol_get_users_courses', {'userid': userid})
+        return jsonify(courses)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/assignments/<int:courseid>')
+def list_assignments(courseid):
+    try:
+        data = call_moodle_api('mod_assign_get_assignments', {'courseids[0]': courseid})
+        return jsonify(data['courses'][0]['assignments'])
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/submissions/<int:assignid>')
+def list_submissions(assignid):
+    try:
+        data = call_moodle_api('mod_assign_get_submissions', {'assignmentids[0]': assignid})
+        return jsonify(data['assignments'][0]['submissions'])
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/download-submissions/<int:assignid>', methods=['POST'])
+def download_all_submissions(assignid):
+    try:
+        data = call_moodle_api('mod_assign_get_submissions', {'assignmentids[0]': assignid})
+        submissions = data['assignments'][0]['submissions']
+        downloaded_files = []
+
+        for submission in submissions:
+            for plugin in submission.get('plugins', []):
+                if plugin['type'] == 'file':
+                    for filearea in plugin['fileareas']:
+                        for file in filearea['files']:
+                            fileurl = file['fileurl']
+                            download_url = f"{fileurl}?token={MOODLE_TOKEN}"
+                            filename = f"user_{submission['userid']}_{file['filename']}"
+                            filepath = os.path.join(DOWNLOAD_DIR, filename)
+
+                            response = requests.get(download_url, stream=True)
+                            if response.status_code == 200:
+                                with open(filepath, 'wb') as f:
+                                    for chunk in response.iter_content(chunk_size=8192):
+                                        f.write(chunk)
+                                downloaded_files.append(filename)
+                            else:
+                                print(f"Failed to download {filename} – status {response.status_code}")
+        
+        return jsonify({'status': 'done', 'files': downloaded_files})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+@app.route('/users', methods=['GET'])
+def get_all_users():
+    try:
+        users = call_moodle_api('core_user_get_users', {'criteria[0][key]': '', 'criteria[0][value]': ''})
+        return jsonify(users.get('users', users))
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
