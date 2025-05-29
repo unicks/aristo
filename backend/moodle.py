@@ -66,7 +66,7 @@ def get_assignment_grades(assignid):
         for grade in assignment.get('grades', []):
             print(f"User {grade['userid']} - Grade: {grade['grade']} - Status: {grade['status']}")
 
-def grade_assignment(assignid, userid, grade, attemptnumber=-1, addattempt=0, workflowstate="graded", note="", feedback_format=1):
+def grade_assignment(assignid, userid, grade, attemptnumber=-1, addattempt=0, workflowstate="graded", feedback=[], feedback_format=1):
     params = {}
     params['assignmentid'] = int(assignid)
     params['userid'] = int(userid)
@@ -75,7 +75,7 @@ def grade_assignment(assignid, userid, grade, attemptnumber=-1, addattempt=0, wo
     params['addattempt'] = int(addattempt)
     params['workflowstate'] = str(workflowstate)
     params['applytoall'] = 1
-    params['plugindata[assignfeedbackcomments_editor][text]'] = str(note)
+    params['plugindata[assignfeedbackcomments_editor][text]'] = str('\n'.join([f'{fb["שאלה"]},{fb["סעיף"]}: {fb["הערה"]}' for fb in feedback]))
     params['plugindata[assignfeedbackcomments_editor][format]'] = 0
     params['plugindata[files_filemanager]'] = 0
 
