@@ -1,26 +1,26 @@
-._container_1kuzn_1 {
+._container_12oj9_1 {
   position: absolute;
   overflow: auto;
   width: 100%;
   height: 100%;
 }
 
-._highlightLayer_1kuzn_15 {
+._highlightLayer_12oj9_8 {
   position: absolute;
   z-index: 3;
   left: 0;
 }
 
-._tipContainer_1kuzn_27 {
+._tipContainer_12oj9_14 {
   z-index: 6;
   position: absolute;
 }
 
-._disableSelection_1kuzn_37 {
+._disableSelection_12oj9_19 {
   user-select: none;
   pointer-events: none;
 }
-._mouseSelection_jpmsu_1 {
+._mouseSelection_1p43j_1 {
   position: absolute;
   border: 1px dashed #333;
   background: rgba(252, 232, 151, 1);
@@ -29,22 +29,22 @@
 /* Internet Explorer support method */
 /* biome-ignore lint/correctness/noUnknownMediaFeatureName: update this */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  ._mouseSelection_jpmsu_1 {
+  ._mouseSelection_1p43j_1 {
     opacity: 0.5;
   }
 }
 
 /* Microsoft Edge Browser 12+ (All) - @supports method */
 @supports (-ms-ime-align: auto) {
-  ._mouseSelection_jpmsu_1 {
+  ._mouseSelection_1p43j_1 {
     opacity: 0.5;
   }
 }
-._tipContainer_b2yn0_1 {
+._tipContainer_f56kr_1 {
   z-index: 6;
   position: absolute;
 }
-._compact_1lsqy_1 {
+._compact_1um8o_1 {
   cursor: pointer;
   background-color: #3d464d;
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -53,7 +53,7 @@
   border-radius: 3px;
 }
 
-._card_1lsqy_19 {
+._card_1um8o_10 {
   padding: 10px;
   background: #fff;
   background-clip: padding-box;
@@ -62,56 +62,56 @@
   box-shadow: 0 2px 4px rgba(37, 40, 43, 0.2);
 }
 
-._card_1lsqy_19 textarea {
+._card_1um8o_10 textarea {
   font-size: 16px;
   width: 200px;
   height: 70px;
 }
 
-._card_1lsqy_19 input[type="submit"] {
+._card_1um8o_10 input[type="submit"] {
   margin-top: 5px;
   font-size: large;
 }
-._highlight_i7e3a_1 {
+._highlight_3l4zw_1 {
   position: absolute;
 }
 
-._emoji_i7e3a_9 {
+._emoji_3l4zw_5 {
   position: absolute;
   color: black;
   opacity: 1;
   font-size: 28px;
 }
 
-._parts_i7e3a_23 {
+._parts_3l4zw_12 {
   opacity: 1;
 }
 
-._part_i7e3a_23 {
+._part_3l4zw_12 {
   cursor: pointer;
   position: absolute;
   background: rgba(255, 226, 143, 1);
   transition: background 0.3s;
 }
 
-._scrolledTo_i7e3a_45 ._part_i7e3a_23 {
+._scrolledTo_3l4zw_23 ._part_3l4zw_12 {
   background: #ff4141;
 }
-._areaHighlight_1tybg_1 {
+._areaHighlight_1ppoh_1 {
   border: 1px solid #333;
   background-color: rgba(252, 232, 151, 1.0);
   opacity: 1;
   mix-blend-mode: multiply;
 }
 
-._part_1tybg_15 {
+._part_1ppoh_8 {
   cursor: pointer;
   position: absolute;
   background: rgba(255, 226, 143, 1);
   transition: background 0.3s;
 }
 
-._scrolledTo_1tybg_29 ._part_1tybg_15 {
+._scrolledTo_1ppoh_15 ._part_1ppoh_8 {
   background: #ff4141;
 }
 /* Copyright 2014 Mozilla Foundation

@@ -1,8 +1,8 @@
-const highlight = "_highlight_i7e3a_1";
-const emoji = "_emoji_i7e3a_9";
-const parts = "_parts_i7e3a_23";
-const part = "_part_i7e3a_23";
-const scrolledTo = "_scrolledTo_i7e3a_45";
+const highlight = "_highlight_3l4zw_1";
+const emoji = "_emoji_3l4zw_5";
+const parts = "_parts_3l4zw_12";
+const part = "_part_3l4zw_12";
+const scrolledTo = "_scrolledTo_3l4zw_23";
 const styles = {
   highlight,
   emoji,
