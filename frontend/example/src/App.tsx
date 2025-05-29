@@ -50,6 +50,7 @@ export function App() {
   const [courses, setCourses] = useState([]);
   const [assignments, setAssignments] = useState([]);
   const [isCheckingFiles, setIsCheckingFiles] = useState<boolean>(false);
+  const [hasCheckedFiles, setHasCheckedFiles] = useState<boolean>(false);
 
   const searchParams = new URLSearchParams(document.location.search);
   const initialUrl = searchParams.get("url") || "";
@@ -409,16 +410,16 @@ export function App() {
             </div>
             <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
               <button
-                disabled={!selectedCourseId || assignments.length === 0 || isCheckingFiles}
+                disabled={!selectedCourseId || assignments.length === 0 || isCheckingFiles || hasCheckedFiles}
                 style={{
                   padding: "0.6rem 1.2rem",
                   borderRadius: "6px",
                   border: "none",
-                  background: isCheckingFiles ? "#ccc" : (!selectedCourseId || assignments.length === 0 ? "#aab8c2" : "#1976d2"),
+                  background: (!selectedCourseId || assignments.length === 0 || isCheckingFiles || hasCheckedFiles) ? "#ccc" : "#1976d2",
                   color: "#fff",
                   fontWeight: 600,
                   fontSize: "1rem",
-                  cursor: !selectedCourseId || assignments.length === 0 || isCheckingFiles ? "not-allowed" : "pointer",
+                  cursor: (!selectedCourseId || assignments.length === 0 || isCheckingFiles || hasCheckedFiles) ? "not-allowed" : "pointer",
                   marginTop: "1rem"
                 }}
                 onClick={async () => {
@@ -430,7 +431,6 @@ export function App() {
                   }
                   setIsCheckingFiles(true);
                   try {
-                    // Example API call - replace URL and method as needed
                     const res = await fetch("http://localhost:5000/choose", {
                       method: "POST",
                       headers: {
@@ -445,6 +445,7 @@ export function App() {
                     const data = await res.json();
                     const files = data.files;
                     handleBase64Upload(files);
+                    setHasCheckedFiles(true);
                   } catch (err) {
                     alert("API call failed: " + err);
                   } finally {
