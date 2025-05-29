@@ -4,12 +4,37 @@ from latex_analyzer import analyzer_bp
 import json
 import os
 import google.generativeai as genai
+import logging
+import traceback
+import sys
+
+# Configure logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('server.log'),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
 
 app = Flask(__name__)
+app.config['DEBUG'] = True
 app.register_blueprint(analyzer_bp, url_prefix='/analyzer')
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
 
 genai.configure(api_key=GEMINI_API_KEY)
+
+@app.errorhandler(Exception)
+def handle_error(error):
+    error_msg = f"Unhandled error: {str(error)}"
+    stack_trace = traceback.format_exc()
+    logging.error(error_msg)
+    logging.error(stack_trace)
+    return jsonify({
+        "error": error_msg,
+        "stack_trace": stack_trace
+    }), 500
 
 @app.route('/', methods=['GET'])
 def index():
