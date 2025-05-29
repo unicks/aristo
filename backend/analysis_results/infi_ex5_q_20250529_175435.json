@@ -1,0 +1,335 @@
+{
+  "filename": "infi_ex5_q.pdf",
+  "results": [
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Understanding of sequences",
+          "Limit of a sequence",
+          "Series definition",
+          "Convergence and Divergence of series",
+          "Comparison Test",
+          "Limit Comparison Test"
+        ],
+        "subjects": [
+          "Calculus",
+          "Mathematical Analysis"
+        ],
+        "topics": [
+          "Infinite Series",
+          "Convergence Tests",
+          "Sequences"
+        ]
+      },
+      "question": "5 ליגרת ־ 2024־2025 ־ ה׳׳פשת ׳ב רטסמס ־ 1 יפניא ־ 80131־1\nסרוקה םש תא תללוכה ףדה שארב הרורב תרתוכו ז.ת רפסמ ,(החפשמו יטרפ) םש ףוריצב ,רורב די בתכב ןורתפה תא ובתכ :תויחנה\n.22:00 העשב 6/05/2025־ל דע סרוקה רתאב תינורטקלא ושיגהו ,הלוע רדסב תולאשה רשאכ ,ןורתפה תא וקרס .ליגרתה רפסמו\n. L∈R ־ל תסנכתמ (a )∞ יכ ןותנ . 0⩽a םייקתמ n∈N לכלש ךכ (a )∞ הרדס הנותנ .1\nn n=1 n n n=1\n. 0⩽L עודמ הרצקב וקמנ (א)\n(cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Understanding of square roots",
+          "Recognizing perfect squares"
+        ],
+        "subjects": [
+          "Simplifying Radicals",
+          "Principal Square Root"
+        ],
+        "topics": [
+          "Radicals",
+          "Exponents and Roots"
+        ]
+      },
+      "question": "0) 0)√ (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Sequences",
+          "Series",
+          "Limit of a Sequence",
+          "Tests for Convergence (e.g., Comparison Test, Limit Comparison Test, Ratio Test, Root Test)"
+        ],
+        "subjects": [
+          "Calculus II",
+          "Mathematical Analysis"
+        ],
+        "topics": [
+          "Infinite Series",
+          "Convergence Tests"
+        ]
+      },
+      "question": "1) 1)∞\n. 0 ־ל תסנכתמ a הרדסה זא L=0 םא יכ לובגה תרדגהמ תורישי וחיכוה (ב)\nn n=1\n√ (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Understanding of square roots",
+          "Recognizing perfect squares"
+        ],
+        "subjects": [
+          "Simplifying Radicals",
+          "Principal Square Root"
+        ],
+        "topics": [
+          "Radicals",
+          "Exponents and Roots"
+        ]
+      },
+      "question": "0) 0)√ (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Sequences",
+          "Series",
+          "Limit of a Sequence",
+          "Convergence and Divergence",
+          "Comparison Test",
+          "Limit Comparison Test"
+        ],
+        "subjects": [
+          "Calculus",
+          "Mathematical Analysis"
+        ],
+        "topics": [
+          "Infinite Series",
+          "Convergence Tests"
+        ]
+      },
+      "question": "1) 1)∞\n. L ־ל תסנכתמ a הרדסה זא L>0 םא יכ לובגה תרדגהמ תורישי וחיכוה (ג)\nn n=1\n.ץיבדנסה טפשמבו תולובג לש הקיטמתיראב שמתשהל רתומ .תואבה תורדסה לש תולובגה תא ובשח .2\n(cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Multiplication",
+          "Division"
+        ],
+        "subjects": [
+          "Divisibility Rules",
+          "Prime Factorization"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "88) 8"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Definition of a sequence",
+          "Limit definition",
+          "Properties of limits",
+          "L'Hopital's Rule (for some cases)",
+          "Understanding of polynomial and radical functions",
+          "Sigma notation"
+        ],
+        "subjects": [
+          "Limit of a Sequence",
+          "Sequence Convergence",
+          "Sequence Divergence",
+          "Growth Rates of Sequences"
+        ],
+        "topics": [
+          "Sequences",
+          "Limits"
+        ]
+      },
+      "question": "8) 8) n 3n7−2n6+3\n.(ץיוודנסה טפשמ :זמר) a n = √ n 1 2+k (ב) . a n = 9n7−n5+4n2+n (א)\nk=1\n√ √\n. 0⩽x⩽y ־ו x,y ∈R ־שכ , a\nn\n= nxn+yn (ד) . a\nn\n= n √n\nn\n2 (ג)\n.(ץיוודנסה טפשמ :זמר) a =\n(cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [],
+        "subjects": [],
+        "topics": []
+      },
+      "question": "0) 0)"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Whole Numbers"
+        ],
+        "subjects": [
+          "Properties of Zero"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "0. 0."
+    },
+    {
+      "analysis": {
+        "difficulty": 2,
+        "prerequisites": [
+          "Decimal Place Value",
+          "Fraction Representation of Decimals",
+          "Concept of Infinity"
+        ],
+        "subjects": [
+          "Pre-Calculus",
+          "Calculus"
+        ],
+        "topics": [
+          "Real Numbers",
+          "Decimal Representation",
+          "Infinite Repeating Decimals",
+          "Limits"
+        ]
+      },
+      "question": "0.99999+\n1(cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Definition of a sequence",
+          "Limit of a sequence",
+          "Convergence tests for sequences",
+          "Concept of supremum and infimum",
+          "Properties of real numbers"
+        ],
+        "subjects": [
+          "Calculus",
+          "Real Analysis"
+        ],
+        "topics": [
+          "Sequences",
+          "Limits",
+          "Convergence",
+          "Supremum"
+        ]
+      },
+      "question": "1) 1)n\n(ה)\nn n\n√\n. 1 ־ל תסנכתמ (na\nn\n)∞\nn=1\nהרדסה זא , יעבט n לכ רובע α<a\nn\n<β ־ש ךכ 0<α,β ∈R םימייק םאש וחיכוה (א) .3\n√\n.1 ־ל תסנכתמ (na\nn\n)∞\nn=1\nהרדסה יזא , 0<L∈R ־ל תסנכתמ (a\nn\n)∞\nn=1\n־ו יעבט n לכ רובע 0⩽a\nn\nםאש וקיסה (ב)\n.םיישממ םירפסמ לש ליעלמ המוסחו הקיר אל הצובק A יהת .4\n: םיאבה םיאנתה תשולש תא תמייקמה (a )∞ הרדס תמייקש וחיכוה (א)\nn n=1\n. lim a =sup(A) (iii) ∀n∈N a ⩽a (ii) ∀n∈N a ∈A (i)\nn n n+1 n\nn→∞\n? ∀n∈N a <a ־ל (ii) יאנת תא וב םינשמ םא ףקת ראשנ ׳א ףיעס םאה (ב)\nn n+1\n: (b )∞ ־ו (a )∞ תווצק םע םיחותפ םיעטק תרדס לש ךותיח לע תואבה תונעטה תא וכירפה וא וחיכוה .5\nn n=1 n n=1\n∞\n. (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Multiplication",
+          "Division"
+        ],
+        "subjects": [
+          "Divisibility Rules",
+          "Prime Factorization"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "84) 8"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Understanding of sequences and their properties",
+          "Working with inequalities",
+          "Principle of Mathematical Induction",
+          "Properties of real numbers"
+        ],
+        "subjects": [
+          "Real Analysis",
+          "Calculus"
+        ],
+        "topics": [
+          "Sequences",
+          "Inequalities",
+          "Mathematical Induction"
+        ]
+      },
+      "question": "4) 4) (a ,b )=[c,d] ־ו c⩽d ־ש ךכ c,d∈R םימייק יזא , n∈N לכל a ⩽a <b ⩽b םא (א)\nn n n n+1 n+1 n\nn=1\n∞\n. (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Multiplication",
+          "Division"
+        ],
+        "subjects": [
+          "Divisibility Rules",
+          "Prime Factorization"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "84) 8"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Understanding of sequences and their notation",
+          "Working with inequalities",
+          "Principle of Mathematical Induction",
+          "Properties of real numbers"
+        ],
+        "subjects": [
+          "Real Analysis",
+          "Mathematical Induction"
+        ],
+        "topics": [
+          "Sequences",
+          "Inequalities"
+        ]
+      },
+      "question": "4) 4) (a ,b )=[c,d] ־ו c⩽d ־ש ךכ c,d∈R םימייק יזא , n∈N לכל a <a ⩽b <b םא (ב)\nn n n n+1 n+1 n\nn=1\nn\n(cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Multiplication",
+          "Division",
+          "Prime Numbers"
+        ],
+        "subjects": [
+          "Divisibility Rules",
+          "Prime Factorization"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "88) 8"
+    },
+    {
+      "analysis": {
+        "difficulty": 5,
+        "prerequisites": [
+          "Sequences",
+          "Series",
+          "Factorials",
+          "Limits",
+          "Convergence Tests (e.g., Comparison Test, Ratio Test)",
+          "Basic Number Theory",
+          "Proof Techniques (e.g., Direct Proof, Contradiction)"
+        ],
+        "subjects": [
+          "Mathematical Analysis",
+          "Calculus"
+        ],
+        "topics": [
+          "Infinite Series",
+          "Convergence and Divergence",
+          "Irrational Numbers",
+          "Factorials",
+          "Number Theory",
+          "Proofs"
+        ]
+      },
+      "question": "8) 8)\n.a = 1 =1+ 1 + 1 +...+ 1 , b =a + 1 ןמסנ ,n∈N לכל .6\nn k! 1! 2! n! n n n·n!\nk=0\nתוסנכתמ (b )∞ ־ו (a )∞ תורדסהש וקיסהו ,רוטנק לש המלה יאנת תא תמייקמ I =[a ,b ] םיעטקה תרדסש וארה (א)\nn n=1 n n=1 n n n\n.ףתושמ לובגל\nךכ d ∈ Z רפסמ ואצמ רמולכ) הדוקנה רחאל תורפס שולש לש קוידב E תא ובשח .E־ב ףתושמה לובגה תא ןמסנ (ב)\n.( d ≤E ≤ d+1־ש\n1000 1000\n(a <E <b :זמר) .m!·E ∈/ Z־ש וארה .m∈N יהי (ג)\nm m\n.E ∈/ Q־ש וקיסה (ד)\n1"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "filename": "line_ex2_q.pdf",
+  "results": [
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Polynomials",
+          "Polynomial Operations (Addition, Subtraction, Multiplication)",
+          "Division Algorithm for Polynomials",
+          "Vector Spaces",
+          "Linear Independence",
+          "Spanning Sets"
+        ],
+        "subjects": [
+          "Abstract Algebra",
+          "Linear Algebra"
+        ],
+        "topics": [
+          "Polynomial Arithmetic",
+          "Polynomial Division",
+          "Degree of a Polynomial",
+          "Vector Spaces",
+          "Basis of a Vector Space"
+        ]
+      },
+      "question": "2 ליגרת – ה\"פשת 2 תיראניל הרבגלא\n1הלאש\n.n+1דמיממו\"מאוהF[x] ={P ∈F[x]|degP ≤n}-שוניארםדוקרטסמסב:תרוכזת\n≤n\nסיסבB = (P ,P ,...,P )יכוחיכוה .degP = iםייקתמ0 ≤ i ≤ nלכלשךכםימונילופ P ,P ,...,P ∈ F[x]ויהי\n0 1 n i 0 1 n\n.F[x] -ל\n≤n\n2הלאש\nP =Q·S+RםימייקמהS,R∈F[x]ואצמרמולכ,תיראשםעQ-בP תאוקלח.F[x]בחרמוP,Qםימונילופםינותנףיעסלכב\n.degR<degQ-שךכ\n.Q[x]בחרמבQ=x2+4x+7,P =x3+3x2+"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Polynomials",
+          "Polynomial operations (addition, subtraction, multiplication)",
+          "Divisibility of polynomials",
+          "Factor Theorem",
+          "Irreducible polynomials",
+          "Field extensions",
+          "Finite fields"
+        ],
+        "subjects": [
+          "Abstract Algebra"
+        ],
+        "topics": [
+          "Polynomial Arithmetic",
+          "Polynomial Factorization",
+          "Polynomial Division",
+          "Field Extensions"
+        ]
+      },
+      "question": "2. 2.א\n.F [x]בחרמבQ=x2+x+2,P =x3+2x2+x+"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Polynomials",
+          "Polynomial Division",
+          "Greatest Common Divisor of Integers",
+          "Euclidean Algorithm for Integers",
+          "Bezout's Identity for Integers",
+          "Rings",
+          "Polynomial Rings"
+        ],
+        "subjects": [
+          "Abstract Algebra",
+          "Ring Theory"
+        ],
+        "topics": [
+          "Greatest Common Divisor",
+          "Polynomial Arithmetic",
+          "Euclidean Algorithm",
+          "Bezout's Identity"
+        ]
+      },
+      "question": "1. 1.ב\n3\n3הלאש\n.F[x]בחרמוP,Qםימונילופםינותנףיעסלכב\n.gcd(P,Q)=A·P +B·QםייקתמשךכA,B ∈F[x]ואצמוgcd(P,Q)∈F[x]תאובשח\n.R[x]בחרמבQ=x2+x+2,P =6x3+x+"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Polynomials",
+          "Polynomial operations (addition, subtraction, multiplication, division)",
+          "Factoring polynomials",
+          "Fields",
+          "Field extensions",
+          "Irreducible polynomials"
+        ],
+        "subjects": [
+          "Abstract Algebra"
+        ],
+        "topics": [
+          "Polynomial Arithmetic",
+          "Polynomial Factorization",
+          "Field Extensions"
+        ]
+      },
+      "question": "7. 7.א\n.F [x]בחרמבQ=x2+x+3,P =x2+"
+    },
+    {
+      "analysis": {
+        "difficulty": 2,
+        "prerequisites": [
+          "Adding and Subtracting Polynomials",
+          "Multiplying Polynomials",
+          "Definition of a Polynomial",
+          "Variable Substitution"
+        ],
+        "subjects": [
+          "Algebra",
+          "Pre-Calculus"
+        ],
+        "topics": [
+          "Polynomial Arithmetic",
+          "Polynomial Functions"
+        ]
+      },
+      "question": "4. 4.ב\n5\n.F [x]בחרמבQ=x3+2,P =x4+"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Polynomials",
+          "Polynomial Arithmetic (Addition, Subtraction, Multiplication)",
+          "Degree of a Polynomial",
+          "Division Algorithm",
+          "Rings",
+          "Fields"
+        ],
+        "subjects": [
+          "Abstract Algebra",
+          "Ring Theory"
+        ],
+        "topics": [
+          "Polynomial Division",
+          "Polynomial Remainder Theorem",
+          "Euclidean Algorithm for Polynomials"
+        ]
+      },
+      "question": "1. 1.ג\n3\n4הלאש\nםימייקיכהאצרהבוניאר .F[x]בחרמבםימונילופP,Qויהיו ,(E = R,F = Qאמגודל)F ⊆ EםימייקמהתודשF,Eויהי\nםגםימייקןכלו,E[x]בחרמבםימונילופםגםהP,Qיכןיחבנ .degR < degQןכוP = Q·S +RםימייקמהS,R ∈ F[x]\n.degR′ <degQןכוP =Q·S′+R′ םימייקמהS′,R′ ∈E[x]\n.S′ =SםגוR′ =Rיכוחיכוה.א\n.E[x]בחרמבQ-וP לשילמיסקמףתושמקלחמותואאוהF[x]בחרמבQ-וP לשילמיסקמהףתושמהקלחמהעודמוריבסה.ב\n5הלאש\n.R[x]-בםיקירפ-יאםימרוגלםיאבהםימונילופהתאוקרפ\n.x2−8x+"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Understanding of matrices",
+          "Matrix notation",
+          "Matrix addition"
+        ],
+        "subjects": [
+          "Linear Algebra"
+        ],
+        "topics": [
+          "Matrix Operations",
+          "Matrix Addition"
+        ]
+      },
+      "question": "3. 3.א\n.3x3+"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Multiplication Table"
+        ],
+        "subjects": [
+          "Arithmetic"
+        ],
+        "topics": [
+          "Multiplication"
+        ]
+      },
+      "question": "81. 8"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Variable Expressions",
+          "Order of Operations"
+        ],
+        "subjects": [
+          "Simplifying Expressions",
+          "Combining Like Terms",
+          "Polynomial Addition"
+        ],
+        "topics": [
+          "Algebra",
+          "Polynomials"
+        ]
+      },
+      "question": "1. 1.ב\n.2x3−3x2+"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Variable Identification",
+          "Understanding of Addition"
+        ],
+        "subjects": [
+          "Simplifying Algebraic Expressions"
+        ],
+        "topics": [
+          "Algebra"
+        ]
+      },
+      "question": "1. 1.ג\n.x3+x+"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Polynomial Arithmetic",
+          "Polynomial Division",
+          "Factor Theorem",
+          "Irreducibility Criteria",
+          "Limits at Infinity"
+        ],
+        "subjects": [
+          "Abstract Algebra",
+          "Calculus"
+        ],
+        "topics": [
+          "Polynomials",
+          "Irreducible Polynomials",
+          "Roots of Polynomials",
+          "Limits of Polynomials"
+        ]
+      },
+      "question": "2. 2.ד\n1\n6הלאש\nםיקירפיאהםימונילופהלכתאהמודןפואבואצמ .F [x]בחרמב2הלעממםיקירפיאםימונילופלעגונבלוגרתהםוכיסבונייע .א\n2\n.F [x]בחרמב3הלעממ\n2\n.P =Q·RםימייקמהתיבויחהלעממQ,R∈F [x]ואצמ,ןכםא?F [x]בחרמבקירפאוהP =x4+x2+1םונילופהםאה.ב\n2 2\n(?םימייקוהדימב,Q,Rלשהלעמלעגונברבדהתועמשמהמ?F -בםישרוששיP-לםאה:הכרדה)\n2\n7הלאש\n:Q[x]בחרמבאבהןויווישהתאםימייקמהm ,m ,m ,m ∈Zםימלשםירפסמואצמ\n1 2 3 4\n∏4\nx4−x3−7x2+x+6= (x−m ).\ni\ni=1\n.םתואםתאצמדציכוקמנ\n8הלאש\n?םירזתויהלםילוכיP,Qםאה.ףתושמשרושםהלשישךכP,Qםימונילופםינותנ.א\n?םירזתויהלםיבייחP,Qםאה.ינשבקלחתמוניאםהמדחאףאוףתושמשרושםהלןיאשךכP,Qםימונילופםינותנ.ב\nתויהלםיבייחP,Qםאה .ינשבקלחתמוניאםהמדחאףאוףתושמשרושםהלןיאשךכ,degP = 2,P,Qםימונילופםינותנ .ג\n?םירז\n(תושר)9הלאש\n.תיגוזיאהלעממםונילופP ∈R[x]יהי\n. lim P (a)=−∞ןכו lim P (a)=∞םייקתמיזאc>0םאיכוארה.P לשליבומהםדקמהcיהי.א\na→−∞ a→∞\n.R-בשרושםייקP-ליכםייניבהךרעטפשממוקיסה.ב\n2"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "filename": "line_ex6_q.pdf",
+  "results": [
+    {
+      "analysis": {
+        "difficulty": 5,
+        "prerequisites": [
+          "Basic Linear Algebra",
+          "Matrix Operations",
+          "Vector Spaces",
+          "Linear Transformations",
+          "Eigenvalues and Eigenvectors",
+          "Polynomials",
+          "Polynomial Rings"
+        ],
+        "subjects": [
+          "Matrix Similarity",
+          "Matrix Transpose",
+          "Minimal Polynomial Divisibility",
+          "Invariant Subspaces",
+          "Cyclic Matrices",
+          "Jordan Canonical Form"
+        ],
+        "topics": [
+          "Linear Algebra",
+          "Polynomial Rings",
+          "Linear Transformations",
+          "Matrices",
+          "Minimal Polynomials",
+          "Characteristic Polynomials",
+          "Eigenvalues and Eigenvectors",
+          "Vector Spaces",
+          "Direct Sums"
+        ]
+      },
+      "question": "6 ליגרת – ה\"פשת 2 תיראניל הרבגלא\n1הלאש\nלשילמינימהםונילופהתאובשח\n \n−1 3 −1\n \n.A=−3 5 −1∈M (R) .1\n3\n−3 3 1\n.P (3x)םונילופלP (x)םונילופהתאחלוששרוטרפואהT :R[x] →R[x] .2\n≤2 ≤2\n2הלאש\n.תינוסכלאהצירטמA∈M (F)יהת\nn\n.תינוסכלאהצירטמP (A)םגשוארה.P ∈F[x]יהי .1\nn עיפומλ ,...,םימעפn עיפומλ ,םימעפn עיפומλ ןוסכלאהלעשחיננ.הזמהזםינושםיראלקסλ ,...,λ ∈Fויהי .2\nk k 2 2 1 1 1 k\n.ילמינימהםונילופהתאוינייפואהםונילופהתאובשח.םימעפ\n3הלאש\n.T ∈End(V)יהיו,Fהדשלעמס\"נו\"מV יהי\n.m T| U |m T יכוחיכוה.יטנאירווניא-T ו\"מתU ⊆Vיהי .1\n.m |P יזא,v ∈V לכלm |P םאשוחיכוה.P ∈F[x]יהי .2\nT T,v\n4הלאש\n:וכירפהואוחיכוה.A∈M (F)יהת\nn\n.m A =m A′ יזא,A-להמודA′ םא .1\n.m =m .2\nA AT\n5הלאש\n   \n1 1 0 1 1 0\n   \n.תומודתוצירטמהםאהועבק.תוצירטמיתשA= 0 1 1 ,B = 0 1 0 הנייהת\n0 0 1 0 0 1\n1\n6הלאש\n.םיישממהיכרעלכשהצירטמA∈M (C)יהת\nn\n.RלעמילמינימהםונילופלההזCלעמילמינימהםונילופהיכוחיכוה .1\nk k\n.1≤s ≤r רשאכm = ΠQsi יזא,RלעמםיקירפיאQ םימונילופהרשאכP = ΠQri םאשוקיסה .2\ni i T i i A i\ni=1 i=1\n \n0 −1 0\n \n.A= 1 0 0 רובעםימדוקהםיפיעסהינשתונוכנתאומיגדה(תושר) .3\n0 0 1\nםימדוקהםיפיעסהינששוארהזאו,םימדוקהםיפיעסבשמתשהלילבמRלעמוCלעמילמינימהםונילופהתאובשח,רמולכ\n.םתאצמשםיילמינימהםונילופהרובעםינוכנןכא\n7הלאש\n?הצירטמיהשוזיאלשינייפואםונילופאוהןקותמםונילופלכםאה .1\n?הצירטמיהשוזיאלשילמינימםונילופאוהןקותמםונילופלכםאה .2\n8הלאש\n.V ו\"מלשםיבחרמיתתU ,...,U ויהי\n1 k\n∑k\n.iלכלu =0אוה,u ∈U רשאכ u =0ןויווישלדיחיהןורתפהם\"םארשיםוכסבםיאצמנU ,...,U -שוחיכוה .1\ni i i i 1 k\ni=1\n.s =0,1≤i≤kלכלs =d +...+d ונמסו,1≤i≤kלכלdim(U )=d יכוחינה .2\n( ( 0 )) i 1 i i i\nU\ni\n=T Span e\nsi−1+1\n,...,e\nsi\n-שךכT :Fsk →V לעוע\"חחל\"התמייקם\"םארשיםוכסבםיאצמנU\n1\n,...,U\nk\nיכוחיכוה\n.1≤i≤kלכל\n2"
+    }
+  ]
+}

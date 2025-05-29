@@ -1,0 +1,97 @@
+{
+  "filename": "infi_ex4_q.pdf",
+  "questions": [
+    {
+      "question_text": "question1",
+      "topics": [
+        "Sequences",
+        "Limits",
+        "Epsilon-Delta Definition"
+      ],
+      "subjects": [
+        "Calculus"
+      ],
+      "difficulty": 4,
+      "prerequisites": [
+        "Sequences",
+        "Limit of a Sequence",
+        "Epsilon-Delta Definition of a Limit"
+      ]
+    },
+    {
+      "question_text": "question2",
+      "topics": [
+        "Sequences",
+        "Subsequences",
+        "Convergence",
+        "Divergence"
+      ],
+      "subjects": [
+        "Calculus"
+      ],
+      "difficulty": 4,
+      "prerequisites": [
+        "Sequences",
+        "Subsequences",
+        "Convergence and Divergence of Sequences"
+      ]
+    },
+    {
+      "question_text": "question3",
+      "topics": [
+        "Sequences",
+        "Limits",
+        "Convergence",
+        "Divergence"
+      ],
+      "subjects": [
+        "Calculus"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "Sequences",
+        "Limit of a Sequence",
+        "Limit Rules"
+      ]
+    },
+    {
+      "question_text": "question4",
+      "topics": [
+        "Sequences",
+        "Limits",
+        "Absolute Value",
+        "Convergence"
+      ],
+      "subjects": [
+        "Calculus"
+      ],
+      "difficulty": 3,
+      "prerequisites": [
+        "Sequences",
+        "Limit of a Sequence",
+        "Properties of Limits",
+        "Absolute Value"
+      ]
+    },
+    {
+      "question_text": "question5",
+      "topics": [
+        "Sequences",
+        "Limits",
+        "Epsilon-Delta Definition",
+        "Logical Reasoning"
+      ],
+      "subjects": [
+        "Calculus"
+      ],
+      "difficulty": 5,
+      "prerequisites": [
+        "Sequences",
+        "Limit of a Sequence",
+        "Epsilon-Delta Definition of a Limit",
+        "Quantifiers",
+        "Logical Implications"
+      ]
+    }
+  ]
+}

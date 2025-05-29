@@ -1,0 +1,180 @@
+{
+  "filename": "line_ex4_q.pdf",
+  "results": [
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Matrix Operations",
+          "Vector Operations",
+          "Complex Numbers",
+          "Polynomial Arithmetic",
+          "Definition of Prime Numbers",
+          "Sigma Notation"
+        ],
+        "subjects": [
+          "Vector Spaces",
+          "Linear Transformations",
+          "Eigenvalues and Eigenvectors",
+          "Complex Polynomials",
+          "Roots of Unity",
+          "Prime Numbers",
+          "Arithmetic Functions"
+        ],
+        "topics": [
+          "Linear Algebra",
+          "Polynomial Roots",
+          "Number Theory",
+          "Summation"
+        ]
+      },
+      "question": "4 ליגרת – ה\"פשת 2 תיראניל הרבגלא\n1הלאש\nn∑−1\n. ω(n) =0יכוחיכוה.2≤n∈Nיהי\nk\nk=0\n2הלאש\n.םיקירפ-יאםימרוגלP =x3+i∈C[x]םונילופהתאוקרפ\n3הלאש\n   \n1 1 1 1\n   \n.v = 0 יהיו,A= 1 2 3 -בלפכי\"עתרדגומהל\"ההT :R3 →R3יהת\n0 0 1 1\n.Z ילקיצהבחרמלסיסבואצמ.א\nv\n.m ∈R[x]םונילופהתאואצמ.ב\nT,v\n4הלאש\n( )\n.P -בלפכי\"ערדגומהרוטרפואהT ∈End R4 יהיו,σ("
+    },
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Arithmetic",
+          "Divisibility",
+          "Summation Notation"
+        ],
+        "subjects": [
+          "Divisor Function",
+          "Summation"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "1) 1)=2,σ("
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Understanding of the equals sign"
+        ],
+        "subjects": [
+          "Solving Equations"
+        ],
+        "topics": [
+          "Algebra"
+        ]
+      },
+      "question": "2) 2)=3,σ("
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Arithmetic Operations"
+        ],
+        "subjects": [
+          "Evaluating Expressions",
+          "Order of Operations"
+        ],
+        "topics": [
+          "Algebra"
+        ]
+      },
+      "question": "3) 3)=4,σ("
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Definition of a group",
+          "Definition of a permutation",
+          "Symmetric groups",
+          "Group action",
+          "Orbits and stabilizers",
+          "Orbit-stabilizer theorem"
+        ],
+        "subjects": [
+          "Group Actions",
+          "Orbits",
+          "Stabilizers"
+        ],
+        "topics": [
+          "Group Theory",
+          "Permutation Groups",
+          "Symmetric Groups",
+          "Orbit-Stabilizer Theorem"
+        ]
+      },
+      "question": "4) 4)=1הרומתהσ ∈S יהת\nσ 4\n.m תאובשח,v =e =(1,0,0,"
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Vector Space Definition and Properties",
+          "Linear Transformations: Definition and Examples",
+          "Kernel and Image of a Linear Transformation",
+          "Eigenvalues and Eigenvectors",
+          "Polynomial Rings",
+          "Minimal Polynomial of a Linear Transformation"
+        ],
+        "subjects": [
+          "Kernel",
+          "Image",
+          "Dimension",
+          "Invariant Subspaces",
+          "Cyclic Subspaces"
+        ],
+        "topics": [
+          "Linear Algebra",
+          "Linear Transformations",
+          "Vector Spaces",
+          "Eigenspaces",
+          "Polynomials",
+          "Minimal Polynomials"
+        ]
+      },
+      "question": "0) 0)t רובע.א\nT,v 1\n.T (u)=uםייקמהu∈Z רוטקווואצמ.ב\nv\n5הלאש\n.m תאובשח.n∈Nהלעממוהשלכםונילופ0̸=P ∈R[x]יהיו,תרזגנהתקתעהD :R[x] →R[x] יהת\nD,P ≤n ≤n\n6הלאש\n.dim(Z )=kןמסנו,v,w ∈V ,T ∈End(V),Fלעמו\"מV ויהי\nv\n( )\n.k−1ךרעהלבקתמהבאמגודוkךרעהלבקתמהבאמגודואצמ,ףסונב.dim Z ∈{k−1,k}יכוחיכוה.א\nT(v)\n.םכתבושתתאוחיכוה?k =dim(V)םגוהקתעהההתואאיהT ןהיתשבשםדוקהףיעסבתואמגודגוזאוצמלןתינםאה.ב\n.w ∈Z חרכהבזא,m (T)(w)=0םא:וכירפהואוחיכוה.ג\nv T,v\n7הלאש\n.dimZ ≤nםייקתמv ∈V לכליזא,P (T)=0-שךכnהלעממP םונילופםייקםא:וחיכוה.T ∈End(V),ו\"מV ויהי\nv\n1\n8הלאש\n \n1 0 0\n \n.Z ̸=R3םייקתמv ∈R3לכל:וחיכוה.A= 0 2 0 -בלפכי\"עתרדגומהל\"ההT :R3 →R3יהת\nv\n0 0 2\n9הלאש\n.V לשםיילקיצ-T םיבחרמיתתU,W ויהיו,T ∈End(V),ו\"מV יהי\n.ילקיצ-T חרכהבאוהU +W :וכירפהואוחיכוה.א\nלשהי-n-לBezoutתמלוgcdלשהללכהתמייק) .ילקיצ-T חרכהבאוהU ∩W :וכירפהואוחיכוה .ס\"נV יכחיננ(תושר) .ב\n(.הברזעיהלםיאשרםתא.םימונילופ\n10הלאש\n:הזזההרוטרפואT ∈End(V)יהיו,תוישממהתורדסהבחרמV =RN יהי\nT (a ,a ,a ,...)=(a ,a ,a ,...).\n1 2 3 2 3 4\n.P (T)=0-שךכ0̸=P ∈R[x]םייקאלשוחיכוה\n11הלאש\n( )\n(k−"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Variable Substitution",
+          "Basic Arithmetic"
+        ],
+        "subjects": [
+          "Algebra"
+        ],
+        "topics": [
+          "Linear Equations"
+        ]
+      },
+      "question": "1) 1)(ℓ−"
+    },
+    {
+      "analysis": {
+        "difficulty": 5,
+        "prerequisites": [
+          "Linear Transformations",
+          "Matrix Operations",
+          "Complex Arithmetic",
+          "Roots of Polynomials",
+          "Group Theory",
+          "Vector Spaces"
+        ],
+        "subjects": [
+          "Linear Transformations",
+          "Matrix Representation",
+          "Fast Fourier Transform (FFT)",
+          "Cyclic Groups",
+          "Invariant Subspaces"
+        ],
+        "topics": [
+          "Linear Algebra",
+          "Fourier Analysis",
+          "Complex Numbers",
+          "Roots of Unity"
+        ]
+      },
+      "question": "1) 1)\n.(F ) = ω(L) י\"עתרדגומההצירטמהF ∈M (C)יהת,L∈Nלכל\nL k,ℓ 1 L L2\n( )\n. F N F N ∈M N×2N (C)םיקולבהתצירטמהאיהתויגוזהתורושהתקיחמי\"עF 2N -מתלבקתמההצירטמהיכוחיכוה\nארקנש בושיח םייק ,זמרמ םתירוגלאה םשש יפכ .TansformFourierFast םתירוגלאה םויק תא רשפאמש ךבדנ איה וז הנחבה)\n(.יתועמשמןפואבולשהצירהינמזתאדירוהלדעונםתירוגלאהו,היירופתרמתה\n12הלאש\nםירוטקוםיבחרמיתתתרדסשים\"םאתישלושמ [T]B -שךכB סיסבםייקשוחיכוה .T ∈ End(T)יהיוידמימ-nו\"מV יהי\nB\n.U ⪇...⪇U =V םיטנאירווניא-T\n0 n\n13הלאש\n.ωk ̸=1םייקתמ0<k <nלכלםאיביטימירפארקייωי-nהדיחישרוש.n∈Nיהי\n.6רדסמםייביטימירפההדיחיהישרושלכתאואצמ.א\nרמולכ,ωלשהקזחכלבקתמרדסהותואמרחאהדיחישרושלכיכוחיכוה.nרדסמיביטימירפהדיחישרושωיהי.ב\n( ( ))\n∀u∈C un =1 → ∃j ∈N u=ωj\n2"
+    }
+  ]
+}

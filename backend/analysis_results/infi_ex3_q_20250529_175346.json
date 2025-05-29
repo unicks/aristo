@@ -1,0 +1,115 @@
+{
+  "filename": "infi_ex3_q.pdf",
+  "results": [
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Properties of exponents",
+          "Properties of radicals",
+          "Integer and rational exponents",
+          "Proof by contradiction"
+        ],
+        "subjects": [
+          "Algebra",
+          "Number Theory"
+        ],
+        "topics": [
+          "Radicals",
+          "Exponents",
+          "Proofs"
+        ]
+      },
+      "question": "3 ליגרת ־ 2024־2025 ה׳׳פשת ׳ב רטסמס 1 יפניא ־ 80131־1\nסרוקה םש תא תללוכה ףדה שארב הרורב תרתוכו ז.ת רפסמ ,(החפשמו יטרפ) םש ףוריצב ,רורב די בתכב ןורתפה תא ובתכ :תויחנה\n.22:00 העשב 22/04/2025־ל דע סרוקה רתאב תינורטקלא ושיגהו ,הלוע רדסב תולאשה רשאכ ,ןורתפה תא וקרס .ליגרתה רפסמו\n. q ∈N ־ו p∈Z , 0<a∈R ויהי .1\n√ √\n. (qa) p = qap ־ש דבלב “ n רדסמ שרוש“ גשומה לש הרדגהה לע תוכמתסה ךות וחיכוה\n:”תוקזח יקוח“ וניניכש תונעטב רכזינ .2\n(cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Integers",
+          "Basic Arithmetic"
+        ],
+        "subjects": [
+          "Divisibility Rules",
+          "Prime Factorization",
+          "Perfect Squares"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "16) 1"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [],
+        "subjects": [],
+        "topics": []
+      },
+      "question": "6) 6) (cid:"
+    },
+    {
+      "analysis": {
+        "difficulty": 1,
+        "prerequisites": [
+          "Divisibility Rules",
+          "Definition of Prime Numbers"
+        ],
+        "subjects": [
+          "Prime Numbers"
+        ],
+        "topics": [
+          "Number Theory"
+        ]
+      },
+      "question": "17) 1"
+    },
+    {
+      "analysis": {
+        "difficulty": 3,
+        "prerequisites": [
+          "Functions",
+          "Limit Definition",
+          "Evaluating Limits"
+        ],
+        "subjects": [
+          "Calculus",
+          "Limit of a Function",
+          "One-Sided Limits"
+        ],
+        "topics": [
+          "Limits",
+          "Continuity"
+        ]
+      },
+      "question": "7) 7)n\n. (y ̸="
+    },
+    {
+      "analysis": {
+        "difficulty": 4,
+        "prerequisites": [
+          "Laws of Exponents",
+          "Solving Equations with Absolute Values",
+          "Properties of Inequalities",
+          "Definition of Geometric Mean",
+          "Definition of Arithmetic Mean"
+        ],
+        "subjects": [
+          "Algebra",
+          "Pre-calculus"
+        ],
+        "topics": [
+          "Exponents",
+          "Absolute Value Equations",
+          "Distance in Real Numbers",
+          "Geometric Mean",
+          "Arithmetic Mean",
+          "Inequalities",
+          "AM-GM Inequality"
+        ]
+      },
+      "question": "0) 0) x = xn (iv) (xm)n =xmn (iii) (xy)n =xnyn (ii) xn·xm =xm+n (i)\ny yn\n.(יעבט ךירעמ םע תוקזח רובע תוקזח יקוחב שמתשהל רתומ) .םלש ךירעמ םע תוקזח רובע (iii)־ו (i) תונעט תא וחיכוה (א)\n.(םלש ךירעמ םע תוקזח רובע תוקזח יקוחב שמתשהל רתומ) .ילנויצר ךירעמ םע תוקזח רובע (iv)־ו (iii) תונעט תא וחיכוה (ב)\n√\n. 2 x−1 + |x−2| = |x−3| םימייקמה x םיישממה םירפסמה לכ לש הצובקה תא ואצמ .3\n(3 לוגרת םוכיסב ןורחאה ףדה תא אורקל וזה הלאשל תשגל ךיא עדוי אלש ימל ץלמומ)\n.a<b־ש ךכ a,b∈R ויהי .4\n.(3 לוגרתב רדגוהש קחרמה אוה d) ?d(a,x)+d(b,x)=d(a,b) םימייקמ x∈R םירפסמ ולא (א)\n.d(a,x) =t םגו a<x<b םייקמש דיחי x∈R שי ,0<t<1 לכלש וארה (ב)\nd(b,x)\n√ √ y +...+y\n־ו G = ny\n1\n·...·y\nn\nורידגה :זמר) . ny\n1\n·...·y\nn\n⩽ 1\nn\nn : וחיכוה . 0 < y\n1\n,..., y\nn\n∈ R ויהי (א) .5\ny\n.(2 ליגרת לש 6 הלאשב ורזעהו , 1⩽j ⩽n לכל x = j\nj G\nn √\n. ⩽ nz ·...·z ־ש ׳א ףיעסמ וקיסה . 0<z ,..., z ∈R ויהי (ב)\n1 + 1 +...+ 1 1 n 1 n\nz1 z2 zn\n. \" םיעצוממה ןויווש־יא \" תארקנ n ⩽ √ nz ·...·z ⩽ z 1 +...+z n תרשרשה : הרעה\n1 + 1 +...+ 1 1 n n\nz1 z2 zn\nz +...+z\n. z ,..., z לש ( יטמתירא וא ) ינובשח עצוממ ארקנ 1 n\n1 n n\n√\n. z ,..., z לש ( ירטמואיג וא ) יסדנה עצוממ ארקנ nz ·...·z\n1 n 1 n\nn\n. z ,..., z לש ינומרה עצוממ ארקנ\n1 n 1 + 1 +...+ 1\nz1 z2 zn\n1"
+    }
+  ]
+}

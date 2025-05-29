@@ -1,0 +1,165 @@
+2025-05-29 17:06:24,547 - INFO - Starting analysis of tex questions...
+2025-05-29 17:06:27,001 - ERROR - API is not responding properly
+2025-05-29 17:06:38,586 - INFO - Starting analysis of tex questions...
+2025-05-29 17:06:40,922 - ERROR - API is not responding properly
+2025-05-29 17:07:27,069 - INFO - Starting analysis of tex questions...
+2025-05-29 17:07:27,069 - INFO - Checking API status at http://localhost:5000/status
+2025-05-29 17:07:29,572 - INFO - API response status code: 503
+2025-05-29 17:07:29,572 - INFO - API response content: {
+  "error": "404 models/gemini-1.0-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+  "status": "unhealthy"
+}
+
+2025-05-29 17:07:29,588 - ERROR - API is not responding properly
+2025-05-29 17:08:25,386 - INFO - Starting analysis of tex questions...
+2025-05-29 17:08:25,387 - INFO - Checking API status at http://localhost:5000/status
+2025-05-29 17:08:27,960 - INFO - API response status code: 503
+2025-05-29 17:08:27,960 - INFO - API response content: {
+  "error": "404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+  "status": "unhealthy"
+}
+
+2025-05-29 17:08:27,960 - ERROR - API is not responding properly
+2025-05-29 17:17:51,371 - INFO - Starting analysis of tex questions...
+2025-05-29 17:17:51,371 - INFO - Checking API status at http://localhost:5000/status
+2025-05-29 17:17:53,888 - INFO - API response status code: 503
+2025-05-29 17:17:53,888 - INFO - API response content: {"error":"404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"unhealthy"}
+
+2025-05-29 17:17:53,888 - ERROR - API is not responding properly
+2025-05-29 17:20:05,337 - INFO - Starting analysis of tex questions...
+2025-05-29 17:20:05,337 - INFO - Checking API status at http://localhost:5000/status
+2025-05-29 17:20:10,133 - INFO - API response status code: 200
+2025-05-29 17:20:10,133 - INFO - API response content: {
+  "services": {
+    "api": true,
+    "gemini": true,
+    "pdf_processing": false
+  },
+  "status": "degraded",
+  "timestamp": "2025-05-29T17:20:10.133753"
+}
+
+2025-05-29 17:20:10,133 - INFO - Analyzing file: dis_ex3_q.pdf
+2025-05-29 17:20:24,787 - INFO - Successfully analyzed dis_ex3_q.pdf
+2025-05-29 17:20:24,787 - INFO - Topics: Set Theory, Functions, Relations
+2025-05-29 17:20:24,787 - INFO - Difficulty: 3/5
+2025-05-29 17:20:24,802 - INFO - Results saved to: analysis_results\analysis_dis_ex3_q.pdf_20250529_172024.json
+2025-05-29 17:20:24,802 - INFO - Analyzing file: dis_ex5_q.pdf
+2025-05-29 17:20:32,238 - INFO - Successfully analyzed dis_ex5_q.pdf
+2025-05-29 17:20:32,238 - INFO - Topics: Combinatorics, Probability
+2025-05-29 17:20:32,238 - INFO - Difficulty: 3/5
+2025-05-29 17:20:32,238 - INFO - Results saved to: analysis_results\analysis_dis_ex5_q.pdf_20250529_172032.json
+2025-05-29 17:20:32,238 - INFO - Analyzing file: dis_ex7_q.pdf
+2025-05-29 17:20:45,148 - INFO - Successfully analyzed dis_ex7_q.pdf
+2025-05-29 17:20:45,148 - INFO - Topics: Sequences and Series, Inequalities, Geometry, Combinatorics, Functions
+2025-05-29 17:20:45,148 - INFO - Difficulty: 4/5
+2025-05-29 17:20:45,148 - INFO - Results saved to: analysis_results\analysis_dis_ex7_q.pdf_20250529_172045.json
+2025-05-29 17:20:45,165 - INFO - Analyzing file: dis_ex8_q.pdf
+2025-05-29 17:20:59,228 - INFO - Successfully analyzed dis_ex8_q.pdf
+2025-05-29 17:20:59,228 - INFO - Topics: Combinatorics, Number Theory, Algebra
+2025-05-29 17:20:59,228 - INFO - Difficulty: 4/5
+2025-05-29 17:20:59,228 - INFO - Results saved to: analysis_results\analysis_dis_ex8_q.pdf_20250529_172059.json
+2025-05-29 17:20:59,228 - INFO - Analyzing file: infi_ex3_q.pdf
+2025-05-29 17:21:19,672 - INFO - Successfully analyzed infi_ex3_q.pdf
+2025-05-29 17:21:19,676 - INFO - Topics: Algebra, Real Numbers, Exponents and Radicals, Absolute Value Equations, Inequalities, Geometric Mean, Arithmetic Mean
+2025-05-29 17:21:19,677 - INFO - Difficulty: 4/5
+2025-05-29 17:21:19,681 - INFO - Results saved to: analysis_results\analysis_infi_ex3_q.pdf_20250529_172119.json
+2025-05-29 17:21:19,682 - INFO - Analyzing file: infi_ex4_q.pdf
+2025-05-29 17:21:42,030 - INFO - Successfully analyzed infi_ex4_q.pdf
+2025-05-29 17:21:42,030 - INFO - Topics: Sequences, Limits, Series, Convergence Tests
+2025-05-29 17:21:42,030 - INFO - Difficulty: 4/5
+2025-05-29 17:21:42,046 - INFO - Results saved to: analysis_results\analysis_infi_ex4_q.pdf_20250529_172142.json
+2025-05-29 17:21:42,046 - INFO - Analyzing file: infi_ex5_q.pdf
+2025-05-29 17:22:03,680 - INFO - Successfully analyzed infi_ex5_q.pdf
+2025-05-29 17:22:03,680 - INFO - Topics: Sequences and Series, Limits, Real Analysis
+2025-05-29 17:22:03,680 - INFO - Difficulty: 5/5
+2025-05-29 17:22:03,696 - INFO - Results saved to: analysis_results\analysis_infi_ex5_q.pdf_20250529_172203.json
+2025-05-29 17:22:03,696 - INFO - Analyzing file: infi_ex6_q.pdf
+2025-05-29 17:22:23,333 - INFO - Successfully analyzed infi_ex6_q.pdf
+2025-05-29 17:22:23,347 - INFO - Topics: Sequences and Series, Limits, Convergence and Divergence, Recursive Sequences, Mathematical Induction
+2025-05-29 17:22:23,350 - INFO - Difficulty: 4/5
+2025-05-29 17:22:23,356 - INFO - Results saved to: analysis_results\analysis_infi_ex6_q.pdf_20250529_172223.json
+2025-05-29 17:22:23,358 - INFO - Analyzing file: infi_ex7_q.pdf
+2025-05-29 17:22:39,223 - INFO - Successfully analyzed infi_ex7_q.pdf
+2025-05-29 17:22:39,223 - INFO - Topics: Infinite Series, Limits, Sequences, Series Convergence, Mathematical Analysis
+2025-05-29 17:22:39,223 - INFO - Difficulty: 4/5
+2025-05-29 17:22:39,223 - INFO - Results saved to: analysis_results\analysis_infi_ex7_q.pdf_20250529_172239.json
+2025-05-29 17:22:39,223 - INFO - Analyzing file: infi_ex8_q.pdf
+2025-05-29 17:22:55,126 - INFO - Successfully analyzed infi_ex8_q.pdf
+2025-05-29 17:22:55,126 - INFO - Topics: Calculus, Limits, Limit Properties, Epsilon-Delta Definition of a Limit, Continuity
+2025-05-29 17:22:55,126 - INFO - Difficulty: 4/5
+2025-05-29 17:22:55,141 - INFO - Results saved to: analysis_results\analysis_infi_ex8_q.pdf_20250529_172255.json
+2025-05-29 17:22:55,141 - INFO - Analyzing file: infi_ex9_q.pdf
+2025-05-29 17:23:12,375 - INFO - Successfully analyzed infi_ex9_q.pdf
+2025-05-29 17:23:12,375 - INFO - Topics: Geometric Series, Limits, Continuity, Function Composition, Inequalities, Sequences
+2025-05-29 17:23:12,375 - INFO - Difficulty: 4/5
+2025-05-29 17:23:12,391 - INFO - Results saved to: analysis_results\analysis_infi_ex9_q.pdf_20250529_172312.json
+2025-05-29 17:23:12,393 - INFO - Analyzing file: line_ex2_q.pdf
+2025-05-29 17:23:29,713 - INFO - Successfully analyzed line_ex2_q.pdf
+2025-05-29 17:23:29,713 - INFO - Topics: Polynomials, Polynomial Division, Greatest Common Divisor, Irreducible Polynomials, Field Extensions, Limits
+2025-05-29 17:23:29,713 - INFO - Difficulty: 4/5
+2025-05-29 17:23:29,729 - INFO - Results saved to: analysis_results\analysis_line_ex2_q.pdf_20250529_172329.json
+2025-05-29 17:23:29,729 - INFO - Analyzing file: line_ex4_q.pdf
+2025-05-29 17:23:47,121 - INFO - Successfully analyzed line_ex4_q.pdf
+2025-05-29 17:23:47,121 - INFO - Topics: Linear Algebra, Abstract Algebra, Polynomial Rings, Linear Transformations, Eigenvalues and Eigenvectors, Vector Spaces, Cyclic Subspaces, Minimal Polynomials, Invariant Subspaces, Matrix Representations, Complex Roots of Unity, Group Theory
+2025-05-29 17:23:47,121 - INFO - Difficulty: 4/5
+2025-05-29 17:23:47,121 - INFO - Results saved to: analysis_results\analysis_line_ex4_q.pdf_20250529_172347.json
+2025-05-29 17:23:47,121 - INFO - Analyzing file: line_ex6_q.pdf
+2025-05-29 17:24:04,164 - INFO - Successfully analyzed line_ex6_q.pdf
+2025-05-29 17:24:04,165 - INFO - Topics: Linear Algebra
+2025-05-29 17:24:04,165 - INFO - Difficulty: 5/5
+2025-05-29 17:24:04,167 - INFO - Results saved to: analysis_results\analysis_line_ex6_q.pdf_20250529_172404.json
+2025-05-29 17:24:04,167 - INFO - 
+Analysis Summary:
+2025-05-29 17:24:04,168 - INFO - Total files processed: 14
+2025-05-29 17:24:04,169 - INFO - Successfully analyzed: 14
+2025-05-29 17:24:04,170 - INFO - Failed: 0
+2025-05-29 17:24:04,170 - INFO - Average difficulty: 4.0/5
+2025-05-29 17:24:04,171 - INFO - Unique topics found: Absolute Value Equations, Abstract Algebra, Algebra, Arithmetic Mean, Calculus, Combinatorics, Complex Roots of Unity, Continuity, Convergence Tests, Convergence and Divergence, Cyclic Subspaces, Eigenvalues and Eigenvectors, Epsilon-Delta Definition of a Limit, Exponents and Radicals, Field Extensions, Function Composition, Functions, Geometric Mean, Geometric Series, Geometry, Greatest Common Divisor, Group Theory, Inequalities, Infinite Series, Invariant Subspaces, Irreducible Polynomials, Limit Properties, Limits, Linear Algebra, Linear Transformations, Mathematical Analysis, Mathematical Induction, Matrix Representations, Minimal Polynomials, Number Theory, Polynomial Division, Polynomial Rings, Polynomials, Probability, Real Analysis, Real Numbers, Recursive Sequences, Relations, Sequences, Sequences and Series, Series, Series Convergence, Set Theory, Vector Spaces
+2025-05-29 17:48:34,904 - INFO - Starting analysis of tex questions...
+2025-05-29 17:48:34,905 - INFO - Checking API status at http://localhost:5000/status
+2025-05-29 17:48:37,962 - INFO - API response status code: 200
+2025-05-29 17:48:37,962 - INFO - API response content: {
+  "services": {
+    "api": true,
+    "gemini": true,
+    "pdf_processing": false
+  },
+  "status": "degraded",
+  "timestamp": "2025-05-29T17:48:37.955733"
+}
+
+2025-05-29 17:48:37,965 - INFO - Analyzing file: dis_ex3_q.pdf
+2025-05-29 17:48:56,399 - INFO - Starting analysis of tex questions...
+2025-05-29 17:48:56,399 - INFO - Checking API status at http://localhost:5000/status
+2025-05-29 17:49:01,228 - INFO - API response status code: 200
+2025-05-29 17:49:01,229 - INFO - API response content: {"services":{"api":true,"gemini":true,"pdf_processing":false},"status":"degraded","timestamp":"2025-05-29T17:49:01.224174"}
+
+2025-05-29 17:49:01,230 - INFO - Analyzing file: dis_ex3_q.pdf
+2025-05-29 17:49:06,172 - INFO - Successfully analyzed dis_ex3_q.pdf
+2025-05-29 17:49:06,172 - ERROR - Error processing tex_questions\dis_ex3_q.pdf: 'analysis'
+2025-05-29 17:49:06,172 - INFO - Analyzing file: dis_ex5_q.pdf
+2025-05-29 17:49:10,166 - INFO - Successfully analyzed dis_ex5_q.pdf
+2025-05-29 17:49:10,167 - ERROR - Error processing tex_questions\dis_ex5_q.pdf: 'analysis'
+2025-05-29 17:49:10,167 - INFO - Analyzing file: dis_ex7_q.pdf
+2025-05-29 17:49:26,192 - INFO - Successfully analyzed dis_ex7_q.pdf
+2025-05-29 17:49:26,192 - ERROR - Error processing tex_questions\dis_ex7_q.pdf: 'analysis'
+2025-05-29 17:49:26,193 - INFO - Analyzing file: dis_ex8_q.pdf
+2025-05-29 17:49:42,413 - INFO - Starting analysis of tex questions...
+2025-05-29 17:49:42,414 - INFO - Checking API status at http://localhost:5000/status
+2025-05-29 17:49:47,558 - INFO - API response status code: 200
+2025-05-29 17:49:47,559 - INFO - API response content: {"services":{"api":true,"gemini":true,"pdf_processing":false},"status":"degraded","timestamp":"2025-05-29T17:49:47.555293"}
+
+2025-05-29 17:49:47,561 - INFO - Analyzing file: dis_ex3_q.pdf
+2025-05-29 17:49:52,379 - INFO - Successfully analyzed dis_ex3_q.pdf
+2025-05-29 17:49:52,379 - ERROR - Error processing tex_questions\dis_ex3_q.pdf: 'analysis'
+2025-05-29 17:49:52,380 - INFO - Analyzing file: dis_ex5_q.pdf
+2025-05-29 17:49:56,391 - INFO - Successfully analyzed dis_ex5_q.pdf
+2025-05-29 17:49:56,392 - ERROR - Error processing tex_questions\dis_ex5_q.pdf: 'analysis'
+2025-05-29 17:49:56,392 - INFO - Analyzing file: dis_ex7_q.pdf
+2025-05-29 17:50:13,597 - INFO - Successfully analyzed dis_ex7_q.pdf
+2025-05-29 17:50:13,597 - ERROR - Error processing tex_questions\dis_ex7_q.pdf: 'analysis'
+2025-05-29 17:50:13,599 - INFO - Analyzing file: dis_ex8_q.pdf
+2025-05-29 17:50:18,583 - INFO - Successfully analyzed dis_ex8_q.pdf
+2025-05-29 17:50:18,584 - ERROR - Error processing tex_questions\dis_ex8_q.pdf: 'analysis'
+2025-05-29 17:50:18,584 - INFO - Analyzing file: infi_ex3_q.pdf
