@@ -8,8 +8,6 @@ import PyPDF2
 app = Flask(__name__)
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
 
-genai.configure(api_key=GEMINI_API_KEY)
-
 @app.route('/', methods=['GET'])
 def index():
     return "LaTeX grading backend is running."
@@ -63,8 +61,11 @@ def grade_latex_file():
     )
 
     try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
-        response = model.generate_content(prompt)
+        client = genai.Client(api_key=GEMINI_API_KEY)
+        response = client.models.generate_content(
+            model="gemini-1.5-flash",
+            contents=prompt
+        )
         json_text = response.text.strip()
         structured = extract_valid_json(json_text)
 
