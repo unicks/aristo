@@ -4,3 +4,4 @@ backend/.temp/
 downloaded.pdf
 node_modules
 .vscode
+.temp/*

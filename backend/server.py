@@ -21,9 +21,14 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 
 @app.route('/choose', methods=['POST'])
 def choose_varied_files():
-    """Endpoint to download submissions, find the two most different files, and return their content."""
+    """Endpoint to download submissions, find the N most different files, and return their content."""
     try:
         assignment_id_from_request = request.json.get('exercise_id')
+        amount = int(request.json.get('amount', 2)) # Default to 2 if not provided
+
+        if not isinstance(amount, int) or amount < 2:
+            return jsonify({"error": "amount must be an integer greater than or equal to 2"}), 400
+
         if not assignment_id_from_request:
             return jsonify({"error": "exercise_id is required"}), 400
 
@@ -51,8 +56,8 @@ def choose_varied_files():
             if os.path.isfile(os.path.join(assignment_specific_dir, f)) and f.endswith(('.lyx', '.pdf'))
         ]
         
-        if len(files_in_assignment_dir) < 2:
-            return jsonify({"error": f"At least two processable files (.lyx or .pdf) found in {assignment_specific_dir} are required for comparison. Found: {len(files_in_assignment_dir)}"}), 400
+        if len(files_in_assignment_dir) < amount:
+            return jsonify({"error": f"At least {amount} processable files (.lyx or .pdf) found in {assignment_specific_dir} are required for comparison. Found: {len(files_in_assignment_dir)}"}), 400
 
         file_embeddings: Dict[str, List[float]] = {}
         print(f"Processing {len(files_in_assignment_dir)} files for embeddings from {assignment_specific_dir}...")
@@ -72,8 +77,8 @@ def choose_varied_files():
             except Exception as e:
                 print(f"Error processing file {file_path} for embedding: {e}. Skipping.")
 
-        if len(file_embeddings) < 2:
-            return jsonify({"error": f"Less than two files were successfully processed for embeddings. Processed: {len(file_embeddings)}"}), 400
+        if len(file_embeddings) < amount:
+            return jsonify({"error": f"Less than {amount} files were successfully processed for embeddings. Processed: {len(file_embeddings)}"}), 400
 
         similarity_scores: Dict[str, float] = {}
         file_paths_with_embeddings = list(file_embeddings.keys())
@@ -94,10 +99,10 @@ def choose_varied_files():
 
         sorted_file_paths_by_similarity = sorted(similarity_scores.items(), key=lambda item: item[1])
         
-        if not sorted_file_paths_by_similarity or len(sorted_file_paths_by_similarity) < 2:
-             return jsonify({"error": "Could not determine the two most different files from the processed submissions."}), 500
+        if not sorted_file_paths_by_similarity or len(sorted_file_paths_by_similarity) < amount:
+             return jsonify({"error": f"Could not determine the {amount} most different files from the processed submissions."}), 500
 
-        most_varied_source_paths = [file_path for file_path, _ in sorted_file_paths_by_similarity[:2]]
+        most_varied_source_paths = [file_path for file_path, _ in sorted_file_paths_by_similarity[:amount]]
         
         returned_files_data = []
         for file_path in most_varied_source_paths:
@@ -117,19 +122,19 @@ def choose_varied_files():
                 # Optionally skip this file or handle error differently
                 continue 
         
-        # Ensure we actually have two files to return after attempting to read them
-        if len(returned_files_data) < 2 and len(most_varied_source_paths) >= 2:
-             print(f"Warning: Expected to return 2 files, but only {len(returned_files_data)} could be successfully read and encoded.")
+        # Ensure we actually have 'amount' files to return after attempting to read them
+        if len(returned_files_data) < amount and len(most_varied_source_paths) >= amount:
+             print(f"Warning: Expected to return {amount} files, but only {len(returned_files_data)} could be successfully read and encoded.")
              return jsonify({"error": "Failed to read/encode one or more of the selected files for the response."}), 500
         elif not returned_files_data and len(most_varied_source_paths) > 0:
              return jsonify({"error": "Selected files could not be prepared for the response."}), 500
-        elif len(most_varied_source_paths) < 2: # Should be caught earlier, but as a safeguard
-            return jsonify({"error": "Not enough files to select the two most varied."}), 500
+        elif len(most_varied_source_paths) < amount: # Should be caught earlier, but as a safeguard
+            return jsonify({"error": f"Not enough files to select the {amount} most varied."}), 500
 
 
         return jsonify({
             "files": returned_files_data,
-            "message": f"Successfully found and prepared the two most different files from assignment {assignment_id_str}"
+            "message": f"Successfully found and prepared the {amount} most different files from assignment {assignment_id_str}"
         })
 
     except Exception as e:
