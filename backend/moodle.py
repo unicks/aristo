@@ -1,6 +1,7 @@
 import requests
 import os
 import argparse
+import json
 
 # Configuration
 MOODLE_URL = "https://aristoplan.moodlecloud.com"
@@ -61,6 +62,53 @@ def download_all_submissions(assignid):
                             print(f"Failed to download {filename} – status {response.status_code}")
 
 
+def grade_students(assignid, grades_json):
+    """
+    Grade students for a given assignment.
+    grades_json: list of dicts, each with 'userid', 'grade', and optional 'comment'
+    Example:
+    [
+        {"userid": 5, "grade": 90, "comment": "Great job!"},
+        {"userid": 6, "grade": 75}
+    ]
+    """
+    grade_items = []
+    for entry in grades_json:
+        item = {
+            'userid': entry['userid'],
+            'grade': entry['grade'],
+            'attemptnumber': -1,  # -1 means latest
+            'addattempt': 0,
+            'workflowstate': '',
+            'plugindata': {}
+        }
+        if 'comment' in entry:
+            item['plugindata']['assignfeedbackcomments_editor'] = {
+                'text': entry['comment'],
+                'format': 1
+            }
+        grade_items.append(item)
+
+    params = {
+        'assignmentid': assignid,
+        'applytoall': 0
+    }
+    for idx, item in enumerate(grade_items):
+        for key, value in item.items():
+            if isinstance(value, dict):
+                for subkey, subval in value.items():
+                    if isinstance(subval, dict):
+                        for subsubkey, subsubval in subval.items():
+                            params[f'grades[{idx}][{key}][{subkey}][{subsubkey}]'] = subsubval
+                    else:
+                        params[f'grades[{idx}][{key}][{subkey}]'] = subval
+            else:
+                params[f'grades[{idx}][{key}]'] = value
+
+    result = call_moodle_api('mod_assign_save_grades', params)
+    print("Grades submitted:", result)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Moodle CLI Tool")
     subparsers = parser.add_subparsers(dest='command')
@@ -72,6 +120,9 @@ def main():
     parser_submissions.add_argument('assignid', type=int)
     parser_download = subparsers.add_parser('download-submissions')
     parser_download.add_argument('assignid', type=int)
+    parser_grade = subparsers.add_parser('grade-students')
+    parser_grade.add_argument('assignid', type=int)
+    parser_grade.add_argument('grades_json', type=str, help='Grades JSON string or path to JSON file')
 
     args = parser.parse_args()
     if args.command == 'list-courses':
@@ -82,6 +133,14 @@ def main():
         list_submissions(args.assignid)
     elif args.command == 'download-submissions':
         download_all_submissions(args.assignid)
+    elif args.command == 'grade-students':
+        # Try to load as file, else parse as JSON string
+        if os.path.isfile(args.grades_json):
+            with open(args.grades_json, 'r', encoding='utf-8') as f:
+                grades = json.load(f)
+        else:
+            grades = json.loads(args.grades_json)
+        grade_students(args.assignid, grades)
     else:
         parser.print_help()
 

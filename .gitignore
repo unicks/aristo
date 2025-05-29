@@ -3,3 +3,4 @@ backend/client_secrets.json
 downloaded.pdf
 node_modules
 .vscode
+.temp
