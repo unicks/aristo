@@ -317,50 +317,104 @@ export function App() {
         resetHighlights={resetHighlights}
       >
         <div style={{ padding: "1rem" }}>
-          <h4>Upload PDF Files</h4>
-          <input
-            type="file"
-            accept=".pdf"
-            multiple
-            onChange={handleFileUpload}
-            style={{ marginBottom: "1rem" }}
-          />
-          <div style={{ marginBottom: "1rem" }}>
-            <label>
-              <strong>Choose Course:</strong>
+          <h4>Choose assignment you want to check</h4>
+            <div style={{ marginBottom: "1.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <div>
+              <label style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ fontWeight: 600, fontSize: "1rem" }}>Choose Course:</span>
               <select
+                value={selectedCourseId ?? ""}
                 onChange={(e) => setSelectedCourseId(Number(e.target.value))}
-                style={{ marginLeft: "0.5rem" }}>
-                {Array.isArray(courses) && courses.length > 0 ? (
-                  courses.map((assignment: any) => (
-                    <option key={assignment.id} value={assignment.id}>
-                      {assignment.fullname}
-                    </option>
-                  ))
-                ) : (
-                  <option value="">Loading...</option>
-                )}
+                style={{
+                padding: "0.4rem 0.8rem",
+                borderRadius: "6px",
+                border: "1px solid #ccc",
+                fontSize: "1rem",
+                minWidth: "160px",
+                background: "#fafbfc"
+                }}
+              >
+                <option value="" disabled>
+                {courses.length === 0 ? "Loading..." : "Select a course"}
+                </option>
+                {Array.isArray(courses) && courses.length > 0 &&
+                courses.map((course: any) => (
+                  <option key={course.id} value={course.id}>
+                  {course.fullname}
+                  </option>
+                ))}
               </select>
-            </label>
-          </div>
-          <div style={{ marginBottom: "1rem" }}>
-            <label>
-              <strong>Choose Assignments:</strong>
-              <select style={{ marginLeft: "0.5rem" }}>
-                {Array.isArray(assignments) && assignments.length > 0 ? (
-                    assignments.map((assignment: any) => (
-                    <option key={assignment.id} value={assignment.id}>
-                      {assignment.name}
-                    </option>
-                  ))
-                ) : (
-                  <option value="">Loading...</option>
-                )}              </select>
-            </label>
-          </div>
-          <p style={{ fontSize: "0.8rem", color: "#666", marginBottom: "1rem" }}>
-            You can select multiple PDF files at once
-          </p>
+              </label>
+            </div>
+            <div>
+              <label style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ fontWeight: 600, fontSize: "1rem" }}>Choose Assignment:</span>
+              <select
+                disabled={!selectedCourseId}
+                style={{
+                padding: "0.4rem 0.8rem",
+                borderRadius: "6px",
+                border: "1px solid #ccc",
+                fontSize: "1rem",
+                minWidth: "160px",
+                background: !selectedCourseId ? "#f0f0f0" : "#fafbfc"
+                }}
+              >
+                <option value="" disabled>
+                {!selectedCourseId
+                  ? "Select a course first"
+                  : assignments.length === 0
+                  ? "Loading..."
+                  : "Select an assignment"}
+                </option>
+                {Array.isArray(assignments) && assignments.length > 0 &&
+                assignments.map((assignment: any) => (
+                  <option key={assignment.id} value={assignment.id}>
+                  {assignment.name}
+                  </option>
+                ))}
+              </select>
+              </label>
+            </div>
+            </div>
+              <button
+                disabled={!selectedCourseId || assignments.length === 0}
+                style={{
+                  padding: "0.6rem 1.2rem",
+                  borderRadius: "6px",
+                  border: "none",
+                  background: "#1976d2",
+                  color: "#fff",
+                  fontWeight: 600,
+                  fontSize: "1rem",
+                  cursor: !selectedCourseId || assignments.length === 0 ? "not-allowed" : "pointer",
+                  marginTop: "1rem"
+                }}
+                onClick={async () => {
+                  const assignmentSelect = document.querySelector<HTMLSelectElement>('select[disabled=""]') || document.querySelectorAll('select')[1];
+                  const assignmentId = (assignmentSelect as HTMLSelectElement)?.value;
+                  if (!assignmentId) {
+                    alert("Please select an assignment.");
+                    return;
+                  }
+                  try {
+                    // Example API call - replace URL and method as needed
+                    const res = await fetch(`http://localhost:5000/choose/${assignmentId}`, {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ assignmentId }),
+                    });
+                    if (!res.ok) throw new Error("API call failed");
+                    const data = await res.json();
+                    console.log(data)
+                    alert(`API call successful: ${JSON.stringify(data)}`);
+                  } catch (err) {
+                    alert("API call failed: " + err);
+                  }
+                }}
+              >
+                Call Assignment API
+              </button>
         </div>
       </Sidebar>
       <div
