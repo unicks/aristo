@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
 from utils import *
+from latex_analyzer import analyzer_bp
 import json
 import os
 import google.generativeai as genai
 
 app = Flask(__name__)
+app.register_blueprint(analyzer_bp, url_prefix='/analyzer')
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
 
 genai.configure(api_key=GEMINI_API_KEY)
