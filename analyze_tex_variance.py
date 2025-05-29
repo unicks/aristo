@@ -1,7 +1,7 @@
 import os
 import google.genai as genai
 import numpy as np
-from typing import Dict, List, Tuple
+from typing import Dict, List
 import sys
 from PyPDF2 import PdfReader
 

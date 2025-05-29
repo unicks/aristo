@@ -1,16 +1,111 @@
 from flask import Flask, request, jsonify
-from utils import *
+from utils import (
+    extract_valid_json, save_table_to_latex, summarize_feedback, 
+    extract_text_from_pdf, get_file_content, get_embedding, cosine_similarity
+)
+from moodle import download_all_submissions, DOWNLOAD_DIR as MOODLE_DOWNLOAD_DIR # Import Moodle utils
 import json
 import os
 import google.genai as genai
-import PyPDF2  
+import PyPDF2
+import numpy as np
+from typing import Dict, List
 
 app = Flask(__name__)
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
+client = genai.Client(api_key=GEMINI_API_KEY)
+
+@app.route('/choose', methods=['POST'])
+def choose_varied_files():
+    """Endpoint to download submissions and find the two most different files."""
+    try:
+        assignment_id = request.json.get('exercise_id')
+        if not assignment_id:
+            return jsonify({"error": "exercise_id is required"}), 400
+
+        # Download submissions for the given assignment_id
+        try:
+            print(f"Downloading submissions for assignment ID: {assignment_id}...")
+            download_all_submissions(assignment_id)
+            print(f"Submissions downloaded to: {MOODLE_DOWNLOAD_DIR}")
+        except Exception as e:
+            print(f"Error downloading submissions: {e}")
+            return jsonify({"error": f"Failed to download submissions: {str(e)}"}), 500
+        
+        # Use the DOWNLOAD_DIR from moodle.py
+        submissions_dir = MOODLE_DOWNLOAD_DIR 
+        if not os.path.exists(submissions_dir):
+            # This case should ideally be handled by download_all_submissions,
+            # but check just in case.
+            print(f"Submissions directory {submissions_dir} not found after download attempt.")
+            return jsonify({"error": f"Submissions directory not found: {submissions_dir}"}), 404
+            
+        files = [os.path.join(submissions_dir, f) for f in os.listdir(submissions_dir) 
+                 if os.path.isfile(os.path.join(submissions_dir, f)) and f.endswith(('.lyx', '.pdf'))]
+        
+        if len(files) < 2:
+            return jsonify({"error": "At least two processable files (.lyx or .pdf) are required for comparison after download"}), 400
+
+        # Get embeddings for all files
+        file_embeddings: Dict[str, List[float]] = {}
+        print(f"Processing {len(files)} files for embeddings...")
+        for file_path in files:
+            try:
+                print(f"Getting content for {file_path}")
+                content = get_file_content(file_path)
+                if not content:
+                    print(f"Warning: No content extracted from {file_path}. Skipping.")
+                    continue
+                print(f"Getting embedding for {file_path}")
+                embedding = get_embedding(client, content)
+                if embedding:
+                    file_embeddings[file_path] = embedding
+                else:
+                    print(f"Warning: Could not get embedding for {file_path}. Skipping.")
+            except Exception as e:
+                print(f"Error processing file {file_path} for embedding: {e}. Skipping.")
+
+        if len(file_embeddings) < 2:
+            return jsonify({"error": f"Less than two files were successfully processed for embeddings. Processed: {len(file_embeddings)}"}), 400
+
+        # Calculate similarity scores
+        similarity_scores: Dict[str, float] = {}
+        file_paths_with_embeddings = list(file_embeddings.keys())
+
+        for path in file_paths_with_embeddings:
+            similarity_scores[path] = 0.0
+        
+        for i in range(len(file_paths_with_embeddings)):
+            for j in range(i + 1, len(file_paths_with_embeddings)):
+                path1 = file_paths_with_embeddings[i]
+                path2 = file_paths_with_embeddings[j]
+                embedding1 = file_embeddings[path1]
+                embedding2 = file_embeddings[path2]
+
+                similarity = cosine_similarity(embedding1[0].values, embedding2[0].values)
+                similarity_scores[path1] += similarity
+                similarity_scores[path2] += similarity
+
+        sorted_files = sorted(similarity_scores.items(), key=lambda item: item[1])
+        
+        if not sorted_files or len(sorted_files) < 2:
+             return jsonify({"error": "Could not determine the two most different files from the processed submissions."}), 500
+
+        most_varied_files = [file_path for file_path, _ in sorted_files[:2]]
+
+        return jsonify({
+            "files": most_varied_files,
+            "message": f"Successfully found the two most different files from assignment {assignment_id}"
+        })
+
+    except Exception as e:
+        print(f"An unexpected error occurred in /choose endpoint: {str(e)}")
+        return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
 
 @app.route('/', methods=['GET'])
 def index():
     return "LaTeX grading backend is running."
+
 
 @app.route('/grade', methods=['POST'])
 def grade_latex_file(): 
@@ -61,7 +156,6 @@ def grade_latex_file():
     )
 
     try:
-        client = genai.Client(api_key=GEMINI_API_KEY)
         response = client.models.generate_content(
             model="gemini-1.5-flash",
             contents=prompt
