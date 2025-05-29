@@ -19,6 +19,7 @@ import { Sidebar } from "./Sidebar";
 import { Spinner } from "./Spinner";
 import { Tip } from "./Tip";
 import { testHighlights as _testHighlights } from "./test-highlights";
+import logoImg from "./assets/logo.png";
 
 import "./style/App.css";
 import "../../dist/style.css";
@@ -290,46 +291,106 @@ export function App() {
         resetHighlights={resetHighlights}
       >
         <div style={{ padding: "1rem" }}>
-          <h4>Upload PDF Files</h4>
-          <input
-            type="file"
-            accept=".pdf"
-            multiple
-            onChange={handleFileUpload}
-            style={{ marginBottom: "1rem" }}
-          />
-          <p style={{ fontSize: "0.8rem", color: "#666", marginBottom: "1rem" }}>
+          <h4 style={{ 
+            marginBottom: "0.75rem",
+            color: "#2c3e50",
+            fontSize: "1rem",
+            fontWeight: "600",
+          }}>
+            Upload PDF Files
+          </h4>
+          <div style={{ position: "relative", marginBottom: "0.5rem" }}>
+            <input
+              type="file"
+              accept=".pdf"
+              multiple
+              onChange={handleFileUpload}
+              style={{
+                position: "absolute",
+                opacity: 0,
+                width: "100%",
+                height: "100%",
+                cursor: "pointer",
+              }}
+              id="file-upload"
+            />
+            <label
+              htmlFor="file-upload"
+              style={{
+                display: "block",
+                width: "100%",
+                padding: "0.6rem 0.5rem",
+                backgroundColor: "#007bff",
+                color: "white",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer",
+                fontSize: "0.8rem",
+                fontWeight: "500",
+                textAlign: "center",
+                transition: "all 0.15s ease",
+                boxShadow: "0 1px 3px rgba(0, 123, 255, 0.2)",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.backgroundColor = "#0056b3";
+                e.currentTarget.style.transform = "translateY(-1px)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.backgroundColor = "#007bff";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              📁 Choose PDF Files
+            </label>
+          </div>
+          <p style={{ 
+            fontSize: "0.75rem", 
+            color: "#6c757d", 
+            margin: "0 0 1rem 0",
+            textAlign: "center",
+          }}>
             You can select multiple PDF files at once
           </p>
           
           {uploadedPdfs.length > 0 && (
             <div style={{ marginBottom: "1rem" }}>
-              <h4>PDF Navigation ({uploadedPdfs.length} files)</h4>
+              <h4 style={{ 
+                marginBottom: "0.75rem",
+                color: "#2c3e50",
+                fontSize: "1rem",
+                fontWeight: "600",
+              }}>
+                PDF Navigation ({uploadedPdfs.length} files)
+              </h4>
               <div style={{ 
                 display: "flex", 
                 alignItems: "center", 
                 gap: "0.5rem",
-                marginBottom: "0.5rem"
+                marginBottom: "0.75rem"
               }}>
                 <button
                   onClick={() => navigateToPdf('prev')}
                   disabled={currentPdfIndex === 0}
                   style={{
-                    padding: "0.25rem 0.5rem",
-                    backgroundColor: currentPdfIndex === 0 ? "#ccc" : "#007bff",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "3px",
+                    padding: "0.4rem 0.6rem",
+                    backgroundColor: currentPdfIndex === 0 ? "#f8f9fa" : "#007bff",
+                    color: currentPdfIndex === 0 ? "#adb5bd" : "white",
+                    border: currentPdfIndex === 0 ? "1px solid #dee2e6" : "none",
+                    borderRadius: "6px",
                     cursor: currentPdfIndex === 0 ? "not-allowed" : "pointer",
+                    fontSize: "0.9rem",
+                    fontWeight: "500",
+                    transition: "all 0.15s ease",
                   }}
                 >
                   ←
                 </button>
                 <span style={{ 
-                  fontSize: "0.9rem", 
+                  fontSize: "0.85rem", 
                   flex: 1, 
                   textAlign: "center",
-                  fontWeight: "bold"
+                  fontWeight: "500",
+                  color: "#495057",
                 }}>
                   {currentPdfIndex + 1} of {uploadedPdfs.length}
                 </span>
@@ -337,12 +398,15 @@ export function App() {
                   onClick={() => navigateToPdf('next')}
                   disabled={currentPdfIndex === uploadedPdfs.length - 1}
                   style={{
-                    padding: "0.25rem 0.5rem",
-                    backgroundColor: currentPdfIndex === uploadedPdfs.length - 1 ? "#ccc" : "#007bff",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "3px",
+                    padding: "0.4rem 0.6rem",
+                    backgroundColor: currentPdfIndex === uploadedPdfs.length - 1 ? "#f8f9fa" : "#007bff",
+                    color: currentPdfIndex === uploadedPdfs.length - 1 ? "#adb5bd" : "white",
+                    border: currentPdfIndex === uploadedPdfs.length - 1 ? "1px solid #dee2e6" : "none",
+                    borderRadius: "6px",
                     cursor: currentPdfIndex === uploadedPdfs.length - 1 ? "not-allowed" : "pointer",
+                    fontSize: "0.9rem",
+                    fontWeight: "500",
+                    transition: "all 0.15s ease",
                   }}
                 >
                   →
@@ -350,14 +414,19 @@ export function App() {
               </div>
               {currentPdf && (
                 <div style={{ 
-                  fontSize: "0.8rem", 
-                  color: "#666",
+                  fontSize: "0.75rem", 
+                  color: "#6c757d",
+                  padding: "0.5rem",
+                  backgroundColor: "#f8f9fa",
+                  borderRadius: "4px",
                   marginBottom: "0.5rem",
-                  wordBreak: "break-word"
                 }}>
-                  Current: {currentPdf.name}
-                  <br />
-                  Comments: {currentPdf.highlights.length}
+                  <div style={{ fontWeight: "500", marginBottom: "0.2rem" }}>
+                    {currentPdf.name}
+                  </div>
+                  <div>
+                    {currentPdf.highlights.length} comments
+                  </div>
                 </div>
               )}
             </div>
@@ -370,16 +439,19 @@ export function App() {
               style={{
                 display: "block",
                 width: "100%",
-                padding: "0.5rem",
+                padding: "0.6rem",
                 backgroundColor: "#28a745",
                 color: "white",
                 border: "none",
-                borderRadius: "4px",
+                borderRadius: "6px",
                 cursor: "pointer",
+                fontSize: "0.85rem",
+                fontWeight: "500",
+                transition: "all 0.15s ease",
                 marginBottom: "0.5rem",
               }}
             >
-              Export All Comments
+              📥 Export Comments
             </button>
           )}
         </div>
@@ -477,17 +549,52 @@ export function App() {
               justifyContent: "center",
               height: "100%",
               flexDirection: "column",
-              backgroundColor: "#f5f5f5",
-              color: "#666",
+              backgroundColor: "#f8f9fa",
+              color: "#495057",
+              padding: "2rem",
+              textAlign: "center",
             }}
           >
-            <h2 style={{ marginBottom: "1rem" }}>
-              {uploadedPdfs.length === 0 ? "No PDFs Uploaded" : "No PDF Selected"}
-            </h2>
-            <p>
+            <img 
+              src={logoImg} 
+              alt="PDF Highlighter Logo" 
+              style={{
+                width: "120px",
+                height: "120px",
+                marginBottom: "2rem",
+                borderRadius: "16px",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+              }}
+            />
+            <h1 style={{ 
+              marginBottom: "1rem", 
+              fontSize: "2.5rem",
+              fontWeight: "700",
+              color: "#2c3e50",
+              lineHeight: "1.2",
+            }}>
+              PDF Highlighter
+            </h1>
+            <p style={{
+              fontSize: "1.1rem",
+              color: "#6c757d",
+              maxWidth: "500px",
+              lineHeight: "1.6",
+              marginBottom: "0.5rem",
+            }}>
               {uploadedPdfs.length === 0 
-                ? "Please upload PDF files using the sidebar to get started."
-                : "Use the navigation arrows in the sidebar to select a PDF."
+                ? "Upload PDF files and start highlighting important content with smart annotations and comments."
+                : "Select a PDF from the sidebar to begin highlighting and annotating."
+              }
+            </p>
+            <p style={{
+              fontSize: "0.9rem",
+              color: "#868e96",
+              fontStyle: "italic",
+            }}>
+              {uploadedPdfs.length === 0 
+                ? "Use the sidebar to upload your PDF files and get started"
+                : "Navigate between your uploaded PDFs using the sidebar controls"
               }
             </p>
           </div>
