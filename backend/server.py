@@ -3,6 +3,7 @@ from utils import *
 import json
 import os
 import google.generativeai as genai
+import PyPDF2  
 
 app = Flask(__name__)
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
@@ -14,14 +15,24 @@ def index():
     return "LaTeX grading backend is running."
 
 @app.route('/grade', methods=['POST'])
-def grade_latex_file():
+def grade_latex_file(): 
     if 'file' not in request.files:
-        return jsonify({"error": "No LaTeX file provided"}), 400
+        return jsonify({"error": "No file provided"}), 400
     file = request.files['file']
-    if not file.filename.endswith('.tex'):
-        return jsonify({"error": "Only .tex files are allowed"}), 400
+    filename = file.filename
 
-    latex = file.read().decode('utf-8')
+    if filename.endswith('.tex'):   
+        latex = file.read().decode('utf-8')
+    elif filename.endswith('.pdf'):
+        try:
+            pdf_reader = PyPDF2.PdfReader(file)
+            latex = ""
+            for page in pdf_reader.pages:
+                latex += page.extract_text() or ""
+        except Exception as e:
+            return jsonify({"error": f"PDF extraction error: {str(e)}"}), 400
+    else:
+        return jsonify({"error": "Only .tex or .pdf files are allowed"}), 400
 
     # --- קובץ קונטקסט חובה ---
     context_str=""
@@ -40,10 +51,10 @@ def grade_latex_file():
 
     # --- Prompt משולב ---
     prompt = (
-        "אתה בודק מתמטיקה שמעריך פתרונות LaTeX.\n"
+        "אתה בודק מתמטיקה שמעריך פתרונות LaTeX או PDF.\n"
         "בהתבסס על דוגמאות של בדיקות קודמות של מרצה (קונטקסט), "
         "בדוק את הפתרון הבא תוך ניסיון לחקות את סגנון ההערכה והציונים של המרצה.\n"
-        "החזר JSON חוקי בלבד עם פירוט לפי השדות: שאלה, סעיף, ציון (0–100), הערה.\n"
+        "החזר JSON  חוקי בלבד עם פירוט לפי השדות: שאלה, סעיף, ציון (0–100), הערה. הערות מפורטות מאוד שמסבירות מה הטעות \n"
         "דוגמה: [{\"שאלה\": \"1\", \"סעיף\": \"א\", \"ציון\": 85, \"הערה\": \"ניסוח תקין, חסר נימוק\"}]\n\n"
         "קונטקסט:\n"
         f"{context_str}\n\n"
