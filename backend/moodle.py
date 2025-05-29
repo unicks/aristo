@@ -49,7 +49,7 @@ def download_all_submissions(assignid):
                         # Use correct token via header or URL param
                         download_url = f"{fileurl}?token={MOODLE_TOKEN}"
 
-                        filename = os.path.join(DOWNLOAD_DIR, assignid, f"user_{submission['userid']}_{file['filename']}")
+                        filename = os.path.join(DOWNLOAD_DIR, assignid, f"{submission['userid']}.pdf")
                         print(f"Downloading {filename}...")
 
                         response = requests.get(download_url, stream=True)
@@ -59,6 +59,40 @@ def download_all_submissions(assignid):
                                     f.write(chunk)
                         else:
                             print(f"Failed to download {filename} – status {response.status_code}")
+
+def get_assignment_grades(assignid):
+    data = call_moodle_api('mod_assign_get_grades', {'assignmentids[0]': assignid})
+    for assignment in data['assignments']:
+        for grade in assignment.get('grades', []):
+            print(f"User {grade['userid']} - Grade: {grade['grade']} - Status: {grade['status']}")
+
+def grade_assignment(assignid, userid, grade, attemptnumber=-1, addattempt=0, workflowstate="graded", note="", feedback_format=1):
+    params = {}
+    params['assignmentid'] = int(assignid)
+    params['userid'] = int(userid)
+    params['grade'] = float(grade)
+    params['attemptnumber'] = int(attemptnumber)
+    params['addattempt'] = int(addattempt)
+    params['workflowstate'] = str(workflowstate)
+    params['applytoall'] = 1
+    params['plugindata[assignfeedbackcomments_editor][text]'] = str(note)
+    params['plugindata[assignfeedbackcomments_editor][format]'] = 0
+    params['plugindata[files_filemanager]'] = 0
+
+    result = call_moodle_api('mod_assign_save_grade', params)
+    
+    if isinstance(result, dict) and "exception" in result:
+        raise Exception(f"Moodle API error: {result['message']}")
+    
+    print(result)
+    return result
+
+def grade_all_for_assignment(assignid, grade, attemptnumber=-1, addattempt=0, workflowstate=None, applytoall=0):
+    data = call_moodle_api('mod_assign_get_submissions', {'assignmentids[0]': assignid})
+    submissions = data['assignments'][0]['submissions']
+    for submission in submissions:
+        userid = submission['userid']
+        grade_assignment(assignid, userid, grade, attemptnumber, addattempt, workflowstate, applytoall)
 
 
 def main():

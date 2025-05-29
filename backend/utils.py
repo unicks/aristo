@@ -64,6 +64,7 @@ def summarize_feedback(feedback: list) -> dict:
     Given a list of feedback items (each with ציון and הערה),
     returns a summary containing average grade and a master comment.
     '''
+    feedback = feedback["feedback"]
     scores = [item.get("ציון", 0) for item in feedback if isinstance(item, dict)]
     average = sum(scores) / len(scores) if scores else 0
 

@@ -11,7 +11,7 @@ import PyPDF2
 import numpy as np
 from typing import Dict, List
 import base64 # Added for Base64 encoding
-from moodle import call_moodle_api
+from moodle import call_moodle_api, grade_assignment
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -147,54 +147,46 @@ def choose_varied_files():
 def index():
     return "LaTeX grading backend is running."
 
-@app.route('/grade', methods=['POST'])
-def grade_latex_file(): 
-    if 'file' not in request.files:
-        return jsonify({"error": "No file provided"}), 400
-    file = request.files['file']
-    filename = file.filename
-
-    if filename.endswith('.tex'):   
-        latex = file.read().decode('utf-8')
-    elif filename.endswith('.pdf'):
-        try:
+def grade_pdf_file(pdf_path, context_path=None):
+    # --- Step 1: Extract LaTeX-like content from the PDF ---
+    try:
+        with open(pdf_path, "rb") as file:
             pdf_reader = PyPDF2.PdfReader(file)
             latex = ""
             for page in pdf_reader.pages:
                 latex += page.extract_text() or ""
-        except Exception as e:
-            return jsonify({"error": f"PDF extraction error: {str(e)}"}), 400
-    else:
-        return jsonify({"error": "Only .tex or .pdf files are allowed"}), 400
+    except Exception as e:
+        raise RuntimeError(f"PDF extraction error: {str(e)}")
 
-    # --- קובץ קונטקסט חובה ---
-    context_str=""
-    if 'context' in request.files:
+    # --- Step 2: Read optional context ---
+    context_str = ""
+    if context_path:
         try:
-            context_file = request.files['context']
-            if context_file.filename.endswith('.json'):
-                context_data = json.load(context_file)
+            if context_path.endswith(".json"):
+                with open(context_path, "r", encoding="utf-8") as f:
+                    context_data = json.load(f)
                 context_str = json.dumps(context_data, ensure_ascii=False, indent=2)
-            elif context_file.filename.endswith('.txt'):
-                context_str = context_file.read().decode('utf-8')
+            elif context_path.endswith(".txt"):
+                with open(context_path, "r", encoding="utf-8") as f:
+                    context_str = f.read()
             else:
-                return jsonify({"error": "Only .json or .txt context files are allowed"}), 400
+                raise ValueError("Only .json or .txt context files are allowed")
         except Exception as e:
-            return jsonify({"error": f"Context file error: {str(e)}"}), 400
+            raise RuntimeError(f"Context file error: {str(e)}")
 
-    # --- Prompt משולב ---
+    # --- Step 3: Compose prompt ---
     prompt = (
-        "אתה בודק מתמטיקה שמעריך פתרונות LaTeX או PDF.\n"
+        "אתה בודק מתמטיקה שמעריך פתרונות PDF.\n"
         "בהתבסס על דוגמאות של בדיקות קודמות של מרצה (קונטקסט), "
         "בדוק את הפתרון הבא תוך ניסיון לחקות את סגנון ההערכה והציונים של המרצה.\n"
-        "החזר JSON  חוקי בלבד עם פירוט לפי השדות: שאלה, סעיף, ציון (0–100), הערה. הערות מפורטות מאוד שמסבירות מה הטעות \n"
+        "החזר JSON חוקי בלבד עם פירוט לפי השדות: שאלה, סעיף, ציון (0–100), הערה.\n"
+        "הערות מפורטות מאוד שמסבירות מה הטעות.\n"
         "דוגמה: [{\"שאלה\": \"1\", \"סעיף\": \"א\", \"ציון\": 85, \"הערה\": \"ניסוח תקין, חסר נימוק\"}]\n\n"
-        "קונטקסט:\n"
-        f"{context_str}\n\n"
-        "פתרון לבדיקה:\n"
-        f"{latex}"
+        f"קונטקסט:\n{context_str}\n\n"
+        f"פתרון לבדיקה:\n{latex}"
     )
 
+    # --- Step 4: Query Gemini ---
     try:
         response = client.models.generate_content(
             model="gemini-1.5-flash",
@@ -204,40 +196,89 @@ def grade_latex_file():
         structured = extract_valid_json(json_text)
 
         if not structured:
-            return jsonify({
-                "error": "Gemini did not return valid JSON",
-                "raw_response": json_text
-            }), 500
+            # Try fixing the response using Gemini
+            fix_prompt = (
+                "הטקסט הבא נראה כמו פלט לא תקין של JSON. "
+                "תקן אותו והחזר רק JSON חוקי. "
+                "אין להוסיף הסברים או טקסט מחוץ למבנה JSON.\n\n"
+                f"פלט לתיקון:\n{json_text}"
+            )
+
+            fix_response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=fix_prompt
+            )
+            fixed_text = fix_response.text.strip()
+            structured = extract_valid_json(fixed_text)
+
+            if not structured:
+                raise ValueError("Gemini response could not be fixed into valid JSON.")
 
         save_table_to_latex(structured)
 
-        return jsonify({
+        return {
             "feedback": structured,
-            "message": f"הטבלה נשמרה כ־{TABLE_OUTPUT_PATH}"
-        })
+        }
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        raise RuntimeError(f"Gemini error: {str(e)}")
 
-@app.route('/summary', methods=['POST'])
-def summary_from_feedback():
-    '''
-    מקבל feedback מהבקשה (בפורמט JSON) ומחזיר ציון סופי והערה מסכמת.
-    '''
+@app.route('/grade_all', methods=['POST'])
+def grade_all():
     try:
-        data = request.get_json()
-        feedback = data.get("feedback", [])
+        # Get assignment ID from form, JSON, or query string
+        assignid = request.form.get('assignid') or \
+                   (request.json and request.json.get('assignid')) or \
+                   request.args.get('assignid')
 
-        if not isinstance(feedback, list):
-            return jsonify({"error": "'feedback' must be a list"}), 400
+        if not assignid:
+            return jsonify({"error": "Missing 'assignid' in request"}), 400
 
-        summary = summarize_feedback(feedback)
+        context = request.form.get('context') or \
+                   (request.json and request.json.get('context')) or \
+                   request.args.get('context')
 
-        return jsonify(summary)
+        if not context:
+            context = ""
+
+        # Collect all user files in the .temp directory
+        temp_dir = os.path.join('.temp', str(assignid))
+        if not os.path.exists(temp_dir):
+            return jsonify({"error": f"Directory '{temp_dir}' does not exist"}), 400
+
+        users = [f for f in os.listdir(temp_dir)]
+        if not users:
+            return jsonify({"error": "No user files found in .temp directory"}), 404
+
+        results = []
+        errors = []
+
+        for user_file in users:
+            user_path = os.path.join(temp_dir, user_file)
+            try:
+                feedback = grade_pdf_file(user_path)
+                summary = summarize_feedback(feedback)
+                user_id = int(user_file.split(".")[0])
+                grade_assignment(assignid, user_id, summary["final_grade"], note=feedback)
+                results.append({
+                    "user": user_file,
+                    "grade": summary["final_grade"],
+                    "comment": summary["master_comment"]
+                })
+            except Exception as e:
+                errors.append({
+                    "user": user_file,
+                    "error": str(e)
+                })
+        return jsonify({
+            "message": f"Processed {len(results)} users for assignment {assignid}",
+            "graded": results,
+            "errors": errors
+        }), 200
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
+        return jsonify({"error": f"Unexpected server error: {str(e)}"}), 500
+         
 @app.route('/courses', methods=['GET'])
 def get_courses():
     try:
@@ -268,4 +309,5 @@ def get_assignments():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=False)
+

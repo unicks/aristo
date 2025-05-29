@@ -459,8 +459,21 @@ export function App() {
                   fontWeight: 600,
                   fontSize: "1rem",
                   cursor: !selectedCourseId || assignments.length === 0 ? "not-allowed" : "pointer",
-                  marginTop: "1rem"
-                }}>
+                  marginTop: "1rem"}}
+                  onClick={async () => {
+                    const res = await fetch("http://localhost:5000/grade_all", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        assignid: assignmentId,
+                        context: highlights
+                      }),
+                    });
+                    if (!res.ok) throw new Error("API call failed");
+                    const data = await res.json();
+                  }}>
                 Grade All
               </button>
             </div>
