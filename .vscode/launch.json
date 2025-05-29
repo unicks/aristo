@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["AIzaSyBaI25m_vFbzxQkm2lGDMeieEEHJSWOqVk", "2", "c:\\Users\\unicks\\Downloads\\samples\\infi1_ex4_maor.tex", "c:\\Users\\unicks\\Downloads\\samples\\infi1_ex4_nick.tex", "c:\\Users\\unicks\\Downloads\\samples\\infi1_ex4_michael.tex"] 
+            "args": ["AIzaSyBaI25m_vFbzxQkm2lGDMeieEEHJSWOqVk", "2", "c:\\Users\\unicks\\Downloads\\samples\\infi1_ex4_maor.pdf", "c:\\Users\\unicks\\Downloads\\samples\\infi1_ex4_nick.pdf", "c:\\Users\\unicks\\Downloads\\samples\\infi1_ex4_michael.pdf"] 
         }
     ]
 }

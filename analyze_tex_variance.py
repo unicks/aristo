@@ -3,11 +3,37 @@ import google.genai as genai
 import numpy as np
 from typing import Dict, List, Tuple
 import sys
+from PyPDF2 import PdfReader
+
+def extract_text_from_pdf(pdf_path: str) -> str:
+    """Extract text content from a PDF file using PyPDF2."""
+    try:
+        # Create a PDF reader object
+        reader = PdfReader(pdf_path)
+        
+        # Extract text from all pages
+        text_content = []
+        for page in reader.pages:
+            text = page.extract_text()
+            if text:
+                text_content.append(text)
+        
+        # Join all text content with newlines
+        return '\n'.join(text_content)
+    except Exception as e:
+        print(f"Error extracting text from PDF {pdf_path}: {e}")
+        return ""
 
 def get_file_content(file_path: str) -> bytes:
-    """Gets the content of a file, reading .lyx files as binary."""
-    with open(file_path, 'rb') as f:
-        return f.read()
+    """Gets the content of a file, handling both .lyx and .pdf files."""
+    if file_path.lower().endswith('.pdf'):
+        # Extract text from PDF
+        text_content = extract_text_from_pdf(file_path)
+        return text_content.encode('utf-8')
+    else:
+        # Read .lyx file as binary
+        with open(file_path, 'rb') as f:
+            return f.read()
 
 def get_embedding(api_key: str, content: bytes) -> List[float]:
     """Gets embedding for content using Gemini API."""
