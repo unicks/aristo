@@ -1,5 +1,5 @@
-const compact = "_compact_1um8o_1";
-const card = "_card_1um8o_10";
+const compact = "_compact_1lsqy_1";
+const card = "_card_1lsqy_19";
 const styles = {
   compact,
   card

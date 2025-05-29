@@ -75,7 +75,7 @@ def grade_assignment(assignid, userid, grade, attemptnumber=-1, addattempt=0, wo
     params['addattempt'] = int(addattempt)
     params['workflowstate'] = str(workflowstate)
     params['applytoall'] = 1
-    params['plugindata[assignfeedbackcomments_editor][text]'] = str('\n'.join([f'{fb["שאלה"]},{fb["סעיף"]}: {fb["הערה"]}' for fb in feedback]))
+    params['plugindata[assignfeedbackcomments_editor][text]'] = str(feedback)
     params['plugindata[assignfeedbackcomments_editor][format]'] = 0
     params['plugindata[files_filemanager]'] = 0
 
@@ -84,16 +84,7 @@ def grade_assignment(assignid, userid, grade, attemptnumber=-1, addattempt=0, wo
     if isinstance(result, dict) and "exception" in result:
         raise Exception(f"Moodle API error: {result['message']}")
     
-    print(result)
     return result
-
-def grade_all_for_assignment(assignid, grade, attemptnumber=-1, addattempt=0, workflowstate=None, applytoall=0):
-    data = call_moodle_api('mod_assign_get_submissions', {'assignmentids[0]': assignid})
-    submissions = data['assignments'][0]['submissions']
-    for submission in submissions:
-        userid = submission['userid']
-        grade_assignment(assignid, userid, grade, attemptnumber, addattempt, workflowstate, applytoall)
-
 
 def main():
     parser = argparse.ArgumentParser(description="Moodle CLI Tool")

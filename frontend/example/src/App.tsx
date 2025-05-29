@@ -51,6 +51,8 @@ export function App() {
   const [assignments, setAssignments] = useState([]);
   const [isCheckingFiles, setIsCheckingFiles] = useState<boolean>(false);
   const [hasCheckedFiles, setHasCheckedFiles] = useState<boolean>(false);
+  const [selectedAssignmentId, setSelectedAssignmentId] = useState("");
+  const [isGradingFiles, setIsGradingFiles] = useState<boolean>(false)
 
   const searchParams = new URLSearchParams(document.location.search);
   const initialUrl = searchParams.get("url") || "";
@@ -340,6 +342,7 @@ export function App() {
 
   fetchAssignments();
 }, [selectedCourseId]);
+const assignmentId = 0
 
   return (
     <div className="App" style={{ display: "flex", height: "100vh" }}>
@@ -381,30 +384,33 @@ export function App() {
               <label style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <span style={{ fontWeight: 600, fontSize: "1rem" }}>Choose Assignment:</span>
               <select
-                disabled={!selectedCourseId}
-                style={{
+              value={selectedAssignmentId}
+              onChange={(e) => setSelectedAssignmentId(e.target.value)}
+              disabled={!selectedCourseId}
+              style={{
                 padding: "0.4rem 0.8rem",
                 borderRadius: "6px",
                 border: "1px solid #ccc",
                 fontSize: "1rem",
                 minWidth: "160px",
                 background: !selectedCourseId ? "#f0f0f0" : "#fafbfc"
-                }}
-              >
-                <option value="" disabled>
+              }}
+            >
+              <option value="" disabled>
                 {!selectedCourseId
                   ? "Select a course first"
                   : assignments.length === 0
                   ? "Loading..."
                   : "Select an assignment"}
-                </option>
-                {Array.isArray(assignments) && assignments.length > 0 &&
+              </option>
+              {Array.isArray(assignments) && assignments.length > 0 &&
                 assignments.map((assignment: any) => (
                   <option key={assignment.id} value={assignment.id}>
-                  {assignment.name}
+                    {assignment.name}
                   </option>
                 ))}
-              </select>
+            </select>
+
               </label>
             </div>
             </div>
@@ -454,34 +460,72 @@ export function App() {
                 }}
               >{isCheckingFiles ? "Checking..." : "Check Files"} 
               </button>
-              <button
-                  disabled={!selectedCourseId || assignments.length === 0 || isCheckingFiles}
+                <button
+                  disabled={
+                  !selectedCourseId ||
+                  assignments.length === 0 ||
+                  isGradingFiles
+                  }
                   style={{
                   padding: "0.6rem 1.2rem",
                   borderRadius: "6px",
                   border: "none",
-                  background: isCheckingFiles ? "#ccc" : (!selectedCourseId || assignments.length === 0 ? "#aab8c2" : "#1976d2"),
+                  background:
+                    isCheckingFiles || !selectedCourseId || assignments.length === 0 || hasCheckedFiles
+                    ? "#aab8c2"
+                    : "#388e3c",
                   color: "#fff",
                   fontWeight: 600,
                   fontSize: "1rem",
-                  cursor: !selectedCourseId || assignments.length === 0 || isCheckingFiles ? "not-allowed" : "pointer",
-                  marginTop: "1rem"}}
+                  cursor:
+                    !selectedCourseId ||
+                    assignments.length === 0 ||
+                    isCheckingFiles ||
+                    hasCheckedFiles
+                    ? "not-allowed"
+                    : "pointer",
+                  marginTop: "1rem",
+                  }}
                   onClick={async () => {
+                    setIsGradingFiles(true)
+                  try {
                     const res = await fetch("http://localhost:5000/grade_all", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({
-                        assignid: assignmentId,
-                        context: highlights
-                      }),
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      assignid: selectedAssignmentId,
+                      context: highlights,
+                    }),
                     });
-                    if (!res.ok) throw new Error("API call failed");
+
                     const data = await res.json();
-                  }}>
-                Grade All
-              </button>
+                    console.log("Response from server:", data);
+
+                    if (!res.ok) throw new Error(data.error || "Unknown server error");
+
+                    console.log(data["message"])
+                    window.alert(
+                    `Grading complete!\n\n` +data["message"]
+                      
+                    );
+
+                    // Success: disable button and change color
+
+                  } catch (err: any) {
+                    console.error("Fetch failed:", err);
+                    window.alert("Grading failed: " + (err?.message || err));
+                  }finally {
+                      setIsGradingFiles(false)
+                  }
+                  }}
+                >
+                  {
+                  isGradingFiles
+                  ? "Grading..."
+                  : "Grade All"}
+                </button>
             </div>
               {/* PDF navigation buttons */}
               <div style={{ display: "flex", gap: "1rem", marginTop: "2rem", justifyContent: "center" }}>

@@ -4,6 +4,7 @@ from utils import (
     extract_text_from_pdf, get_file_content, get_embedding, cosine_similarity
 )
 from moodle import download_all_submissions, DOWNLOAD_DIR as MOODLE_DOWNLOAD_DIR # Import Moodle utils
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed
 import json
 import os
 import google.genai as genai
@@ -13,141 +14,139 @@ from typing import Dict, List
 import base64 # Added for Base64 encoding
 from moodle import call_moodle_api, grade_assignment
 from flask_cors import CORS
+import re
+import time
 
 app = Flask(__name__)
 CORS(app)
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
 client = genai.Client(api_key=GEMINI_API_KEY)
 
+MAX_THREADS = 20
+MAX_PROCESSES = 20
+def compute_similarity(i, j, file_paths, file_embeddings):
+    path1 = file_paths[i]
+    path2 = file_paths[j]
+    sim = cosine_similarity(
+        file_embeddings[path1][0].values,
+        file_embeddings[path2][0].values
+    )
+    return (path1, path2, sim)
+
+def extract_and_embed(file_path, client):
+    try:
+        content = get_file_content(file_path)
+        if not content:
+            return None
+        embedding = get_embedding(client, content)
+        return (file_path, embedding) if embedding else None
+    except Exception as e:
+        print(f"Failed processing {file_path}: {e}")
+        return None
+
+def encode_file(path):
+    try:
+        with open(path, 'rb') as f:
+            encoded = base64.b64encode(f.read()).decode('utf-8')
+            return {"filename": os.path.basename(path), "content_base64": encoded}
+    except Exception as e:
+        print(f"Failed encoding {path}: {e}")
+        return None
+
 
 @app.route('/choose', methods=['POST'])
 def choose_varied_files():
-    """Endpoint to download submissions, find the N most different files, and return their content."""
-    if request.method == "OPTIONS": return "", 200
+    if request.method == "OPTIONS":
+        return "", 200
+
     try:
-        assignment_id_from_request = request.json.get('exercise_id')
-        amount = int(request.json.get('amount', 2)) # Default to 2 if not provided
+        assignment_id = request.json.get('exercise_id')
+        amount = int(request.json.get('amount', 2))
 
-        if not isinstance(amount, int) or amount < 2:
-            return jsonify({"error": "amount must be an integer greater than or equal to 2"}), 400
-
-        if not assignment_id_from_request:
+        if not assignment_id:
             return jsonify({"error": "exercise_id is required"}), 400
+        if amount < 2:
+            return jsonify({"error": "amount must be >= 2"}), 400
 
-        # Ensure assignment_id is a string for path operations and moodle function
-        assignment_id_str = str(assignment_id_from_request)
+        assignment_id_str = str(assignment_id)
+        assignment_dir = os.path.join(MOODLE_DOWNLOAD_DIR, assignment_id_str)
 
-        try:
-            print(f"Downloading submissions for assignment ID: {assignment_id_str}...")
-            download_all_submissions(assignment_id_str) 
-            print(f"Submissions downloaded to: {MOODLE_DOWNLOAD_DIR}/{assignment_id_str}")
-        except Exception as e:
-            print(f"Error downloading submissions for assignment {assignment_id_str}: {e}")
-            return jsonify({"error": f"Failed to download submissions: {str(e)}"}), 500
-        
-        submissions_base_dir = MOODLE_DOWNLOAD_DIR 
-        assignment_specific_dir = os.path.join(submissions_base_dir, assignment_id_str)
+        # ✅ Skip downloading if files already exist
+        if not os.path.exists(assignment_dir) or not any(
+            f.endswith(('.lyx', '.pdf')) for f in os.listdir(assignment_dir)
+        ):
+            print(f"Downloading submissions for assignment {assignment_id_str}...")
+            download_all_submissions(assignment_id_str)
+        else:
+            print(f"Using existing files in {assignment_dir}")
 
-        if not os.path.exists(assignment_specific_dir):
-            print(f"Assignment specific directory {assignment_specific_dir} not found after download attempt.")
-            return jsonify({"error": f"Submissions directory for assignment {assignment_id_str} not found."}), 404
-            
-        files_in_assignment_dir = [
-            os.path.join(assignment_specific_dir, f) 
-            for f in os.listdir(assignment_specific_dir) 
-            if os.path.isfile(os.path.join(assignment_specific_dir, f)) and f.endswith(('.lyx', '.pdf'))
+        files = [
+            os.path.join(assignment_dir, f)
+            for f in os.listdir(assignment_dir)
+            if os.path.isfile(os.path.join(assignment_dir, f)) and f.endswith(('.lyx', '.pdf'))
         ]
-        
-        if len(files_in_assignment_dir) < amount:
-            return jsonify({"error": f"At least {amount} processable files (.lyx or .pdf) found in {assignment_specific_dir} are required for comparison. Found: {len(files_in_assignment_dir)}"}), 400
 
+        if len(files) < amount:
+            return jsonify({"error": f"Need at least {amount} files. Found {len(files)}"}), 400
+
+        # ✅ Step 1: Extract content + embeddings concurrently
         file_embeddings: Dict[str, List[float]] = {}
-        print(f"Processing {len(files_in_assignment_dir)} files for embeddings from {assignment_specific_dir}...")
-        for file_path in files_in_assignment_dir:
-            try:
-                print(f"Getting content for {file_path}")
-                content_for_embedding = get_file_content(file_path) 
-                if not content_for_embedding:
-                    print(f"Warning: No content extracted for embedding from {file_path}. Skipping.")
-                    continue
-                print(f"Getting embedding for {file_path}")
-                embedding = get_embedding(client, content_for_embedding)
-                if embedding:
-                    file_embeddings[file_path] = embedding
-                else:
-                    print(f"Warning: Could not get embedding for {file_path}. Skipping.")
-            except Exception as e:
-                print(f"Error processing file {file_path} for embedding: {e}. Skipping.")
+        with ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
+            futures = [executor.submit(extract_and_embed, f, client) for f in files]
+            for future in as_completed(futures):
+                result = future.result()
+                if result:
+                    path, emb = result
+                    file_embeddings[path] = emb
 
         if len(file_embeddings) < amount:
-            return jsonify({"error": f"Less than {amount} files were successfully processed for embeddings. Processed: {len(file_embeddings)}"}), 400
+            return jsonify({"error": f"Only {len(file_embeddings)} files could be processed."}), 400
 
-        similarity_scores: Dict[str, float] = {}
-        file_paths_with_embeddings = list(file_embeddings.keys())
+        file_paths = list(file_embeddings.keys())
+        similarity_scores = {path: 0.0 for path in file_paths}
 
-        for path in file_paths_with_embeddings:
-            similarity_scores[path] = 0.0
-        
-        for i in range(len(file_paths_with_embeddings)):
-            for j in range(i + 1, len(file_paths_with_embeddings)):
-                path1 = file_paths_with_embeddings[i]
-                path2 = file_paths_with_embeddings[j]
-                embedding1 = file_embeddings[path1]
-                embedding2 = file_embeddings[path2]
+        # ✅ Step 2: Compute pairwise cosine similarity concurrently
+        with ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
+            futures = [
+                executor.submit(compute_similarity, i, j, file_paths, file_embeddings)
+                for i in range(len(file_paths)) for j in range(i + 1, len(file_paths))
+            ]
+            for future in as_completed(futures):
+                path1, path2, sim = future.result()
+                similarity_scores[path1] += sim
+                similarity_scores[path2] += sim
 
-                similarity = cosine_similarity(embedding1[0].values, embedding2[0].values)
-                similarity_scores[path1] += similarity
-                similarity_scores[path2] += similarity
+        # ✅ Step 3: Select least similar (lowest score)
+        sorted_files = sorted(similarity_scores.items(), key=lambda x: x[1])
+        selected_paths = [path for path, _ in sorted_files[:amount]]
 
-        sorted_file_paths_by_similarity = sorted(similarity_scores.items(), key=lambda item: item[1])
-        
-        if not sorted_file_paths_by_similarity or len(sorted_file_paths_by_similarity) < amount:
-             return jsonify({"error": f"Could not determine the {amount} most different files from the processed submissions."}), 500
-
-        most_varied_source_paths = [file_path for file_path, _ in sorted_file_paths_by_similarity[:amount]]
-        
+        # ✅ Step 4: Encode files concurrently
         returned_files_data = []
-        for file_path in most_varied_source_paths:
-            try:
-                with open(file_path, 'rb') as f_raw:
-                    raw_content_bytes = f_raw.read()
-                encoded_content = base64.b64encode(raw_content_bytes).decode('utf-8')
-                returned_files_data.append({
-                    "filename": os.path.basename(file_path),
-                    "content_base64": encoded_content
-                })
-            except FileNotFoundError:
-                print(f"Error: File not found at {file_path} when preparing response. This file was selected as one of the most varied.")
-                # This is a significant issue if a selected file is suddenly missing.
-            except Exception as e:
-                print(f"Error reading or encoding file {file_path} for response: {e}")
-                # Optionally skip this file or handle error differently
-                continue 
-        
-        # Ensure we actually have 'amount' files to return after attempting to read them
-        if len(returned_files_data) < amount and len(most_varied_source_paths) >= amount:
-             print(f"Warning: Expected to return {amount} files, but only {len(returned_files_data)} could be successfully read and encoded.")
-             return jsonify({"error": "Failed to read/encode one or more of the selected files for the response."}), 500
-        elif not returned_files_data and len(most_varied_source_paths) > 0:
-             return jsonify({"error": "Selected files could not be prepared for the response."}), 500
-        elif len(most_varied_source_paths) < amount: # Should be caught earlier, but as a safeguard
-            return jsonify({"error": f"Not enough files to select the {amount} most varied."}), 500
+        with ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
+            futures = [executor.submit(encode_file, p) for p in selected_paths]
+            for future in as_completed(futures):
+                result = future.result()
+                if result:
+                    returned_files_data.append(result)
 
+        if len(returned_files_data) < amount:
+            return jsonify({"error": "Failed to prepare selected files."}), 500
 
         return jsonify({
             "files": returned_files_data,
-            "message": f"Successfully found and prepared the {amount} most different files from assignment {assignment_id_str}"
+            "message": f"Successfully returned {amount} most different files."
         })
 
     except Exception as e:
-        print(f"An unexpected error occurred in /choose endpoint: {str(e)}")
-        return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+        print(f"Unexpected error: {e}")
+        return jsonify({"error": f"Unexpected error: {e}"}), 500
+
 
 @app.route('/', methods=['GET'])
 def index():
     return "LaTeX grading backend is running."
 
-def grade_pdf_file(pdf_path, context_path=None):
+def grade_pdf_file(pdf_path, context=""):
     # --- Step 1: Extract LaTeX-like content from the PDF ---
     try:
         with open(pdf_path, "rb") as file:
@@ -158,23 +157,7 @@ def grade_pdf_file(pdf_path, context_path=None):
     except Exception as e:
         raise RuntimeError(f"PDF extraction error: {str(e)}")
 
-    # --- Step 2: Read optional context ---
-    context_str = ""
-    if context_path:
-        try:
-            if context_path.endswith(".json"):
-                with open(context_path, "r", encoding="utf-8") as f:
-                    context_data = json.load(f)
-                context_str = json.dumps(context_data, ensure_ascii=False, indent=2)
-            elif context_path.endswith(".txt"):
-                with open(context_path, "r", encoding="utf-8") as f:
-                    context_str = f.read()
-            else:
-                raise ValueError("Only .json or .txt context files are allowed")
-        except Exception as e:
-            raise RuntimeError(f"Context file error: {str(e)}")
-
-    # --- Step 3: Compose prompt ---
+    # --- Step 2: Compose prompt ---
     prompt = (
         "אתה בודק מתמטיקה שמעריך פתרונות PDF.\n"
         "בהתבסס על דוגמאות של בדיקות קודמות של מרצה (קונטקסט), "
@@ -182,37 +165,52 @@ def grade_pdf_file(pdf_path, context_path=None):
         "החזר JSON חוקי בלבד עם פירוט לפי השדות: שאלה, סעיף, ציון (0–100), הערה.\n"
         "הערות מפורטות מאוד שמסבירות מה הטעות.\n"
         "דוגמה: [{\"שאלה\": \"1\", \"סעיף\": \"א\", \"ציון\": 85, \"הערה\": \"ניסוח תקין, חסר נימוק\"}]\n\n"
-        f"קונטקסט:\n{context_str}\n\n"
+        f"קונטקסט:\n{context}\n\n"
         f"פתרון לבדיקה:\n{latex}"
     )
 
-    # --- Step 4: Query Gemini ---
+    def extract_json_with_fallbacks(text):
+        # Try primary extractor
+        structured = extract_valid_json(text)
+        if structured:
+            return structured
+
+        # Try Gemini fix attempt 1
+        fix_prompt = (
+            "הטקסט הבא נראה כמו פלט לא תקין של JSON. "
+            "תקן אותו והחזר רק JSON חוקי. "
+            "אין להוסיף הסברים או טקסט מחוץ למבנה JSON.\n\n"
+            f"פלט לתיקון:\n{text}"
+        )
+        try:
+            fix_response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=fix_prompt
+            )
+            fixed = extract_valid_json(fix_response.text.strip())
+            if fixed:
+                return fixed
+        except:
+            pass
+
+        # Try regex as last resort
+        try:
+            json_candidate = re.search(r'\[.*\]', text, re.DOTALL)
+            if json_candidate:
+                return extract_valid_json(json_candidate.group())
+        except:
+            pass
+
+        raise ValueError("Gemini response could not be parsed into valid JSON.")
+
+    # --- Step 3: Query Gemini ---
     try:
         response = client.models.generate_content(
             model="gemini-1.5-flash",
             contents=prompt
         )
         json_text = response.text.strip()
-        structured = extract_valid_json(json_text)
-
-        if not structured:
-            # Try fixing the response using Gemini
-            fix_prompt = (
-                "הטקסט הבא נראה כמו פלט לא תקין של JSON. "
-                "תקן אותו והחזר רק JSON חוקי. "
-                "אין להוסיף הסברים או טקסט מחוץ למבנה JSON.\n\n"
-                f"פלט לתיקון:\n{json_text}"
-            )
-
-            fix_response = client.models.generate_content(
-                model="gemini-1.5-flash",
-                contents=fix_prompt
-            )
-            fixed_text = fix_response.text.strip()
-            structured = extract_valid_json(fixed_text)
-
-            if not structured:
-                raise ValueError("Gemini response could not be fixed into valid JSON.")
+        structured = extract_json_with_fallbacks(json_text)
 
         save_table_to_latex(structured)
 
@@ -223,55 +221,92 @@ def grade_pdf_file(pdf_path, context_path=None):
     except Exception as e:
         raise RuntimeError(f"Gemini error: {str(e)}")
 
+
+def process_user_file(user_path, user_file, assignid, context_str):
+    try:
+        feedback = grade_pdf_file(user_path, context_str)
+        summary = summarize_feedback(feedback)
+        user_id = int(user_file.split(".")[0])
+        grade_assignment(assignid, user_id, summary["final_grade"], feedback=feedback)
+        return {
+            "success": True,
+            "user": user_file,
+            "grade": summary["final_grade"],
+            "comment": summary["master_comment"]
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "user": user_file,
+            "error": str(e)
+        }
+
+
+
 @app.route('/grade_all', methods=['POST'])
 def grade_all():
     try:
-        # Get assignment ID from form, JSON, or query string
-        assignid = request.form.get('assignid') or \
-                   (request.json and request.json.get('assignid')) or \
-                   request.args.get('assignid')
+        start_time = time.time()
+
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "Missing JSON body"}), 400
+
+        assignid = data.get('assignid')
+        context = data.get('context', "")
+        context_str = str(context) if context else ""
 
         if not assignid:
-            return jsonify({"error": "Missing 'assignid' in request"}), 400
+            return jsonify({"error": "Missing 'assignid' in request body"}), 400
 
-        context = request.form.get('context') or \
-                   (request.json and request.json.get('context')) or \
-                   request.args.get('context')
-
-        if not context:
-            context = ""
-
-        # Collect all user files in the .temp directory
         temp_dir = os.path.join('.temp', str(assignid))
         if not os.path.exists(temp_dir):
             return jsonify({"error": f"Directory '{temp_dir}' does not exist"}), 400
 
-        users = [f for f in os.listdir(temp_dir)]
+        users = [f for f in os.listdir(temp_dir) if f.endswith('.pdf')]
         if not users:
             return jsonify({"error": "No user files found in .temp directory"}), 404
 
         results = []
         errors = []
 
-        for user_file in users:
-            user_path = os.path.join(temp_dir, user_file)
-            try:
-                feedback = grade_pdf_file(user_path)
-                summary = summarize_feedback(feedback)
-                user_id = int(user_file.split(".")[0])
-                grade_assignment(assignid, user_id, summary["final_grade"], note=feedback)
-                results.append({
-                    "user": user_file,
-                    "grade": summary["final_grade"],
-                    "comment": summary["master_comment"]
-                })
-            except Exception as e:
-                errors.append({
-                    "user": user_file,
-                    "error": str(e)
-                })
+        max_workers = min(len(users), 16)
+
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = []
+
+            for user_file in users:
+                graded_json_path = os.path.join(temp_dir, user_file.replace('.pdf', '.graded.json'))
+                if os.path.exists(graded_json_path):
+                    continue  # דלג אם כבר נבדק
+
+                future = executor.submit(
+                    process_user_file,
+                    os.path.join(temp_dir, user_file),
+                    user_file,
+                    assignid,
+                    context_str
+                )
+                futures.append(future)
+
+            for future in as_completed(futures):
+                result = future.result()
+                if result["success"]:
+                    results.append({
+                        "user": result["user"],
+                        "grade": result["grade"],
+                        "comment": result["comment"]
+                    })
+                else:
+                    errors.append({
+                        "user": result["user"],
+                        "error": result["error"]
+                    })
+
+        total_time = time.time() - start_time
+
         return jsonify({
-            "message": f"Processed {len(results)} users for assignment {assignid}",
+            "message": f"Processed {len(results)} users for assignment {assignid} in {total_time:.2f} seconds",
             "graded": results,
             "errors": errors
         }), 200
@@ -309,5 +344,5 @@ def get_assignments():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
