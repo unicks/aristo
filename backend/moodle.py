@@ -5,7 +5,7 @@ import argparse
 # Configuration
 MOODLE_URL = "https://aristoplan.moodlecloud.com"
 MOODLE_TOKEN = "c254f0acadf572f82f74dc03ea7ca156"
-DOWNLOAD_DIR = "downloads"
+DOWNLOAD_DIR = ".temp"
 
 def call_moodle_api(function, params=None):
     if params is None:
@@ -38,7 +38,7 @@ def list_submissions(assignid):
 def download_all_submissions(assignid):
     data = call_moodle_api('mod_assign_get_submissions', {'assignmentids[0]': assignid})
     submissions = data['assignments'][0]['submissions']
-    os.makedirs(DOWNLOAD_DIR, exist_ok=True)
+    os.makedirs(os.path.join(DOWNLOAD_DIR, assignid), exist_ok=True)
 
     for submission in submissions:
         for plugin in submission.get('plugins', []):
@@ -49,7 +49,7 @@ def download_all_submissions(assignid):
                         # Use correct token via header or URL param
                         download_url = f"{fileurl}?token={MOODLE_TOKEN}"
 
-                        filename = os.path.join(DOWNLOAD_DIR, f"user_{submission['userid']}_{file['filename']}")
+                        filename = os.path.join(DOWNLOAD_DIR, assignid, f"user_{submission['userid']}_{file['filename']}")
                         print(f"Downloading {filename}...")
 
                         response = requests.get(download_url, stream=True)

@@ -10,6 +10,7 @@ import google.genai as genai
 import PyPDF2
 import numpy as np
 from typing import Dict, List
+import base64 # Added for Base64 encoding
 
 app = Flask(__name__)
 GEMINI_API_KEY = "AIzaSyCBd_uKeyycsilepxqsJRQ40AhrpoM5wTE"
@@ -17,47 +18,50 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 
 @app.route('/choose', methods=['POST'])
 def choose_varied_files():
-    """Endpoint to download submissions and find the two most different files."""
+    """Endpoint to download submissions, find the two most different files, and return their content."""
     try:
-        assignment_id = request.json.get('exercise_id')
-        if not assignment_id:
+        assignment_id_from_request = request.json.get('exercise_id')
+        if not assignment_id_from_request:
             return jsonify({"error": "exercise_id is required"}), 400
 
-        # Download submissions for the given assignment_id
+        # Ensure assignment_id is a string for path operations and moodle function
+        assignment_id_str = str(assignment_id_from_request)
+
         try:
-            print(f"Downloading submissions for assignment ID: {assignment_id}...")
-            download_all_submissions(assignment_id)
-            print(f"Submissions downloaded to: {MOODLE_DOWNLOAD_DIR}")
+            print(f"Downloading submissions for assignment ID: {assignment_id_str}...")
+            download_all_submissions(assignment_id_str) 
+            print(f"Submissions downloaded to: {MOODLE_DOWNLOAD_DIR}/{assignment_id_str}")
         except Exception as e:
-            print(f"Error downloading submissions: {e}")
+            print(f"Error downloading submissions for assignment {assignment_id_str}: {e}")
             return jsonify({"error": f"Failed to download submissions: {str(e)}"}), 500
         
-        # Use the DOWNLOAD_DIR from moodle.py
-        submissions_dir = MOODLE_DOWNLOAD_DIR 
-        if not os.path.exists(submissions_dir):
-            # This case should ideally be handled by download_all_submissions,
-            # but check just in case.
-            print(f"Submissions directory {submissions_dir} not found after download attempt.")
-            return jsonify({"error": f"Submissions directory not found: {submissions_dir}"}), 404
-            
-        files = [os.path.join(submissions_dir, f) for f in os.listdir(submissions_dir) 
-                 if os.path.isfile(os.path.join(submissions_dir, f)) and f.endswith(('.lyx', '.pdf'))]
-        
-        if len(files) < 2:
-            return jsonify({"error": "At least two processable files (.lyx or .pdf) are required for comparison after download"}), 400
+        submissions_base_dir = MOODLE_DOWNLOAD_DIR 
+        assignment_specific_dir = os.path.join(submissions_base_dir, assignment_id_str)
 
-        # Get embeddings for all files
+        if not os.path.exists(assignment_specific_dir):
+            print(f"Assignment specific directory {assignment_specific_dir} not found after download attempt.")
+            return jsonify({"error": f"Submissions directory for assignment {assignment_id_str} not found."}), 404
+            
+        files_in_assignment_dir = [
+            os.path.join(assignment_specific_dir, f) 
+            for f in os.listdir(assignment_specific_dir) 
+            if os.path.isfile(os.path.join(assignment_specific_dir, f)) and f.endswith(('.lyx', '.pdf'))
+        ]
+        
+        if len(files_in_assignment_dir) < 2:
+            return jsonify({"error": f"At least two processable files (.lyx or .pdf) found in {assignment_specific_dir} are required for comparison. Found: {len(files_in_assignment_dir)}"}), 400
+
         file_embeddings: Dict[str, List[float]] = {}
-        print(f"Processing {len(files)} files for embeddings...")
-        for file_path in files:
+        print(f"Processing {len(files_in_assignment_dir)} files for embeddings from {assignment_specific_dir}...")
+        for file_path in files_in_assignment_dir:
             try:
                 print(f"Getting content for {file_path}")
-                content = get_file_content(file_path)
-                if not content:
-                    print(f"Warning: No content extracted from {file_path}. Skipping.")
+                content_for_embedding = get_file_content(file_path) 
+                if not content_for_embedding:
+                    print(f"Warning: No content extracted for embedding from {file_path}. Skipping.")
                     continue
                 print(f"Getting embedding for {file_path}")
-                embedding = get_embedding(client, content)
+                embedding = get_embedding(client, content_for_embedding)
                 if embedding:
                     file_embeddings[file_path] = embedding
                 else:
@@ -68,7 +72,6 @@ def choose_varied_files():
         if len(file_embeddings) < 2:
             return jsonify({"error": f"Less than two files were successfully processed for embeddings. Processed: {len(file_embeddings)}"}), 400
 
-        # Calculate similarity scores
         similarity_scores: Dict[str, float] = {}
         file_paths_with_embeddings = list(file_embeddings.keys())
 
@@ -86,16 +89,44 @@ def choose_varied_files():
                 similarity_scores[path1] += similarity
                 similarity_scores[path2] += similarity
 
-        sorted_files = sorted(similarity_scores.items(), key=lambda item: item[1])
+        sorted_file_paths_by_similarity = sorted(similarity_scores.items(), key=lambda item: item[1])
         
-        if not sorted_files or len(sorted_files) < 2:
+        if not sorted_file_paths_by_similarity or len(sorted_file_paths_by_similarity) < 2:
              return jsonify({"error": "Could not determine the two most different files from the processed submissions."}), 500
 
-        most_varied_files = [file_path for file_path, _ in sorted_files[:2]]
+        most_varied_source_paths = [file_path for file_path, _ in sorted_file_paths_by_similarity[:2]]
+        
+        returned_files_data = []
+        for file_path in most_varied_source_paths:
+            try:
+                with open(file_path, 'rb') as f_raw:
+                    raw_content_bytes = f_raw.read()
+                encoded_content = base64.b64encode(raw_content_bytes).decode('utf-8')
+                returned_files_data.append({
+                    "filename": os.path.basename(file_path),
+                    "content_base64": encoded_content
+                })
+            except FileNotFoundError:
+                print(f"Error: File not found at {file_path} when preparing response. This file was selected as one of the most varied.")
+                # This is a significant issue if a selected file is suddenly missing.
+            except Exception as e:
+                print(f"Error reading or encoding file {file_path} for response: {e}")
+                # Optionally skip this file or handle error differently
+                continue 
+        
+        # Ensure we actually have two files to return after attempting to read them
+        if len(returned_files_data) < 2 and len(most_varied_source_paths) >= 2:
+             print(f"Warning: Expected to return 2 files, but only {len(returned_files_data)} could be successfully read and encoded.")
+             return jsonify({"error": "Failed to read/encode one or more of the selected files for the response."}), 500
+        elif not returned_files_data and len(most_varied_source_paths) > 0:
+             return jsonify({"error": "Selected files could not be prepared for the response."}), 500
+        elif len(most_varied_source_paths) < 2: # Should be caught earlier, but as a safeguard
+            return jsonify({"error": "Not enough files to select the two most varied."}), 500
+
 
         return jsonify({
-            "files": most_varied_files,
-            "message": f"Successfully found the two most different files from assignment {assignment_id}"
+            "files": returned_files_data,
+            "message": f"Successfully found and prepared the two most different files from assignment {assignment_id_str}"
         })
 
     except Exception as e:
