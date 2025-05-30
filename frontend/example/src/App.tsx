@@ -499,7 +499,7 @@ const assignmentId = 0
                     borderRadius: "6px",
                     border: "none",
                     background:
-                      isCheckingFiles || !selectedCourseId || assignments.length === 0 || hasCheckedFiles
+                      isGradingFiles || !selectedCourseId || assignments.length === 0 
                       ? "#aab8c2"
                       : "#388e3c",
                     color: "#fff",
@@ -508,8 +508,7 @@ const assignmentId = 0
                     cursor:
                       !selectedCourseId ||
                       assignments.length === 0 ||
-                      isCheckingFiles ||
-                      hasCheckedFiles
+                      isGradingFiles
                       ? "not-allowed"
                       : "pointer",
                     marginTop: "1rem",
