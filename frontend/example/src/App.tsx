@@ -314,7 +314,7 @@ export function App() {
   useEffect(() => {
     const fetchAssignments = async () => {
       try {
-        const res = await fetch("http://localhost:5000/courses");
+        const res = await fetch("http://34.60.97.78/courses");
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -332,7 +332,7 @@ export function App() {
 
   const fetchAssignments = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/assignments?courseid=${selectedCourseId}`);
+      const res = await fetch(`http://34.60.97.78/assignments?courseid=${selectedCourseId}`);
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
@@ -465,7 +465,7 @@ const assignmentId = 0
                     }
                     setIsCheckingFiles(true);
                     try {
-                      const res = await fetch("http://localhost:5000/choose", {
+                      const res = await fetch("http://34.60.97.78/choose", {
                         method: "POST",
                         headers: {
                           "Content-Type": "application/json",
@@ -517,7 +517,7 @@ const assignmentId = 0
                     onClick={async () => {
                       setIsGradingFiles(true)
                     try {
-                      const res = await fetch("http://localhost:5000/grade_all", {
+                      const res = await fetch("http://34.60.97.78/grade_all", {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/json",

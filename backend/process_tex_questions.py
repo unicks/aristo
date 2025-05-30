@@ -18,7 +18,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Constants
-API_URL = "http://localhost:5000"
+API_URL = "http://localhost:80"
 QUESTIONS_DIR = "tex_questions"
 RESULTS_DIR = "analysis_results"
 
