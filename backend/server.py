@@ -1,12 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from utils import *
-from latex_analyzer import analyzer_bp
 import json
 import os
 import google.generativeai as genai
 import logging
 import traceback
 import sys
+from glob import glob
 
 # Configure logging
 logging.basicConfig(
@@ -20,7 +20,6 @@ logging.basicConfig(
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.register_blueprint(analyzer_bp, url_prefix='/analyzer')
 
 from utils import (
     extract_valid_json, save_table_to_latex, summarize_feedback, 
@@ -39,6 +38,18 @@ from moodle import call_moodle_api, grade_assignment
 from flask_cors import CORS
 import re
 import time
+from io import BytesIO
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase import pdfmetrics
+from reportlab.lib.enums import TA_RIGHT
+import arabic_reshaper
+from bidi.algorithm import get_display
+from xml.sax.saxutils import escape
+import subprocess
+
 
 app = Flask(__name__)
 CORS(app)
@@ -76,7 +87,6 @@ def encode_file(path):
     except Exception as e:
         print(f"Failed encoding {path}: {e}")
         return None
-
 
 @app.route('/choose', methods=['POST'])
 def choose_varied_files():
@@ -164,7 +174,6 @@ def choose_varied_files():
     except Exception as e:
         print(f"Unexpected error: {e}")
         return jsonify({"error": f"Unexpected error: {e}"}), 500
-
 
 @app.errorhandler(Exception)
 def handle_error(error):
@@ -256,7 +265,6 @@ def grade_pdf_file(pdf_path, context=""):
     except Exception as e:
         raise RuntimeError(f"Gemini error: {str(e)}")
 
-
 def process_user_file(user_path, user_file, assignid, context_str):
     try:
         feedback = grade_pdf_file(user_path, context_str)
@@ -275,8 +283,6 @@ def process_user_file(user_path, user_file, assignid, context_str):
             "user": user_file,
             "error": str(e)
         }
-
-
 
 @app.route('/grade_all', methods=['POST'])
 def grade_all():
@@ -378,6 +384,197 @@ def get_assignments():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+def reshape_hebrew_text(text):
+    # לא נוגעים באנגלית/נוסחאות שמכילות אותיות לטיניות או סוגריים מתמטיים
+    # אבל כן משחזרים את הטקסט העברי כדי שיהיה מוצג נכון ב-RTL
+    tokens = re.split(r'(\s+)', text)  # שמור על רווחים
+    reshaped_tokens = []
+
+    for token in tokens:
+        if re.search(r'[a-zA-Z0-9()/*=+_\[\]{}<>-]', token):
+            reshaped_tokens.append(token)  # אל תיגע באנגלית או מתמטיקה
+        else:
+            reshaped_token = arabic_reshaper.reshape(token)
+            reshaped_tokens.append(reshaped_token)
+
+    reshaped_text = ''.join(reshaped_tokens)
+    return get_display(reshaped_text)
+
+
+def safe_html(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+# פונקציה להמרת sub/sup וסימנים מתמטיים
+SUPERSCRIPT_MAP = str.maketrans("0123456789+-=()n", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿ")
+SUBSCRIPT_MAP = str.maketrans("0123456789+-=()n", "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₙ")
+
+def convert_html_math(text: str) -> str:
+    def replace_sup(match):
+        return match.group(1).translate(SUPERSCRIPT_MAP)
+
+    def replace_sub(match):
+        return match.group(1).translate(SUBSCRIPT_MAP)
+
+    # HTML tags
+    text = re.sub(r'<sup>(.*?)</sup>', replace_sup, text)
+    text = re.sub(r'<sub>(.*?)</sub>', replace_sub, text)
+
+    # Math replacements
+    replacements = {
+        "!=": "≠",
+        "<=": "≤",
+        ">=": "≥",
+        "->": "→",
+        "=>": "⇒",
+        "<-": "←",
+        "<=>": "⇔",
+        "sqrt(": "√(",
+        "inf": "∞",
+        "infinity": "∞",
+        "integral": "∫",
+        "sum": "∑",
+        "pi": "π",
+        "theta": "θ",
+        "alpha": "α",
+        "beta": "β",
+        "gamma": "γ",
+        "+-": "±",
+        "degree": "°",
+    }
+
+    for k, v in replacements.items():
+        text = text.replace(k, v)
+
+    return text
+
+# === מיפויים ל־superscript ו־subscript ===
+SUPERSCRIPT_MAP = str.maketrans("0123456789+-=()n", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿ")
+SUBSCRIPT_MAP = str.maketrans("0123456789+-=()n", "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₙ")
+
+# === זיהוי סימנים מתמטיים ותבניות נפוצות ===
+def convert_html_math(text: str) -> str:
+    # HTML-style superscripts/subscripts
+    text = re.sub(r'<sup>(.*?)</sup>', lambda m: m.group(1).translate(SUPERSCRIPT_MAP), text)
+    text = re.sub(r'<sub>(.*?)</sub>', lambda m: m.group(1).translate(SUBSCRIPT_MAP), text)
+
+    # סימנים מתמטיים רגילים
+    replacements = {
+        "!=": "≠", "<=": "≤", ">=": "≥", "+-": "±",
+        "->": "→", "=>": "⇒", "<-": "←", "<=>": "⇔",
+        "inf": "∞", "infinity": "∞",
+        "sqrt(": "√(",
+        "integral": "∫", "sum": "∑",
+        "pi": "π", "theta": "θ", "alpha": "α",
+        "beta": "β", "gamma": "γ", "degree": "°"
+    }
+    for k, v in replacements.items():
+        text = text.replace(k, v)
+
+    # x^2 → x²
+    text = re.sub(r'(\w)\^([0-9n])', lambda m: m.group(1) + m.group(2).translate(SUPERSCRIPT_MAP), text)
+
+    # x_1 → x₁
+    text = re.sub(r'(\w)_([0-9n])', lambda m: m.group(1) + m.group(2).translate(SUBSCRIPT_MAP), text)
+
+    # lim x->0 → lim x→0
+    text = re.sub(r'lim\s+([a-zA-Z])\s*->\s*([0-9a-zA-Z∞\-\+]+)', r'lim \1→\2', text)
+
+    return text
+
+# === הגנה על HTML מבלי לפגוע במתמטיקה ===
+def safe_html(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+def latex_to_pdf(latex_code: str, output_dir: str = "tmp", filename: str = "questions_latex"):
+    os.makedirs(output_dir, exist_ok=True)
+
+    tex_path = os.path.join(output_dir, f"{filename}.tex")
+
+    with open(tex_path, "w", encoding="utf-8") as f:
+        f.write(latex_code)
+
+    return tex_path if os.path.exists(tex_path) else None
+
+@app.route('/generate-questions', methods=['POST'])
+def generate_questions():
+    try:
+        data = request.get_json()
+        prompt = data.get('prompt', '')
+        if not prompt:
+            return jsonify({'error': 'Missing prompt'}), 400
+
+        directory_path = 'analysis_results'
+        all_questions = []
+
+        for filename in os.listdir(directory_path):
+            if filename.endswith('.json'):
+                file_path = os.path.join(directory_path, filename)
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    json_data = json.load(f)
+                    for entry in json_data.get("results", []):
+                        question = entry.get("question", "").strip()
+                        if question and '(cid:' not in question and len(question) > 5:
+                            all_questions.append(question)
+
+        if not all_questions:
+            return jsonify({'error': 'No valid questions found in files'}), 400
+
+        combined_questions = "\n".join(all_questions)
+        final_prompt = f"\n\nשאלות מתוך קבצים:\n{combined_questions}"
+
+        gemini_prompt = (
+            f"הפק שאלות תרגול במתמטיקה לפי ההנחיות של המשתמש:\n\n"
+            f"{prompt}\n\n"
+            "חשוב מאוד:\n"
+            "- כתוב את השאלות בעברית.\n"
+            "- את הנוסחאות המתמטיות כתוב ב־LaTeX (הקף כל נוסחה בסימן דולר $ כמו $x^2$).\n"
+            "- כתוב כל שאלה בשורה חדשה.\n"
+            "- החזר רק את כמות השאלות שהתבקשת, לא יותר ולא פחות.\n"
+            "- המספור של השאלות יהיה בצורת 1. 2. 3. וכן הלאה.\n"
+        )
+
+        response = client.models.generate_content(
+            model="gemini-1.5-flash",
+            contents=gemini_prompt
+        )
+        questions_text = response.text.strip() if hasattr(response, 'text') else str(response)
+        questions = [q.strip() for q in questions_text.split('\n') if q.strip()]
+
+        latex_questions = "\n".join([f"\\item {q}" for q in questions])
+
+        latex_doc = rf"""
+        \documentclass[12pt]{{article}}
+        \usepackage[utf8]{{inputenc}}
+        \usepackage[hebrew,english]{{babel}}
+        \usepackage{{amsmath, amssymb, enumitem, geometry}}
+        \geometry{{margin=1in}}
+        \setlength{{\parindent}}{{0pt}}
+
+        \begin{{document}}
+        \selectlanguage{{hebrew}}
+        \begin{{enumerate}}
+        {latex_questions}
+        \end{{enumerate}}
+        \end{{document}}
+        """
+
+        pdf_path = latex_to_pdf(latex_doc)
+        if not pdf_path:
+            return jsonify({'error': 'Failed to compile LaTeX to PDF'}), 500
+
+        return send_file(
+            pdf_path,
+            mimetype='application/pdf',
+            as_attachment=True,
+            download_name='generated_questions.pdf'
+        )
+
+    except Exception as e:
+        logging.exception("Error in /generate-questions")
+        return jsonify({'error': str(e)}), 500
+
+
+    
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
 

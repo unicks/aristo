@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import { useNavigate } from "react-router-dom";
 
 import {
   AreaHighlight,
@@ -66,6 +67,8 @@ export function App() {
   
   // Keep track of blob URLs for cleanup
   const blobUrlsRef = useRef<Set<string>>(new Set());
+
+  const navigate = useNavigate();
 
   // Get current PDF data
   const currentPdf = uploadedPdfs[currentPdfIndex] || null;
@@ -345,336 +348,362 @@ export function App() {
 const assignmentId = 0
 
   return (
-    <div className="App" style={{ display: "flex", height: "100vh" }}>
-      <Sidebar
-        highlights={highlights}
-        resetHighlights={resetHighlights}
-      >
-        <div style={{ padding: "1rem" }}>
-          <h4>Choose assignment you want to check</h4>
-            <div style={{ marginBottom: "1.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <div>
-              <label style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ fontWeight: 600, fontSize: "1rem" }}>Choose Course:</span>
-              <select
-                value={selectedCourseId ?? ""}
-                onChange={(e) => setSelectedCourseId(Number(e.target.value))}
+    <div className="App" style={{ display: "flex", height: "100vh", flexDirection: "column" }}>
+      <div style={{ width: "100%", background: "#3b82f6", color: "white", padding: "1rem 0", textAlign: "center", position: "relative" }}>
+        <button
+          style={{
+            position: "absolute",
+            left: 24,
+            top: "50%",
+            transform: "translateY(-50%)",
+            padding: "0.7rem 2rem",
+            fontSize: "1rem",
+            background: "#6366f1",
+            color: "white",
+            border: "none",
+            borderRadius: 8,
+            cursor: "pointer",
+            fontWeight: 600,
+            boxShadow: "0 2px 8px rgba(99,102,241,0.13)",
+            transition: "background 0.2s"
+          }}
+          onClick={() => navigate("/")}
+        >
+          חזרה לדף הבית
+        </button>
+        <span style={{ fontSize: "1.3rem", fontWeight: 600 }}>בודק תרגילים</span>
+      </div>
+      <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
+        <Sidebar
+          highlights={highlights}
+          resetHighlights={resetHighlights}
+        >
+          <div style={{ padding: "1rem" }}>
+            <h4>Choose assignment you want to check</h4>
+              <div style={{ marginBottom: "1.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <div>
+                <label style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span style={{ fontWeight: 600, fontSize: "1rem" }}>Choose Course:</span>
+                <select
+                  value={selectedCourseId ?? ""}
+                  onChange={(e) => setSelectedCourseId(Number(e.target.value))}
+                  style={{
+                  padding: "0.4rem 0.8rem",
+                  borderRadius: "6px",
+                  border: "1px solid #ccc",
+                  fontSize: "1rem",
+                  minWidth: "160px",
+                  background: "#fafbfc"
+                  }}
+                >
+                  <option value="" disabled>
+                  {courses.length === 0 ? "Loading..." : "Select a course"}
+                  </option>
+                  {Array.isArray(courses) && courses.length > 0 &&
+                  courses.map((course: any) => (
+                    <option key={course.id} value={course.id}>
+                    {course.fullname}
+                    </option>
+                  ))}
+                </select>
+                </label>
+              </div>
+              <div>
+                <label style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span style={{ fontWeight: 600, fontSize: "1rem" }}>Choose Assignment:</span>
+                <select
+                value={selectedAssignmentId}
+                onChange={(e) => setSelectedAssignmentId(e.target.value)}
+                disabled={!selectedCourseId}
                 style={{
-                padding: "0.4rem 0.8rem",
-                borderRadius: "6px",
-                border: "1px solid #ccc",
-                fontSize: "1rem",
-                minWidth: "160px",
-                background: "#fafbfc"
+                  padding: "0.4rem 0.8rem",
+                  borderRadius: "6px",
+                  border: "1px solid #ccc",
+                  fontSize: "1rem",
+                  minWidth: "160px",
+                  background: !selectedCourseId ? "#f0f0f0" : "#fafbfc"
                 }}
               >
                 <option value="" disabled>
-                {courses.length === 0 ? "Loading..." : "Select a course"}
+                  {!selectedCourseId
+                    ? "Select a course first"
+                    : assignments.length === 0
+                    ? "Loading..."
+                    : "Select an assignment"}
                 </option>
-                {Array.isArray(courses) && courses.length > 0 &&
-                courses.map((course: any) => (
-                  <option key={course.id} value={course.id}>
-                  {course.fullname}
-                  </option>
-                ))}
+                {Array.isArray(assignments) && assignments.length > 0 &&
+                  assignments.map((assignment: any) => (
+                    <option key={assignment.id} value={assignment.id}>
+                      {assignment.name}
+                    </option>
+                  ))}
               </select>
-              </label>
-            </div>
-            <div>
-              <label style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ fontWeight: 600, fontSize: "1rem" }}>Choose Assignment:</span>
-              <select
-              value={selectedAssignmentId}
-              onChange={(e) => setSelectedAssignmentId(e.target.value)}
-              disabled={!selectedCourseId}
-              style={{
-                padding: "0.4rem 0.8rem",
-                borderRadius: "6px",
-                border: "1px solid #ccc",
-                fontSize: "1rem",
-                minWidth: "160px",
-                background: !selectedCourseId ? "#f0f0f0" : "#fafbfc"
-              }}
-            >
-              <option value="" disabled>
-                {!selectedCourseId
-                  ? "Select a course first"
-                  : assignments.length === 0
-                  ? "Loading..."
-                  : "Select an assignment"}
-              </option>
-              {Array.isArray(assignments) && assignments.length > 0 &&
-                assignments.map((assignment: any) => (
-                  <option key={assignment.id} value={assignment.id}>
-                    {assignment.name}
-                  </option>
-                ))}
-            </select>
 
-              </label>
-            </div>
-            </div>
-            <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
-              <button
-                disabled={!selectedCourseId || assignments.length === 0 || isCheckingFiles || hasCheckedFiles}
-                style={{
-                  padding: "0.6rem 1.2rem",
-                  borderRadius: "6px",
-                  border: "none",
-                  background: (!selectedCourseId || assignments.length === 0 || isCheckingFiles || hasCheckedFiles) ? "#ccc" : "#1976d2",
-                  color: "#fff",
-                  fontWeight: 600,
-                  fontSize: "1rem",
-                  cursor: (!selectedCourseId || assignments.length === 0 || isCheckingFiles || hasCheckedFiles) ? "not-allowed" : "pointer",
-                  marginTop: "1rem"
-                }}
-                onClick={async () => {
-                  const assignmentSelect = document.querySelector<HTMLSelectElement>('select[disabled=""]') || document.querySelectorAll('select')[1];
-                  const assignmentId = (assignmentSelect as HTMLSelectElement)?.value;
-                  if (!assignmentId) {
-                    alert("Please select an assignment.");
-                    return;
-                  }
-                  setIsCheckingFiles(true);
-                  try {
-                    const res = await fetch("http://localhost:5000/choose", {
+                </label>
+              </div>
+              </div>
+              <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+                <button
+                  disabled={!selectedCourseId || assignments.length === 0 || isCheckingFiles || hasCheckedFiles}
+                  style={{
+                    padding: "0.6rem 1.2rem",
+                    borderRadius: "6px",
+                    border: "none",
+                    background: (!selectedCourseId || assignments.length === 0 || isCheckingFiles || hasCheckedFiles) ? "#ccc" : "#1976d2",
+                    color: "#fff",
+                    fontWeight: 600,
+                    fontSize: "1rem",
+                    cursor: (!selectedCourseId || assignments.length === 0 || isCheckingFiles || hasCheckedFiles) ? "not-allowed" : "pointer",
+                    marginTop: "1rem"
+                  }}
+                  onClick={async () => {
+                    const assignmentSelect = document.querySelector<HTMLSelectElement>('select[disabled=""]') || document.querySelectorAll('select')[1];
+                    const assignmentId = (assignmentSelect as HTMLSelectElement)?.value;
+                    if (!assignmentId) {
+                      alert("Please select an assignment.");
+                      return;
+                    }
+                    setIsCheckingFiles(true);
+                    try {
+                      const res = await fetch("http://localhost:5000/choose", {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          amount: 2,
+                          exercise_id: assignmentId,
+                        }),
+                      });
+                      if (!res.ok) throw new Error("API call failed");
+                      const data = await res.json();
+                      const files = data.files;
+                      handleBase64Upload(files);
+                      setHasCheckedFiles(true);
+                    } catch (err) {
+                      alert("API call failed: " + err);
+                    } finally {
+                      setIsCheckingFiles(false);
+                    }
+                  }}
+                >{isCheckingFiles ? "Checking..." : "Check Files"} 
+                </button>
+                  <button
+                    disabled={
+                    !selectedCourseId ||
+                    assignments.length === 0 ||
+                    isGradingFiles
+                    }
+                    style={{
+                    padding: "0.6rem 1.2rem",
+                    borderRadius: "6px",
+                    border: "none",
+                    background:
+                      isCheckingFiles || !selectedCourseId || assignments.length === 0 || hasCheckedFiles
+                      ? "#aab8c2"
+                      : "#388e3c",
+                    color: "#fff",
+                    fontWeight: 600,
+                    fontSize: "1rem",
+                    cursor:
+                      !selectedCourseId ||
+                      assignments.length === 0 ||
+                      isCheckingFiles ||
+                      hasCheckedFiles
+                      ? "not-allowed"
+                      : "pointer",
+                    marginTop: "1rem",
+                    }}
+                    onClick={async () => {
+                      setIsGradingFiles(true)
+                    try {
+                      const res = await fetch("http://localhost:5000/grade_all", {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/json",
                       },
                       body: JSON.stringify({
-                        amount: 2,
-                        exercise_id: assignmentId,
+                        assignid: selectedAssignmentId,
+                        context: highlights,
                       }),
-                    });
-                    if (!res.ok) throw new Error("API call failed");
-                    const data = await res.json();
-                    const files = data.files;
-                    handleBase64Upload(files);
-                    setHasCheckedFiles(true);
-                  } catch (err) {
-                    alert("API call failed: " + err);
-                  } finally {
-                    setIsCheckingFiles(false);
-                  }
-                }}
-              >{isCheckingFiles ? "Checking..." : "Check Files"} 
-              </button>
-                <button
-                  disabled={
-                  !selectedCourseId ||
-                  assignments.length === 0 ||
-                  isGradingFiles
-                  }
-                  style={{
-                  padding: "0.6rem 1.2rem",
-                  borderRadius: "6px",
-                  border: "none",
-                  background:
-                    isCheckingFiles || !selectedCourseId || assignments.length === 0 || hasCheckedFiles
-                    ? "#aab8c2"
-                    : "#388e3c",
-                  color: "#fff",
-                  fontWeight: 600,
-                  fontSize: "1rem",
-                  cursor:
-                    !selectedCourseId ||
-                    assignments.length === 0 ||
-                    isCheckingFiles ||
-                    hasCheckedFiles
-                    ? "not-allowed"
-                    : "pointer",
-                  marginTop: "1rem",
-                  }}
-                  onClick={async () => {
-                    setIsGradingFiles(true)
-                  try {
-                    const res = await fetch("http://localhost:5000/grade_all", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                      assignid: selectedAssignmentId,
-                      context: highlights,
-                    }),
-                    });
+                      });
 
-                    const data = await res.json();
-                    console.log("Response from server:", data);
+                      const data = await res.json();
+                      console.log("Response from server:", data);
 
-                    if (!res.ok) throw new Error(data.error || "Unknown server error");
+                      if (!res.ok) throw new Error(data.error || "Unknown server error");
 
-                    console.log(data["message"])
-                    window.alert(
-                    `Grading complete!\n\n` +data["message"]
-                      
-                    );
+                      console.log(data["message"])
+                      window.alert(
+                      `Grading complete!\n\n` +data["message"]
+                        
+                      );
 
-                    // Success: disable button and change color
+                      // Success: disable button and change color
 
-                  } catch (err: any) {
-                    console.error("Fetch failed:", err);
-                    window.alert("Grading failed: " + (err?.message || err));
-                  }finally {
-                      setIsGradingFiles(false)
-                  }
-                  }}
-                >
-                  {
-                  isGradingFiles
-                  ? "Grading..."
-                  : "Grade All"}
-                </button>
-            </div>
-              {/* PDF navigation buttons */}
-              <div style={{ display: "flex", gap: "1rem", marginTop: "2rem", justifyContent: "center" }}>
-                <button
-                  onClick={() => navigateToPdf('prev')}
-                  disabled={currentPdfIndex <= 0}
-                  style={{
-                    padding: "0.5rem 1rem",
-                    borderRadius: "4px",
-                    border: "1px solid #ccc",
-                    background: currentPdfIndex <= 0 ? "#eee" : "#fff",
-                    color: "#333",
-                    cursor: currentPdfIndex <= 0 ? "not-allowed" : "pointer",
-                    fontWeight: 600
-                  }}
-                >
-                  Previous
-                </button>
-                <span style={{ alignSelf: "center", fontWeight: 500 }}>
-                  {uploadedPdfs.length > 0
-                    ? `PDF ${currentPdfIndex + 1} of ${uploadedPdfs.length}`
-                    : "No PDFs"}
-                </span>
-                <button
-                  onClick={() => navigateToPdf('next')}
-                  disabled={currentPdfIndex >= uploadedPdfs.length - 1}
-                  style={{
-                    padding: "0.5rem 1rem",
-                    borderRadius: "4px",
-                    border: "1px solid #ccc",
-                    background: currentPdfIndex >= uploadedPdfs.length - 1 ? "#eee" : "#fff",
-                    color: "#333",
-                    cursor: currentPdfIndex >= uploadedPdfs.length - 1 ? "not-allowed" : "pointer",
-                    fontWeight: 600
-                  }}
-                >
-                  Next
-                </button>
-              </div>
-        </div>
-      </Sidebar>
-      <div
-        style={{
-          height: "100vh",
-          width: "75vw",
-          position: "relative",
-        }}
-      >
-        {url ? (
-          <PdfLoader 
-            key={`pdf-${currentPdfIndex}-${currentPdf?.name}`}
-            url={url} 
-            beforeLoad={<Spinner />}
-          >
-            {(pdfDocument) => (
-              <PdfHighlighter
-                pdfDocument={pdfDocument}
-                enableAreaSelection={(event) => event.altKey}
-                onScrollChange={resetHash}
-                scrollRef={(scrollTo) => {
-                  scrollViewerTo.current = scrollTo;
-                  scrollToHighlightFromHash();
-                }}
-                onSelectionFinished={(
-                  position,
-                  content,
-                  hideTipAndSelection,
-                  transformSelection,
-                ) => (
-                  <Tip
-                    onOpen={transformSelection}
-                    onConfirm={(comment) => {
-                      console.log('Adding highlight to PDF:', currentPdf?.name);
-                      addHighlight({ content, position, comment });
-                      hideTipAndSelection();
+                    } catch (err: any) {
+                      console.error("Fetch failed:", err);
+                      window.alert("Grading failed: " + (err?.message || err));
+                    }finally {
+                        setIsGradingFiles(false)
+                    }
                     }}
-                  />
-                )}
-                highlightTransform={(
-                  highlight,
-                  index,
-                  setTip,
-                  hideTip,
-                  viewportToScaled,
-                  screenshot,
-                  isScrolledTo,
-                ) => {
-                  const isTextHighlight = !highlight.content?.image;
-
-                  const component = isTextHighlight ? (
-                    <Highlight
-                      isScrolledTo={isScrolledTo}
-                      position={highlight.position}
-                      comment={highlight.comment}
-                    />
-                  ) : (
-                    <AreaHighlight
-                      isScrolledTo={isScrolledTo}
-                      highlight={highlight}
-                      onChange={(boundingRect) => {
-                        updateHighlight(
-                          highlight.id,
-                          { boundingRect: viewportToScaled(boundingRect) },
-                          { image: screenshot(boundingRect) },
-                        );
+                  >
+                    {
+                    isGradingFiles
+                    ? "Grading..."
+                    : "Grade All"}
+                  </button>
+              </div>
+                {/* PDF navigation buttons */}
+                <div style={{ display: "flex", gap: "1rem", marginTop: "2rem", justifyContent: "center" }}>
+                  <button
+                    onClick={() => navigateToPdf('prev')}
+                    disabled={currentPdfIndex <= 0}
+                    style={{
+                      padding: "0.5rem 1rem",
+                      borderRadius: "4px",
+                      border: "1px solid #ccc",
+                      background: currentPdfIndex <= 0 ? "#eee" : "#fff",
+                      color: "#333",
+                      cursor: currentPdfIndex <= 0 ? "not-allowed" : "pointer",
+                      fontWeight: 600
+                    }}
+                  >
+                    Previous
+                  </button>
+                  <span style={{ alignSelf: "center", fontWeight: 500 }}>
+                    {uploadedPdfs.length > 0
+                      ? `PDF ${currentPdfIndex + 1} of ${uploadedPdfs.length}`
+                      : "No PDFs"}
+                  </span>
+                  <button
+                    onClick={() => navigateToPdf('next')}
+                    disabled={currentPdfIndex >= uploadedPdfs.length - 1}
+                    style={{
+                      padding: "0.5rem 1rem",
+                      borderRadius: "4px",
+                      border: "1px solid #ccc",
+                      background: currentPdfIndex >= uploadedPdfs.length - 1 ? "#eee" : "#fff",
+                      color: "#333",
+                      cursor: currentPdfIndex >= uploadedPdfs.length - 1 ? "not-allowed" : "pointer",
+                      fontWeight: 600
+                    }}
+                  >
+                    Next
+                  </button>
+                </div>
+          </div>
+        </Sidebar>
+        <div
+          style={{
+            height: "100vh",
+            width: "75vw",
+            position: "relative",
+          }}
+        >
+          {url ? (
+            <PdfLoader 
+              key={`pdf-${currentPdfIndex}-${currentPdf?.name}`}
+              url={url} 
+              beforeLoad={<Spinner />}
+            >
+              {(pdfDocument) => (
+                <PdfHighlighter
+                  pdfDocument={pdfDocument}
+                  enableAreaSelection={(event) => event.altKey}
+                  onScrollChange={resetHash}
+                  scrollRef={(scrollTo) => {
+                    scrollViewerTo.current = scrollTo;
+                    scrollToHighlightFromHash();
+                  }}
+                  onSelectionFinished={(
+                    position,
+                    content,
+                    hideTipAndSelection,
+                    transformSelection,
+                  ) => (
+                    <Tip
+                      onOpen={transformSelection}
+                      onConfirm={(comment) => {
+                        console.log('Adding highlight to PDF:', currentPdf?.name);
+                        addHighlight({ content, position, comment });
+                        hideTipAndSelection();
                       }}
                     />
-                  );
+                  )}
+                  highlightTransform={(
+                    highlight,
+                    index,
+                    setTip,
+                    hideTip,
+                    viewportToScaled,
+                    screenshot,
+                    isScrolledTo,
+                  ) => {
+                    const isTextHighlight = !highlight.content?.image;
 
-                  return (
-                    <Popup
-                      popupContent={<HighlightPopup {...highlight} />}
-                      onMouseOver={(popupContent) =>
-                        setTip(highlight, (highlight) => popupContent)
-                      }
-                      onMouseOut={hideTip}
-                      key={index}
-                    >
-                      {component}
-                    </Popup>
-                  );
-                }}
-                highlights={highlights}
-              />
-            )}
-          </PdfLoader>
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100%",
-              flexDirection: "column",
-              backgroundColor: "#f5f5f5",
-              color: "#666",
-            }}
-          >
-            <h2 style={{ marginBottom: "1rem" }}>
-              {uploadedPdfs.length === 0 ? "No PDFs Uploaded" : "No PDF Selected"}
-            </h2>
-            <p>
-              {uploadedPdfs.length === 0 
-                ? "Please upload PDF files using the sidebar to get started."
-                : "Use the navigation arrows in the sidebar to select a PDF."
-              }
-            </p>
-          </div>
-        )}
+                    const component = isTextHighlight ? (
+                      <Highlight
+                        isScrolledTo={isScrolledTo}
+                        position={highlight.position}
+                        comment={highlight.comment}
+                      />
+                    ) : (
+                      <AreaHighlight
+                        isScrolledTo={isScrolledTo}
+                        highlight={highlight}
+                        onChange={(boundingRect) => {
+                          updateHighlight(
+                            highlight.id,
+                            { boundingRect: viewportToScaled(boundingRect) },
+                            { image: screenshot(boundingRect) },
+                          );
+                        }}
+                      />
+                    );
+
+                    return (
+                      <Popup
+                        popupContent={<HighlightPopup {...highlight} />}
+                        onMouseOver={(popupContent) =>
+                          setTip(highlight, (highlight) => popupContent)
+                        }
+                        onMouseOut={hideTip}
+                        key={index}
+                      >
+                        {component}
+                      </Popup>
+                    );
+                  }}
+                  highlights={highlights}
+                />
+              )}
+            </PdfLoader>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                flexDirection: "column",
+                backgroundColor: "#f5f5f5",
+                color: "#666",
+              }}
+            >
+              <h2 style={{ marginBottom: "1rem" }}>
+                {uploadedPdfs.length === 0 ? "No PDFs Uploaded" : "No PDF Selected"}
+              </h2>
+              <p>
+                {uploadedPdfs.length === 0 
+                  ? "Please upload PDF files using the sidebar to get started."
+                  : "Use the navigation arrows in the sidebar to select a PDF."
+                }
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
